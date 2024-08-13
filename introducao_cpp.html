@@ -169,6 +169,37 @@
 					</ul>
 				</section>
 
+        <section data-background="img/integer_division.jpg">
+          <h2>Divisão de Inteiros em C++</h2>
+          <ul>
+            <li>Quando você divide dois inteiros em C++, o resultado também será um inteiro.</li>
+            <li>Exemplo: <code>int result = 7 / 2;</code> resultará em <code>3</code> (a parte decimal é descartada).</li>
+            <li>Para obter um resultado com ponto flutuante, é necessário fazer o "type casting" de um ou ambos os inteiros.</li>
+          </ul>
+        </section>
+        <section data-background="img/integer_division.jpg">
+          <h2>Divisão de Inteiros em C++</h2>
+
+    <pre><code class="language-cpp" data-trim data-noescape>
+#include &lt;iostream&gt;
+
+int main() {
+    int a = 7, b = 2;
+    int result = a / b;
+    std::cout &lt;&lt; "Resultado da divisão de inteiros: " &lt;&lt; result &lt;&lt; std::endl;
+
+    // Usando type casting para obter um resultado com ponto flutuante
+    double preciseResult = static_cast&lt;double&gt;(a) / b;
+    std::cout &lt;&lt; "Resultado com ponto flutuante: " &lt;&lt; preciseResult &lt;&lt; std::endl;
+
+    return 0;
+}
+    </code></pre>
+    <ul>
+        <li><code>static_cast&lt;double&gt;(a)</code> converte <code>a</code> de <code>int</code> para <code>double</code>, permitindo uma divisão com resultado decimal.</li>
+    </ul>
+</section>
+
 				<section data-background="img/formatting_output.jpg">
 					<h2>Formatação da Saída</h2>
 					<pre><code class="language-cpp" data-trim data-noescape>
@@ -190,6 +221,37 @@
 						<li>Outras opções de formatação: alinhamento, campos, separadores, etc.</li>
 					</ul>
 				</section>
+
+        <section data-background="img/strings_cpp.jpg">
+          <h2>Trabalhando com Strings em C++</h2>
+          <ul>
+            <li>Strings em C++ podem ser representadas usando aspas duplas <code>""</code> ou simples <code>''</code>.</li>
+            <li><code>""</code> (aspas duplas) são usadas para criar strings literais, como <code>"Hello, World!"</code>.</li>
+            <li><code>''</code> (aspas simples) são usadas para representar caracteres únicos, como <code>'A'</code>.</li>
+            <li>C++ também oferece a classe <code>std::string</code> para manipulação de strings de forma mais eficiente e segura.</li>
+          </ul>
+
+				</section>
+        <section data-background="img/strings_cpp.jpg">
+          <h2>Trabalhando com Strings em C++ (exemplo)</h2>
+
+          <pre><code class="language-cpp" data-trim data-noescape>
+          <script type="text/template"> 
+          #include <iostream>
+          #include <string>
+
+          int main() {
+            std::string greeting = "Hello, World!";
+            char initial = 'A';
+
+            std::cout << greeting << std::endl; // Exibe a string
+            std::cout << "First character: " << initial << std::endl; // Exibe o caractere
+
+            return 0;
+          }
+          </script>
+          </code></pre>
+        </section>
 
 				<section data-background="img/recap.jpg">
 					<h2>Recapitulando</h2>
