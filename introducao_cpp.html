@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Curso Introdutório de C++</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			.reveal section {
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center;
+			}
+			.reveal section::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				z-index: -1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="img/cplusplus_logo.jpg">
+					<h1>Curso Introdutório de C++</h1>
+					<h3>Aula 1: Introdução à Linguagem</h3>
+				</section>
+
+				<section data-background="img/history_cpp.jpg">
+					<h2>Breve História do C++</h2>
+					<ul>
+						<li>Criado por Bjarne Stroustrup em 1979</li>
+						<li>Baseado na linguagem C, adicionando recursos de Programação Orientada a Objetos</li>
+						<li>Amplamente utilizado em diversas áreas, como sistemas operacionais, jogos, aplicativos, etc.</li>
+					</ul>
+				</section>
+
+				<section data-background="img/cpp_features.jpg">
+					<h2>Características do C++</h2>
+					<ul>
+						<li>Linguagem de propósito geral, de alto nível</li>
+						<li>Suporte a Programação Orientada a Objetos</li>
+						<li>Capacidade de programação de baixo nível (manipulação de memória)</li>
+						<li>Portabilidade entre diferentes plataformas</li>
+						<li>Desempenho eficiente e rápido</li>
+					</ul>
+				</section>
+
+				<section data-background="img/ide_cpp.jpg">
+					<h2>Ambiente de Desenvolvimento</h2>
+					<ul>
+						<li>Diversos Ambientes de Desenvolvimento Integrado (IDEs) disponíveis</li>
+						<li>Exemplos: Visual Studio, Code::Blocks, Eclipse, QtCreator</li>
+						<li>Compiladores populares: GCC, Clang, Visual C++</li>
+						<li>Configuração do ambiente de acordo com o sistema operacional</li>
+					</ul>
+				</section>
+
+				<section data-background="img/cpp_structure.jpg">
+					<h2>Estrutura Básica de um Programa C++</h2>
+					<pre><code type="text/template" data-trim data-noescape>
+           <script type="text/template"> 
+					#include <iostream>
+
+					int main() {
+						// Seu código aqui
+						return 0;
+					}
+           </script> 
+					</code></pre>
+					<ul>
+						<li><code>#include &lt;iostream&gt;</code>: Inclui a biblioteca de entrada/saída</li>
+						<li><code>int main()</code>: Função principal, ponto de entrada do programa</li>
+						<li><code>return 0;</code>: Indica que o programa foi executado com sucesso</li>
+					</ul>
+				</section>
+
+				<section data-background="img/comments.jpg">
+					<h2>Comentários em C++</h2>
+					<pre><code class="language-cpp" data-trim data-noescape>
+					// Este é um comentário em uma única linha
+
+					/*
+					 * Este é um comentário
+					 * em múltiplas linhas
+					 */
+					</code></pre>
+					<ul>
+						<li>Usados para adicionar notas e explicações ao código</li>
+						<li>Não afetam a execução do programa</li>
+						<li>Facilitam a compreensão e manutenção do código</li>
+					</ul>
+				</section>
+
+				<section data-background="img/data_types.jpg">
+					<h2>Tipos de Dados em C++</h2>
+					<ul>
+						<li><code>int</code>: Inteiros</li>
+						<li><code>float</code> e <code>double</code>: Números de ponto flutuante</li>
+						<li><code>char</code>: Caracteres</li>
+						<li><code>bool</code>: Valores booleanos (true/false)</li>
+						<li>Outros tipos: <code>short</code>, <code>long</code>, <code>unsigned</code>, etc.</li>
+					</ul>
+				</section>
+
+				<section data-background="img/variables.jpg">
+					<h2>Declaração de Variáveis</h2>
+					<pre><code class="language-cpp" data-trim data-noescape>
+					int age = 25;
+					float pi = 3.14159;
+					char letter = 'A';
+					bool isStudent = true;
+					</code></pre>
+					<ul>
+						<li>Tipo de dados seguido pelo nome da variável</li>
+						<li>Inicialização com um valor</li>
+						<li>Nomeação seguindo convenções (camelCase, snake_case)</li>
+					</ul>
+				</section>
+
+				<section data-background="img/operators.jpg">
+					<h2>Operadores Aritméticos</h2>
+					<pre><code class="language-cpp" data-trim data-noescape>
+					int a = 10, b = 4;
+					int sum = a + b;      // 14
+					int diff = a - b;     // 6
+					int prod = a * b;     // 40
+					int quot = a / b;     // 2
+					int rem = a % b;      // 2
+					</code></pre>
+					<ul>
+						<li>Operadores: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+						<li>Aplicáveis a tipos numéricos (int, float, etc.)</li>
+					</ul>
+				</section>
+
+				<section data-background="img/cout_cin.jpg">
+					<h2>Entrada e Saída de Dados</h2>
+					<pre><code class="language-cpp" data-trim data-noescape>
+          <script type="text/template"> 
+					#include <iostream>
+
+					int main() {
+						std::cout << "Hello, World!" << std::endl;
+
+						int num;
+						std::cout << "Enter a number: ";
+						std::cin >> num;
+						std::cout << "You entered: " << num << std::endl;
+
+						return 0;
+					}
+          </script>
+					</code></pre>
+					<ul>
+						<li><code>std::cout</code>: Usado para exibir saída</li>
+						<li><code>std::cin</code>: Usado para receber entrada do usuário</li>
+					</ul>
+				</section>
+
+				<section data-background="img/formatting_output.jpg">
+					<h2>Formatação da Saída</h2>
+					<pre><code class="language-cpp" data-trim data-noescape>
+          <script type="text/template"> 
+					#include <iostream>
+					#include <iomanip>
+
+					int main() {
+						double pi = 3.14159;
+						std::cout << "Value of pi: " << pi << std::endl;
+						std::cout << "Value of pi (with 2 decimal places): "
+						          << std::fixed << std::setprecision(2) << pi << std::endl;
+						return 0;
+					}
+          </script>
+					</code></pre>
+					<ul>
+						<li><code>std::fixed</code> e <code>std::setprecision(2)</code>: Formata a saída com 2 casas decimais</li>
+						<li>Outras opções de formatação: alinhamento, campos, separadores, etc.</li>
+					</ul>
+				</section>
+
+				<section data-background="img/recap.jpg">
+					<h2>Recapitulando</h2>
+					<ul>
+						<li>Breve história e características do C++</li>
+						<li>Estrutura básica de um programa C++</li>
+						<li>Comentários em C++</li>
+						<li>Tipos de dados e declaração de variáveis</li>
+						<li>Operadores aritméticos</li>
+						<li>Entrada e saída de dados com <code>std::cout</code> e <code>std::cin</code></li>
+						<li>Formatação da saída usando manipuladores</li>
+					</ul>
+					<p>Na próxima aula, abordaremos estruturas de controle em C++.</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
