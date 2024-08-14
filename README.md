@@ -4,12 +4,12 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 
 ## Conteúdo do Curso
 
-1. **Introdução ao C++**:
+1. **[Introdução ao C++](https://oangelo.github.io/Introducao-a-Programacao)**:
    - História e evolução da linguagem
    - Características e aplicações do C++
    - Ambiente de desenvolvimento (IDE, compiladores)
 
-2. **Estrutura Básica do Programa C++**:
+2. [**Estrutura Básica do Programa C++](https://oangelo.github.io/Introducao-a-Programacao/introducao_cpp.html)**:
    - Função `main()` e ponto de entrada do programa
    - Diretivas de pré-processador (`#include`, `#define`)
    - Comentários
