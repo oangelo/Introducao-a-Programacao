@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Curso Introdutório de C++</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+        <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "🚀 "; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+    </style>
+
+			</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Funções em C++</h1>
+                <h3>Uma Jornada Divertida pelo Mundo da Programação</h3>
+                <p>Prepare-se para decolar! 🚀</p>
+            </section>
+
+            <section>
+                <h2>Nossa Missão Espacial</h2>
+                <ul>
+                    <li>Explorar a galáxia das funções</li>
+                    <li>Descobrir os segredos dos parâmetros</li>
+                    <li>Mapear o território do escopo</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Funções: Os Super-Heróis do Código</h2>
+                <div class="two-columns">
+                    <div>
+                        <p>Funções são como super-heróis:</p>
+                        <ul>
+                            <li>Têm superpoderes específicos</li>
+                            <li>Podem ser chamadas quando precisamos</li>
+                            <li>Salvam o dia (e nosso código!)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Anatomia de uma Função</h2>
+                <pre><code class="cpp">
+tipo_retorno nome_da_funcao(tipo param1, tipo param2) {
+    // Corpo da função (os superpoderes em ação!)
+    return resultado_incrível;
+}
+                </code></pre>
+                <p>Cada parte tem um papel importante!</p>
+            </section>
+
+            <section>
+                <h2>Exemplo: A Função Calculadora</h2>
+                <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int calcular(int a, int b, char operacao) {
+    switch(operacao) {
+        case '+': return a + b;
+        case '-': return a - b;
+        case '*': return a * b;
+        case '/': return b != 0 ? a / b : 0;
+        default: return 0;
+    }
+}
+
+int main() {
+    std::cout &lt;&lt; "10 + 5 = " &lt;&lt; calcular(10, 5, '+') &lt;&lt; std::endl;
+    std::cout &lt;&lt; "10 - 5 = " &lt;&lt; calcular(10, 5, '-') &lt;&lt; std::endl;
+    std::cout &lt;&lt; "10 * 5 = " &lt;&lt; calcular(10, 5, '*') &lt;&lt; std::endl;
+    std::cout &lt;&lt; "10 / 5 = " &lt;&lt; calcular(10, 5, '/') &lt;&lt; std::endl;
+    return 0;
+}
+                </code></pre>
+                <p>Uma função versátil, como um canivete suíço do código!</p>
+            </section>
+
+            <section>
+                <h2>Passagem de Parâmetros: O Teletransporte de Dados</h2>
+                <div class="two-columns">
+                    <div>
+                        <h3>Por Valor</h3>
+                        <p>Envia uma cópia dos dados</p>
+                        <img src="/api/placeholder/200/150" alt="Teletransporte por valor">
+                    </div>
+                    <div>
+                        <h3>Por Referência</h3>
+                        <p>Envia o endereço original</p>
+                        <img src="/api/placeholder/200/150" alt="Teletransporte por referência">
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Exemplo: Teletransporte de Dados</h2>
+                <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+void porValor(int x) {
+    x += 10; // Modifica apenas a cópia
+}
+
+void porReferencia(int &x) {
+    x += 10; // Modifica o original
+}
+
+int main() {
+    int num1 = 5, num2 = 5;
+    
+    porValor(num1);
+    std::cout &lt;&lt; "Por valor: " &lt;&lt; num1 &lt;&lt; std::endl; // Imprime 5
+    
+    porReferencia(num2);
+    std::cout &lt;&lt; "Por referência: " &lt;&lt; num2 &lt;&lt; std::endl; // Imprime 15
+    
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Escopo: O Território das Variáveis</h2>
+                <div class="two-columns">
+                    <div>
+                        <h3>Variáveis Locais</h3>
+                        <p>Vivem dentro de funções</p>
+                        <img src="/api/placeholder/200/150" alt="Casa representando escopo local">
+                    </div>
+                    <div>
+                        <h3>Variáveis Globais</h3>
+                        <p>Vivem em todo o programa</p>
+                        <img src="/api/placeholder/200/150" alt="Mundo representando escopo global">
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Exemplo: A Vida das Variáveis</h2>
+                <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int varGlobal = 100; // Variável global
+
+void funcaoA() {
+    int varLocal = 10; // Variável local
+    std::cout &lt;&lt; "Global em A: " &lt;&lt; varGlobal &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Local em A: " &lt;&lt; varLocal &lt;&lt; std::endl;
+}
+
+void funcaoB() {
+    varGlobal += 50;
+    // varLocal não existe aqui!
+    std::cout &lt;&lt; "Global em B: " &lt;&lt; varGlobal &lt;&lt; std::endl;
+}
+
+int main() {
+    funcaoA();
+    funcaoB();
+    std::cout &lt;&lt; "Global em main: " &lt;&lt; varGlobal &lt;&lt; std::endl;
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Funções Recursivas: O Espelho Infinito</h2>
+                <img src="/api/placeholder/400/300" alt="Espelho infinito">
+                <p>Funções que chamam a si mesmas, criando um efeito de espelho infinito!</p>
+            </section>
+
+            <section>
+                <h2>Exemplo: Fatorial Recursivo</h2>
+                <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+int fatorial(int n) {
+    if (n <= 1) return 1; // Caso base
+    return n * fatorial(n - 1); // Chamada recursiva
+}
+
+int main() {
+    std::cout &lt;&lt; "5! = " &lt;&lt; fatorial(5) &lt;&lt; std::endl; // 120
+    return 0;
+}
+                </code></pre>
+                <p>A função se chama repetidamente, como um eco matemático!</p>
+            </section>
+
+            <section>
+                <h2>Desafio Final: Crie sua Própria Função!</h2>
+                <p>Missão: Criar uma função que converte temperatura</p>
+                <ul>
+                    <li>De Celsius para Fahrenheit</li>
+                    <li>Use a fórmula: F = C * 9/5 + 32</li>
+                    <li>Bônus: Adicione conversão de Fahrenheit para Celsius!</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Conclusão: Você é um Mestre das Funções!</h2>
+                <ul>
+                    <li>Funções são blocos de construção poderosos</li>
+                    <li>Parâmetros são como portais de dados</li>
+                    <li>O escopo define o território das variáveis</li>
+                    <li>Continue praticando e explorando!</li>
+                </ul>
+                <p>Parabéns por completar sua missão espacial no universo C++! 🎉</p>
+            </section>
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+</html>
