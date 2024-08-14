@@ -14,16 +14,16 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Diretivas de pré-processador (`#include`, `#define`)
    - Comentários
 
-3. **Tipos de Dados e Variáveis**:
+3. **[Tipos de Dados e Variáveis](https://oangelo.github.io/Introducao-a-Programacao/introducao_cpp.html)**:
    - Tipos de dados primitivos (int, float, double, char, bool)
    - Declaração e inicialização de variáveis
    - Operadores aritméticos, de atribuição e lógicos
 
-4. **Entrada e Saída de Dados**:
+4. **[Entrada e Saída de Dados](https://oangelo.github.io/Introducao-a-Programacao/introducao_cpp.html)**:
    - Uso das funções `cout` e `cin` para entrada e saída
    - Formatação de saída (manipuladores)
 
-5. **Estruturas de Controle**:
+5. **[Estruturas de Controle](https://oangelo.github.io/Introducao-a-Programacao/estruturas-de-controle.html)**:
    - Declarações `if-else` e operador ternário
    - Loops `for`, `while` e `do-while`
    - Instruções de desvio (`break`, `continue`)
