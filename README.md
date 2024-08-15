@@ -29,7 +29,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Loops `for`, `while` e `do-while`
    - Instruções de desvio (`break`, `continue`)
 
-6. **Funções**:
+6. **[Funções](https://oangelo.github.io/Introducao-a-Programacao/funcoes.html)**:
    - Definição e chamada de funções
    - Passagem de parâmetros (por valor e por referência)
    - Escopo de variáveis e funções
