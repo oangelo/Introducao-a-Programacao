@@ -22,7 +22,8 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 4. **[Entrada e Saída de Dados](https://oangelo.github.io/Introducao-a-Programacao/introducao_cpp.html)**:
    - Uso das funções `cout` e `cin` para entrada e saída
    - Formatação de saída (manipuladores)
-   - [Exercícios](exercicios/introducao_cpp.md)
+   - [Exercícios 1](exercicios/introducao_cpp.md)
+   - [Exercícios 2](exercicios/introducao_cpp_2.md)
 
 5. **[Estruturas de Controle](https://oangelo.github.io/Introducao-a-Programacao/estruturas-de-controle.html)**:
    - Declarações `if-else` e operador ternário
