@@ -29,6 +29,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Declarações `if-else` e operador ternário
    - Loops `for`, `while` e `do-while`
    - Instruções de desvio (`break`, `continue`)
+   - [Exercícios 1](exercicios/estruturas-de-controle.md)
 
 6. **[Funções](https://oangelo.github.io/Introducao-a-Programacao/funcoes.html)**:
    - Definição e chamada de funções
