@@ -168,6 +168,26 @@
 						<li><code>std::cin</code>: Usado para receber entrada do usuário</li>
 					</ul>
 				</section>
+				<!-- New slide explaining "using namespace std;" -->
+				<section data-background="img/namespace.jpg">
+					<h2>Usando o Namespace std</h2>
+					<pre><code class="language-cpp" data-trim data-noescape>
+	  <script type="text/template"> 
+		  #include <iostream>
+					using namespace std;
+
+					int main() {
+						cout << "Hello, World!" << endl;
+						return 0;
+					}
+	  </script>
+					</code></pre>
+					<ul>
+						<li><code>using namespace std;</code>: Permite usar elementos do namespace std sem o prefixo <code>std::</code></li>
+						<li>Simplifica o código, mas pode causar conflitos de nomes em projetos maiores</li>
+						<li>Alternativa: usar <code>using std::cout;</code> para elementos específicos</li>
+					</ul>
+				</section>
 
         <section data-background="img/integer_division.jpg">
           <h2>Divisão de Inteiros em C++</h2>
