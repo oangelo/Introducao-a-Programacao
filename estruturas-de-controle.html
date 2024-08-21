@@ -94,6 +94,32 @@ cout << status;
         </code></pre>
       </section>
 
+    <section>
+        <h2>Estrutura switch-case</h2>
+        <h3>O menu de opções mágico</h3>
+        <pre><code class="hljs cpp">
+int opcao;
+cout << "Escolha seu feitiço:\n";
+cout << "1. Fireball\n2. Healing\n3. Invisibility\n";
+cin >> opcao;
+
+switch (opcao) {
+    case 1:
+        cout << "Você lança uma bola de fogo!";
+        break;
+    case 2:
+        cout << "Você se cura completamente!";
+        break;
+    case 3:
+        cout << "Você fica invisível!";
+        break;
+    default:
+        cout << "Opção inválida. O feitiço falha!";
+}
+        </code></pre>
+      </section>
+
+
       <section>
         <h2>Loop for</h2>
         <h3>Contagem regressiva para o lançamento</h3>
@@ -107,6 +133,7 @@ for (int i = 10; i > 0; i--) {
 cout << "Decolagem!";
         </code></pre>
       </section>
+
      <section>
         <h2>Loop while</h2>
         <h3>O contador de ovelhas</h3>
