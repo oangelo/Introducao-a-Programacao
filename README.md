@@ -41,6 +41,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Declaração e manipulação de arrays
    - Acesso a elementos de um array
    - Processamento e iteração sobre arrays
+   - [Exercícios 1](exercicios/arrays.md)
 
 8. **Ponteiros**:
    - Declaração e uso de ponteiros
