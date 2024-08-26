@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Arrays em C++: Uma Jornada Emocionante</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+	.slides {
+            width: 40% !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+  <section>
+                <h1>Arrays em C++</h1>
+                <h3>Uma Jornada Emocionante</h3>
+                <p>Prepare-se para uma aventura repleta de colchetes!</p>
+            </section>
+
+            <section>
+                <h2>Declaração e Manipulação de Arrays</h2>
+                <pre><code class="cpp">
+int numeros[5]; // Declarando um array de 5 inteiros
+int idades[] = {25, 30, 35, 40, 45}; // Inicialização direta
+
+// Array multidimensional para quem gosta de viver perigosamente
+int matriz[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+                </code></pre>
+                <p>Arrays: porque lidar com uma variável por vez é coisa do passado!</p>
+            </section>
+
+            <section>
+                <h2>Acesso a Elementos de um Array</h2>
+                <pre><code class="cpp">
+int notas[] = {85, 90, 78, 92, 88};
+
+cout &lt;&lt; "Primeira nota: " &lt;&lt; notas[0] &lt;&lt; endl; // 85
+cout &lt;&lt; "Última nota: " &lt;&lt; notas[4] &lt;&lt; endl; // 88
+
+// Cuidado: acessar notas[5] é como tentar encontrar 
+// uma agulha num palheiro digital!
+                </code></pre>
+                <p>Lembre-se: em C++, contamos a partir do zero. Como na vida, começamos do nada!</p>
+            </section>
+
+            <section>
+                <h2>O Mágico Operador sizeof</h2>
+                <pre><code class="cpp">
+int numeros[] = {10, 20, 30, 40, 50};
+
+// Tamanho total do array em bytes
+size_t tamanhoTotal = sizeof(numeros);
+
+// Tamanho de um elemento do array em bytes
+size_t tamanhoElemento = sizeof(numeros[0]);
+
+// Número de elementos no array
+size_t numeroElementos = tamanhoTotal / tamanhoElemento;
+
+cout &lt;&lt; "O array tem " &lt;&lt; numeroElementos &lt;&lt; " elementos." &lt;&lt; endl;
+                </code></pre>
+                <p>sizeof: porque contar manualmente é tão século passado!</p>
+            </section>
+
+            <section>
+                <h2>sizeof: Dicas e Armadilhas</h2>
+                <ul>
+                    <li>sizeof(array) retorna o tamanho total em bytes</li>
+                    <li>sizeof(array) / sizeof(array[0]) dá o número de elementos</li>
+                    <li>Cuidado: sizeof não funciona como esperado com arrays passados como parâmetros de função!</li>
+                </ul>
+                <pre><code class="cpp">
+void funcaoTraicoeira(int arr[]) {
+    // Isso NÃO dá o tamanho do array!
+    size_t tamanho = sizeof(arr) / sizeof(arr[0]);
+    // arr decai para um ponteiro aqui
+}
+                </code></pre>
+                <p>sizeof em funções: onde os corajosos programadores C++ vão para se aventurar!</p>
+            </section>
+
+            <section>
+                <h2>Processamento e Iteração sobre Arrays</h2>
+                <pre><code class="cpp">
+int temperaturas[] = {22, 24, 19, 25, 23, 20, 18};
+int tamanho = sizeof(temperaturas) / sizeof(temperaturas[0]);
+
+for (int i = 0; i &lt; tamanho; i++) {
+    cout &lt;&lt; "Dia " &lt;&lt; i+1 &lt;&lt; ": " &lt;&lt; temperaturas[i] &lt;&lt; "°C" &lt;&lt; endl;
+}
+
+// Para os aventureiros: range-based for loop
+for (int temp : temperaturas) {
+    cout &lt;&lt; temp &lt;&lt; "°C ";
+}
+                </code></pre>
+                <p>Iteração: porque às vezes é preciso passar por todos os elementos para achar a resposta... ou a saída!</p>
+            </section>
+
+            <section>
+                <h2>Conclusão</h2>
+                <ul>
+                    <li>Arrays são como caixas de chocolates: você nunca sabe o que vai encontrar (a menos que tenha inicializado corretamente).</li>
+                    <li>Indexação começa do zero: uma lição de humildade em cada acesso.</li>
+                    <li>sizeof é seu amigo, mas cuidado com suas travessuras em funções.</li>
+                    <li>Iteração é a chave: às vezes, para entender o todo, você precisa olhar cada parte individualmente.</li>
+                </ul>
+                <p>Lembre-se: com grandes arrays vêm grandes responsabilidades!</p>
+            </section>
+	</div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+	    Reveal.initialize({
+		    hash: true,
+		    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+	    });
+    </script>
+</body>
+</html>

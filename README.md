@@ -37,7 +37,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Escopo de variáveis e funções
    - [Exercícios 1](exercicios/cpp-functions-exercises.md)
 
-7. **Arrays**:
+7. **[Arrays](https://oangelo.github.io/Introducao-a-Programacao/arrays.html)**:
    - Declaração e manipulação de arrays
    - Acesso a elementos de um array
    - Processamento e iteração sobre arrays
