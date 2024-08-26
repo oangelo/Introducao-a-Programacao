@@ -35,6 +35,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Definição e chamada de funções
    - Passagem de parâmetros (por valor e por referência)
    - Escopo de variáveis e funções
+   - [Exercícios 1](exercicios/cpp-functions-exercises.md)
 
 7. **Arrays**:
    - Declaração e manipulação de arrays
