@@ -90,7 +90,23 @@ Imprima todos os números ímpares de 1 a 50, usando continue para pular os núm
 ### Exercício 16 (⭐⭐⭐)
 **Importância:** Combina várias estruturas de controle.
 
-Crie um jogo simples de pedra, papel e tesoura contra o computador, usando um loop para jogar várias rodadas.
+Crie um jogo simples de pedra, papel e tesoura contra o computador, usando um loop para jogar várias rodadas. use um número aleatório para deixar o jogo mais divertido, veja o exemplo abaixo.
+
+```cpp
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+
+int main(){
+        //fornece uma semente para o número aleatório 
+        srand((unsigned) time(NULL));
+        // gera um número aleatório 
+        int random = rand();
+        // imprime um número aleatório entre 1 e 3 
+        cout<< 1+ (random % 3) <<endl;
+        return 1;
+}
+```
 
 ### Exercício 17 (⭐⭐⭐)
 **Importância:** Pratica o uso de loops com cálculos matemáticos.
