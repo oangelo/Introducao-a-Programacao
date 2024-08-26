@@ -111,7 +111,7 @@ int main(){
 ### Exercício 17 (⭐⭐⭐)
 **Importância:** Pratica o uso de loops com cálculos matemáticos.
 
-Implemente um programa que encontre todos os números primos até 100 usando o Crivo de Eratóstenes.
+Implemente um programa que encontre todos os números primos até 100.
 
 ### Exercício 18 (⭐⭐⭐⭐)
 **Importância:** Desafia o aluno a pensar logicamente e usar múltiplas estruturas.
@@ -122,9 +122,3 @@ Crie um programa que simule um caixa eletrônico, permitindo saques, depósitos 
 **Importância:** Exercita a lógica e o uso avançado de loops.
 
 Implemente o jogo "Adivinhe o Número" onde o computador escolhe um número e dá dicas "maior" ou "menor" para o jogador.
-
-### Exercício 20 (⭐⭐⭐⭐⭐)
-**Importância:** Desafio final que integra todos os conceitos aprendidos.
-
-Crie um programa que simule um jogo de blackjack simples entre o jogador e o dealer.
-
