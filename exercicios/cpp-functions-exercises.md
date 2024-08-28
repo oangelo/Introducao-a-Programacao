@@ -41,11 +41,11 @@ A sequência de Fibonacci é uma série de números em que cada número é a som
 
 Para o n-ésimo termo da sequência (F_n):
 
-F_n = F_(n-1) + F_(n-2)
+$$F_n = F_{n-1} + F_{n-2}$$
 
 Onde:
-- F_0 = 0
-- F_1 = 1
+- $$F_0 = 0$$
+- $$F_1 = 1$$
 
 #### Primeiros termos
 
