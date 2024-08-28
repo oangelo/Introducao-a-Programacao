@@ -33,6 +33,23 @@ Escreva uma função recursiva chamada `fatorial` que calcula o fatorial de um n
 
 ### 6. Fibonacci ★★★
 Crie uma função chamada `fibonacci` que recebe um número n como parâmetro e retorna o n-ésimo número da sequência de Fibonacci.
+#### Sequência de Fibonacci
+
+A sequência de Fibonacci é uma série de números em que cada número é a soma dos dois anteriores. Começa com 0 e 1, e continua indefinidamente.
+
+#### Fórmula
+
+Para o n-ésimo termo da sequência (F_n):
+
+F_n = F_(n-1) + F_(n-2)
+
+Onde:
+- F_0 = 0
+- F_1 = 1
+
+#### Primeiros termos
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 
 **Importância:** Pratica o uso de lógica mais complexa dentro de funções e pode ser resolvido de forma iterativa ou recursiva.
 
