@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>A Incrível Jornada da Programação</title>
+		<title>Funções</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -22,9 +22,12 @@
         .reveal .highlight { color: #ffa657; font-weight: bold; }
         .two-columns { display: flex; justify-content: space-between; }
         .two-columns > * { flex: 1; }
-	.slides {
-            width: 40% !important;
-        }
+	.reveal .slides {
+		width: 100% !important;
+		height: 100% !important;
+		max-width: none !important;
+		max-height: none !important;
+	}
     </style>
 </head>
 <body>
@@ -60,7 +63,7 @@
 
 	    <section>
 		    <h2>Anatomia de uma Função</h2>
-		    <pre><code class="cpp">
+		    <pre><code class="cpp r-stretch">
 tipo_retorno nome_da_funcao(tipo_param param1, tipo_param param2) {
     // Corpo da função (onde a mágica acontece, ou não)
     return algo_supostamente_útil;
@@ -106,11 +109,11 @@ int main() {
             <section>
                 <h2>Passagem de Parâmetros: O Dilema de Schrödinger</h2>
                 <div class="two-columns">
-                    <div>
+                    <div class="r-frame">
                         <h3>Por Valor</h3>
                         <p>O gato está vivo. Ou morto. Mas é uma cópia.</p>
                     </div>
-                    <div>
+                    <div class="r-frame">
                         <h3>Por Referência</h3>
                         <p>O gato está vivo e morto. E é o original.</p>
                     </div>
@@ -182,11 +185,11 @@ int main() {
             <section>
                 <h2>Escopo: As Bolhas de Realidade do Código</h2>
                 <div class="two-columns">
-                    <div>
+                    <div class="r-frame">
                         <h3>Variáveis Locais</h3>
                         <p>Vivem em uma bolha de realidade limitada</p>
                     </div>
-                    <div>
+                    <div class="r-frame">
                         <h3>Variáveis Globais</h3>
                         <p>Onipresentes. O Big Brother do seu código.</p>
                     </div>
