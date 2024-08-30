@@ -43,6 +43,8 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Processamento e iteração sobre arrays
    - [Exercícios 1](exercicios/arrays.md)
 
+** [Exercícios de preparação](exercicios/condicionais_loops_fucoes_arrays.md)
+
 8. **Ponteiros**:
    - Declaração e uso de ponteiros
    - Aritmética de ponteiros
