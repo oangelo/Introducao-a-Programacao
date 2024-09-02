@@ -119,6 +119,118 @@ for (int temp : temperaturas) {
                 <p>Iteração: porque às vezes é preciso passar por todos os elementos para achar a resposta... ou a saída!</p>
             </section>
 
+           <section>
+                <h2>Passando Arrays como Parâmetros em C++</h2>
+                <p>Uma introdução às técnicas e conceitos fundamentais</p>
+            </section>
+
+            <section>
+                <h3>Por que passar arrays para funções?</h3>
+                <ul>
+                    <li>Reutilização de código</li>
+                    <li>Organização e modularidade</li>
+                    <li>Facilita a manipulação de grandes conjuntos de dados</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Sintaxe Básica</h3>
+                <pre><code class="cpp">
+void minhaFuncao(int arr[], int tamanho) {
+    // Código para manipular o array
+}
+
+int main() {
+    int meuArray[5] = {1, 2, 3, 4, 5};
+    minhaFuncao(meuArray, 5);
+    return 0;
+}
+                </code></pre>
+                <p>O array é passado por referência automaticamente!</p>
+            </section>
+
+            <section>
+                <h3>Breve Introdução aos Ponteiros</h3>
+                <ul>
+                    <li>Um ponteiro é uma variável que armazena o endereço de memória de outra variável</li>
+                    <li>Arrays têm uma relação especial com ponteiros em C++</li>
+                    <li>Quando passamos um array para uma função, na verdade estamos passando um ponteiro para seu primeiro elemento</li>
+                    <li>Este tema será abordado com mais profundidade em aulas futuras</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Decaimento para Ponteiro</h3>
+                <ul>
+                    <li>Quando passado para uma função, um array "decai" para um ponteiro</li>
+                    <li>A função recebe apenas o endereço do primeiro elemento</li>
+                    <li>Por isso, precisamos passar o tamanho separadamente</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Alternativas de Sintaxe</h3>
+                <pre><code class="cpp">
+// Estas declarações são equivalentes:
+void func1(int arr[], int tamanho);
+void func2(int* arr, int tamanho);
+                </code></pre>
+                <p>Ambas as formas são comumente usadas e aceitáveis</p>
+            </section>
+
+            <section>
+                <h3>Modificando o Array</h3>
+                <pre><code class="cpp">
+void dobrarElementos(int arr[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        arr[i] *= 2;
+    }
+}
+                </code></pre>
+                <p>As modificações afetam o array original!</p>
+            </section>
+
+            <section>
+                <h3>Boas Práticas</h3>
+                <ul>
+                    <li>Sempre passe o tamanho do array junto com o array</li>
+                    <li>Se não quiser modificar o array, use 'const'</li>
+                    <li>Lembre-se: a função não sabe o tamanho do array por si só</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Exemplo Completo</h3>
+                <pre><code class="cpp">
+#include &lt;iostream&gt;
+
+void imprimirArray(const int arr[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    int numeros[] = {1, 2, 3, 4, 5};
+    imprimirArray(numeros, 5);
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h3>Conclusão</h3>
+                <ul>
+                    <li>Passar arrays como parâmetros é simples e poderoso</li>
+                    <li>Lembre-se de passar o tamanho junto com o array</li>
+                    <li>As modificações na função afetam o array original</li>
+                    <li>Ponteiros e arrays têm uma relação próxima em C++</li>
+                    <li>Praticar é a chave para dominar este conceito!</li>
+                </ul>
+            </section>
+
+
             <section>
                 <h2>Conclusão</h2>
                 <ul>
