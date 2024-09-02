@@ -22,10 +22,6 @@
         .reveal .highlight { color: #ffa657; font-weight: bold; }
         .two-columns { display: flex; justify-content: space-between; }
         .two-columns > * { flex: 1; }
-	.reveal .slides {
-                width: 45% !important;
-                max-width: none !important;
-        }
 
 
     </style>
@@ -249,6 +245,8 @@ int main() {
     <script src="plugin/highlight/highlight.js"></script>
     <script>
 	    Reveal.initialize({
+		    width: '90%',
+		    height: '95%',
 		    hash: true,
 		    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 	    });
