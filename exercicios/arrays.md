@@ -73,7 +73,7 @@ Soma: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
 
 **Importância:** Este exercício desafia você a pensar sobre manipulação de índices e trocas de elementos, uma operação comum em muitos algoritmos.
 
-**Dica de implementação:** Use dois índices, um começando do início e outro do fim do array. Troque os elementos nestes índices e mova os índices em direção ao centro do array. Pare quando os índices se cruzarem.
+**Dica de implementação:** Use dois índices, um começando do início e outro do fim do array. Troque os elementos nestes índices e mova os índices em direção ao centro do array. Pare quando os índices se cruzarem. Use uma variável auxiliar para ajudar na trocar dos elementos. 
 
 **Exemplo:**
 Antes da inversão:
