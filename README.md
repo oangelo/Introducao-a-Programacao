@@ -45,24 +45,30 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 
 ** [Exercícios de preparação para o primeiro chefe de fase](exercicios/condicionais_loops_fucoes_arrays.md) ![Ryu](img/ryu.gif) 
 
-8. **Ponteiros**:
+8. **Arrays Multidimensionais e Matrizes**:
+   - Declaração e inicialização de arrays 2D e 3D
+   - Acesso e manipulação de elementos em arrays multidimensionais
+   - Aplicações práticas de matrizes
+
+9. **Ponteiros**:
    - Declaração e uso de ponteiros
    - Aritmética de ponteiros
    - Passagem de parâmetros por referência usando ponteiros
 
-9. **Alocação Dinâmica de Memória**:
-   - Uso das funções `new` e `delete` para alocar e liberar memória
-   - Alocação de arrays dinamicamente
-   - Desafios e boas práticas na alocação dinâmica
+10. **Alocação Dinâmica de Memória**:
+    - Uso das funções `new` e `delete` para alocar e liberar memória
+    - Alocação de arrays dinamicamente
+    - Desafios e boas práticas na alocação dinâmica
 
-10. **Bibliotecas Padrão do C++**:
-    - Uso da biblioteca `iostream` para entrada/saída
-    - Outras bibliotecas úteis (`cmath`, `cstdlib`, `cstring`, etc.)
+11. **Estruturas (struct)**:
+    - Definição e uso de estruturas
+    - Aninhamento de estruturas
+    - Arrays de estruturas
 
-11. **Boas Práticas de Programação**:
-    - Legibilidade e documentação do código
-    - Depuração e tratamento de erros
-    - Testes e verificação de programas
+12. **Manipulação de Arquivos**:
+    - Abertura e fechamento de arquivos
+    - Leitura e escrita em arquivos de texto
+    - Manipulação de arquivos binários
 
 Ao final deste curso, você terá uma sólida compreensão dos conceitos fundamentais da linguagem C++ e estará pronto para começar a desenvolver seus próprios programas.
 
