@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 <head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>Funções</title>
 
@@ -22,12 +21,6 @@
         .reveal .highlight { color: #ffa657; font-weight: bold; }
         .two-columns { display: flex; justify-content: space-between; }
         .two-columns > * { flex: 1; }
-	.reveal .slides {
-		width: 100% !important;
-		height: 100% !important;
-		max-width: none !important;
-		max-height: none !important;
-	}
     </style>
 </head>
 <body>
@@ -305,6 +298,8 @@ int main() {
     <script src="plugin/highlight/highlight.js"></script>
     <script>
 	    Reveal.initialize({
+		    width: 1200,
+		    height: 720,
 		    hash: true,
 		    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 	    });
