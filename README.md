@@ -43,7 +43,9 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Processamento e iteração sobre arrays
    - [Exercícios 1](exercicios/arrays.md)
 
-** [Exercícios de preparação para o primeiro chefe de fase](exercicios/condicionais_loops_fucoes_arrays.md) ![Ryu](img/ryu.gif) 
+** Exercícios de preparação para o primeiro chefe de fase ![Ryu](img/ryu.gif) 
+   - [Exercícios 1](exercicios/condicionais_loops_fucoes_arrays.md)
+   - [Exercícios 2](exercicios/condicionais_loops_fucoes_arrays2.md)
 
 8. **Arrays Multidimensionais e Matrizes**:
    - Declaração e inicialização de arrays 2D e 3D
