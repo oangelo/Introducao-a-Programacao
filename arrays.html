@@ -24,6 +24,41 @@
 
 
     </style>
+        <style>
+        .array-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .array-cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 2px;
+            transition: background-color 0.5s;
+        }
+        .code {
+            font-size: 24px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .highlight {
+            background-color: rgba(255, 255, 0, 0.3);
+            transition: background-color 0.5s;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            margin: 0 10px;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="reveal">
@@ -58,6 +93,11 @@ cout &lt;&lt; "Última nota: " &lt;&lt; notas[4] &lt;&lt; endl; // 88
 // uma agulha num palheiro digital!
                 </code></pre>
                 <p>Lembre-se: em C++, contamos a partir do zero. Como na vida, começamos do nada!</p>
+            </section>
+
+            <section id="array-cpp-slide">
+                <h2>Visualização de um Array em C++</h2>
+                <!-- O conteúdo será inserido aqui dinamicamente -->
             </section>
 
             <section>
@@ -248,6 +288,94 @@ int main() {
 		    height: 720,
 		    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 	    });
+	     function initializeArrayAnimation(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container com id "${containerId}" não encontrado.`);
+                return;
+            }
+
+            // Criar elementos
+            const arrayContainer = document.createElement('div');
+            arrayContainer.className = 'array-container';
+
+            const codeElement = document.createElement('pre');
+            codeElement.innerHTML = `<code class="code">
+int array[10];
+for (int i = 0; <span class="i-value">i</span> < 10; i++) {
+    array[<span class="i-value">0</span>] = <span class="i-value">0</span> * 2;
+}</code>`;
+
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'buttons';
+            const startButton = document.createElement('button');
+            startButton.textContent = 'Iniciar Animação';
+            const resetButton = document.createElement('button');
+            resetButton.textContent = 'Reiniciar';
+            resetButton.disabled = true;
+
+            buttonsContainer.appendChild(startButton);
+            buttonsContainer.appendChild(resetButton);
+
+            // Adicionar elementos ao container
+            container.appendChild(arrayContainer);
+            container.appendChild(codeElement);
+            container.appendChild(buttonsContainer);
+
+            function createArray() {
+                arrayContainer.innerHTML = '';
+                for (let i = 0; i < 10; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'array-cell';
+                    cell.textContent = '-';
+                    arrayContainer.appendChild(cell);
+                }
+            }
+
+            function resetAnimation() {
+                createArray();
+                const iValues = codeElement.querySelectorAll('.i-value');
+                iValues.forEach(span => span.textContent = span === iValues[0] ? 'i' : '0');
+                startButton.disabled = false;
+                resetButton.disabled = true;
+            }
+
+            async function runAnimation() {
+                startButton.disabled = true;
+                resetButton.disabled = true;
+                const cells = arrayContainer.querySelectorAll('.array-cell');
+                const iValues = codeElement.querySelectorAll('.i-value');
+
+                for (let i = 0; i < 10; i++) {
+                    iValues[0].textContent = i;
+                    iValues.forEach(span => span.classList.add('highlight'));
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    if (cells[i]) {
+                        cells[i].textContent = i * 2;
+                        cells[i].style.backgroundColor = 'rgba(0, 255, 0, 0.5)';
+                    }
+                    
+                    iValues.forEach(span => span.classList.remove('highlight'));
+                    iValues[1].textContent = i;
+                    iValues[2].textContent = i;
+                }
+
+                iValues[0].textContent = '10';
+                resetButton.disabled = false;
+            }
+
+            startButton.addEventListener('click', runAnimation);
+            resetButton.addEventListener('click', resetAnimation);
+
+            // Inicializar
+            createArray();
+        }
+
+        // Inicializar a animação quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeArrayAnimation('array-cpp-slide');
+        });
     </script>
 </body>
 </html>
