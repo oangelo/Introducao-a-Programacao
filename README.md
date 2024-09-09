@@ -46,6 +46,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 ### Exercícios de preparação para o primeiro chefe de fase ![Ryu](img/ryu.gif) 
    - [Exercícios 1](exercicios/condicionais_loops_fucoes_arrays.md)
    - [Exercícios 2](exercicios/condicionais_loops_fucoes_arrays2.md)
+   - Data da prova e local: 16/09/2024 - Sala 216
 
 8. **Arrays Multidimensionais e Matrizes**:
    - Declaração e inicialização de arrays 2D e 3D
