@@ -188,4 +188,4 @@ Este conjunto de exercícios visa preparar os alunos para a prova, focando em ar
     
     **Dica de implementação:** Ordene o array primeiro, então retorne o elemento do meio (ou a média dos dois do meio se o tamanho for par).
 
-Lembre-se: Encoraje os alunos a pensar sobre casos de borda e a testar suas soluções com diferentes inputs. Boa sorte na preparação para a prova!
+Lembre-se de pensar sobre casos de borda e a testar suas soluções com diferentes inputs.

@@ -139,4 +139,4 @@ Este conjunto de exercícios visa desenvolver as habilidades de manipulação de
     Resultado: 3 números primos (2, 3, 5)
     ```
 
-Lembre-se: Encoraje os alunos a pensar sobre casos de borda e a testar suas soluções com diferentes inputs. Boa sorte na preparação para a prova!
+Lembre-se de pensar sobre casos de borda e a testar suas soluções com diferentes inputs.
