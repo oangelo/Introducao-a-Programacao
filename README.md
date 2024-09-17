@@ -48,10 +48,11 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - [Exercícios 2](exercicios/condicionais_loops_fucoes_arrays2.md)
    - Data da prova e local: 16/09/2024 - Sala 216
 
-8. **Arrays Multidimensionais e Matrizes**:
+8. [**Arrays Multidimensionais e Matrizes**](https://oangelo.github.io/Introducao-a-Programacao/matriz.html)
    - Declaração e inicialização de arrays 2D e 3D
    - Acesso e manipulação de elementos em arrays multidimensionais
    - Aplicações práticas de matrizes
+   - [Exercícios](exercicios/matrizes.md)
 
 9. **Ponteiros**:
    - Declaração e uso de ponteiros
