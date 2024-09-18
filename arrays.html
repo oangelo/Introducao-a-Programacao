@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-		<meta charset="utf-8">
+    <meta charset="utf-8">
 
-		<title>Arrays em C++: Uma Jornada Emocionante</title>
+    <title>Arrays em C++: Desvendando os Mistérios dos Arrays</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
 
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
 
     <style>
         .reveal h1, .reveal h2 { color: #58a6ff; }
@@ -22,9 +22,17 @@
         .two-columns { display: flex; justify-content: space-between; }
         .two-columns > * { flex: 1; }
 
-
+        .alert {
+            background-color: #ffefc2;
+            border-left: 5px solid #ffc107;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .reveal img {
+            margin-top: 20px;
+        }
     </style>
-        <style>
+    <style>
         .array-container {
             display: flex;
             justify-content: center;
@@ -63,9 +71,9 @@
 <body>
     <div class="reveal">
         <div class="slides">
-  <section>
+            <section>
                 <h1>Arrays em C++</h1>
-                <h3>Uma Jornada Emocionante</h3>
+                <h3>Desvendando os Mistérios dos Arrays</h3>
                 <p>Prepare-se para uma aventura repleta de colchetes!</p>
             </section>
 
@@ -73,11 +81,12 @@
                 <h2>Declaração e Manipulação de Arrays</h2>
                 <pre><code class="cpp">
 int numeros[5]; // Declarando um array de 5 inteiros
-int idades[] = {25, 30, 35, 40, 45}; // Inicialização direta
+int pontuacoes[] = {100, 200, 300, 400, 500}; // Pontuações em um jogo
 
-// Array multidimensional para quem gosta de viver perigosamente
-int matriz[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+// Array multidimensional para um tabuleiro de jogo
+int tabuleiro[3][3] = {{0, 1, 0}, {1, 0, 1}, {0, 1, 0}};
                 </code></pre>
+                <img src="imagens/array_estrutura.png" alt="Estrutura de um Array" style="width:60%;">
                 <p>Arrays: porque lidar com uma variável por vez é coisa do passado!</p>
             </section>
 
@@ -86,13 +95,14 @@ int matriz[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
                 <pre><code class="cpp">
 int notas[] = {85, 90, 78, 92, 88};
 
-cout &lt;&lt; "Primeira nota: " &lt;&lt; notas[0] &lt;&lt; endl; // 85
-cout &lt;&lt; "Última nota: " &lt;&lt; notas[4] &lt;&lt; endl; // 88
+// Notas dos testes: tentando manter a média alta para impressionar!
+cout << "Primeira nota: " << notas[0] << endl; // 85
+cout << "Última nota: " << notas[4] << endl;   // 88
 
 // Cuidado: acessar notas[5] é como tentar encontrar 
-// uma agulha num palheiro digital!
+// uma agulha num palheiro digital! (E pode causar um crash!)
                 </code></pre>
-                <p>Lembre-se: em C++, contamos a partir do zero. Como na vida, começamos do nada!</p>
+                <p>Lembre-se: em C++, contamos a partir do zero. Por que será que começamos do zero? Porque zero é o novo um!</p>
             </section>
 
             <section id="array-cpp-slide">
@@ -101,7 +111,7 @@ cout &lt;&lt; "Última nota: " &lt;&lt; notas[4] &lt;&lt; endl; // 88
             </section>
 
             <section>
-                <h2>O Mágico Operador sizeof</h2>
+                <h2>O Mágico Operador <code>sizeof</code></h2>
                 <pre><code class="cpp">
 int numeros[] = {10, 20, 30, 40, 50};
 
@@ -114,17 +124,17 @@ size_t tamanhoElemento = sizeof(numeros[0]);
 // Número de elementos no array
 size_t numeroElementos = tamanhoTotal / tamanhoElemento;
 
-cout &lt;&lt; "O array tem " &lt;&lt; numeroElementos &lt;&lt; " elementos." &lt;&lt; endl;
+cout << "O array tem " << numeroElementos << " elementos." << endl;
                 </code></pre>
-                <p>sizeof: porque contar manualmente é tão século passado!</p>
+                <p><strong>Dica:</strong> Pense no <code>sizeof</code> como uma régua que mede o espaço que seu array ocupa na memória!</p>
             </section>
 
             <section>
-                <h2>sizeof: Dicas e Armadilhas</h2>
+                <h2><code>sizeof</code>: Dicas e Armadilhas</h2>
                 <ul>
-                    <li>sizeof(array) retorna o tamanho total em bytes</li>
-                    <li>sizeof(array) / sizeof(array[0]) dá o número de elementos</li>
-                    <li>Cuidado: sizeof não funciona como esperado com arrays passados como parâmetros de função!</li>
+                    <li><code>sizeof(array)</code> retorna o tamanho total em bytes</li>
+                    <li><code>sizeof(array) / sizeof(array[0])</code> dá o número de elementos</li>
+                    <li><strong>Cuidado:</strong> <code>sizeof</code> não funciona como esperado com arrays passados como parâmetros de função!</li>
                 </ul>
                 <pre><code class="cpp">
 void funcaoTraicoeira(int arr[]) {
@@ -133,7 +143,7 @@ void funcaoTraicoeira(int arr[]) {
     // arr decai para um ponteiro aqui
 }
                 </code></pre>
-                <p>sizeof em funções: onde os corajosos programadores C++ vão para se aventurar!</p>
+                <p><code>sizeof</code> em funções: onde os corajosos programadores C++ vão para se aventurar!</p>
             </section>
 
             <section>
@@ -142,25 +152,22 @@ void funcaoTraicoeira(int arr[]) {
 int temperaturas[] = {22, 24, 19, 25, 23, 20, 18};
 int tamanho = sizeof(temperaturas) / sizeof(temperaturas[0]);
 
-for (int i = 0; i &lt; tamanho; i++) {
-    cout &lt;&lt; "Dia " &lt;&lt; i+1 &lt;&lt; ": " &lt;&lt; temperaturas[i] &lt;&lt; "°C" &lt;&lt; endl;
+for (int i = 0; i < tamanho; i++) {
+    cout << "Dia " << i+1 << ": " << temperaturas[i] << "°C" << endl;
 }
 
 // Para os aventureiros: range-based for loop
 for (int temp : temperaturas) {
-    cout &lt;&lt; temp &lt;&lt; "°C ";
+    cout << temp << "°C ";
 }
                 </code></pre>
                 <p>Iteração: porque às vezes é preciso passar por todos os elementos para achar a resposta... ou a saída!</p>
             </section>
 
-           <section>
-                <h2>Passando Arrays como Parâmetros em C++</h2>
-                <p>Uma introdução às técnicas e conceitos fundamentais</p>
-            </section>
-
             <section>
-                <h3>Por que passar arrays para funções?</h3>
+                <h2>Passando Arrays como Parâmetros em C++</h2>
+                <p>Uma introdução às técnicas e conceitos fundamentais.</p>
+                <p><strong>Por que passar arrays para funções?</strong></p>
                 <ul>
                     <li>Reutilização de código</li>
                     <li>Organização e modularidade</li>
@@ -169,7 +176,7 @@ for (int temp : temperaturas) {
             </section>
 
             <section>
-                <h3>Sintaxe Básica</h3>
+                <h2>Sintaxe Básica</h2>
                 <pre><code class="cpp">
 void minhaFuncao(int arr[], int tamanho) {
     // Código para manipular o array
@@ -185,7 +192,7 @@ int main() {
             </section>
 
             <section>
-                <h3>Breve Introdução aos Ponteiros</h3>
+                <h2>Breve Introdução aos Ponteiros</h2>
                 <ul>
                     <li>Um ponteiro é uma variável que armazena o endereço de memória de outra variável</li>
                     <li>Arrays têm uma relação especial com ponteiros em C++</li>
@@ -195,7 +202,7 @@ int main() {
             </section>
 
             <section>
-                <h3>Decaimento para Ponteiro</h3>
+                <h2>Decaimento para Ponteiro</h2>
                 <ul>
                     <li>Quando passado para uma função, um array "decai" para um ponteiro</li>
                     <li>A função recebe apenas o endereço do primeiro elemento</li>
@@ -204,7 +211,7 @@ int main() {
             </section>
 
             <section>
-                <h3>Alternativas de Sintaxe</h3>
+                <h2>Alternativas de Sintaxe</h2>
                 <pre><code class="cpp">
 // Estas declarações são equivalentes:
 void func1(int arr[], int tamanho);
@@ -214,7 +221,7 @@ void func2(int* arr, int tamanho);
             </section>
 
             <section>
-                <h3>Modificando o Array</h3>
+                <h2>Modificando o Array</h2>
                 <pre><code class="cpp">
 void dobrarElementos(int arr[], int tamanho) {
     for (int i = 0; i < tamanho; i++) {
@@ -226,36 +233,39 @@ void dobrarElementos(int arr[], int tamanho) {
             </section>
 
             <section>
-                <h3>Boas Práticas</h3>
+                <h2>Exemplo: Somando Elementos de um Array</h2>
+                <pre><code class="cpp">
+#include <iostream>
+
+int somaArray(const int arr[], int tamanho) {
+    int soma = 0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += arr[i];
+    }
+    return soma;
+}
+
+int main() {
+    int numeros[] = {1, 2, 3, 4, 5};
+    int resultado = somaArray(numeros, 5);
+    std::cout << "A soma é: " << resultado << std::endl;
+    return 0;
+}
+                </code></pre>
+                <p>Tente você mesmo: escreva uma função que calcula a média dos valores em um array!</p>
+            </section>
+
+            <section>
+                <h2>Boas Práticas</h2>
                 <ul>
                     <li>Sempre passe o tamanho do array junto com o array</li>
-                    <li>Se não quiser modificar o array, use 'const'</li>
+                    <li>Se não quiser modificar o array, use <code>const</code></li>
                     <li>Lembre-se: a função não sabe o tamanho do array por si só</li>
                 </ul>
             </section>
 
             <section>
-                <h3>Exemplo Completo</h3>
-                <pre><code class="cpp">
-#include &lt;iostream&gt;
-
-void imprimirArray(const int arr[], int tamanho) {
-    for (int i = 0; i < tamanho; i++) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-int main() {
-    int numeros[] = {1, 2, 3, 4, 5};
-    imprimirArray(numeros, 5);
-    return 0;
-}
-                </code></pre>
-            </section>
-
-            <section>
-                <h3>Resumo de funções e Arrays:</h3>
+                <h2>Resumo de Funções e Arrays</h2>
                 <ul>
                     <li>Passar arrays como parâmetros é simples e poderoso</li>
                     <li>Lembre-se de passar o tamanho junto com o array</li>
@@ -265,30 +275,24 @@ int main() {
                 </ul>
             </section>
 
-
             <section>
                 <h2>Conclusão</h2>
-                <ul>
-                    <li>Arrays são como caixas de chocolates: você nunca sabe o que vai encontrar (a menos que tenha inicializado corretamente).</li>
-                    <li>Indexação começa do zero: uma lição de humildade em cada acesso.</li>
-                    <li>sizeof é seu amigo, mas cuidado com suas travessuras em funções.</li>
-                    <li>Iteração é a chave: às vezes, para entender o todo, você precisa olhar cada parte individualmente.</li>
-                </ul>
-                <p>Lembre-se: com grandes arrays vêm grandes responsabilidades!</p>
+                <p>Lembre-se: agora você está pronto para dominar arrays e conquistar o mundo da programação!</p>
             </section>
-	</div>
+
+        </div>
     </div>
     <script src="dist/reveal.js"></script>
     <script src="plugin/notes/notes.js"></script>
     <script src="plugin/markdown/markdown.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script>
-	    Reveal.initialize({
-		    width: 1200,
-		    height: 720,
-		    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-	    });
-	     function initializeArrayAnimation(containerId) {
+        Reveal.initialize({
+            width: 1200,
+            height: 720,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+        function initializeArrayAnimation(containerId) {
             const container = document.getElementById(containerId);
             if (!container) {
                 console.error(`Container com id "${containerId}" não encontrado.`);
@@ -379,3 +383,4 @@ for (int i = 0; <span class="i-value">i</span> < 10; i++) {
     </script>
 </body>
 </html>
+
