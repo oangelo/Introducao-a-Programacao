@@ -157,6 +157,127 @@ for (int i = 0; i < 3; i++) {
                 </code></pre>
             </section>
 
+<section>
+    <h2>Travessia de Matriz em C++</h2>
+    <div id="matrix-animation" style="font-family: Arial, sans-serif; color: white; display: flex; flex-direction: column; align-items: center;">
+        <div id="matrix-container" style="display: grid; grid-template-columns: repeat(4, 50px); gap: 5px; margin-bottom: 20px;"></div>
+        <pre id="code-display" style="background-color: #2b2b2b; color: #ffffff; padding: 10px; border-radius: 5px; margin-bottom: 20px; white-space: pre; line-height: 1.5; font-size: 14px; text-align: left; width: 100%; max-width: 500px;"></pre>
+        <div>
+            <button id="start-btn" style="font-size: 16px; padding: 5px 10px; margin-right: 10px; background-color: #4a4a4a; color: white; border: none; cursor: pointer;">Iniciar</button>
+            <button id="reset-btn" style="font-size: 16px; padding: 5px 10px; margin-right: 10px; background-color: #4a4a4a; color: white; border: none; cursor: pointer;">Reiniciar</button>
+        </div>
+        <div id="info-display" style="margin-top: 10px;"></div>
+    </div>
+
+    <script>
+    (function() {
+        const matrix = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12]
+        ];
+        let currentI = 0;
+        let currentJ = 0;
+        let intervalId;
+
+        function createMatrix() {
+            const container = document.getElementById('matrix-container');
+            container.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 4; j++) {
+                    const cell = document.createElement('div');
+                    cell.style.width = '50px';
+                    cell.style.height = '50px';
+                    cell.style.border = '1px solid #666';
+                    cell.style.display = 'flex';
+                    cell.style.alignItems = 'center';
+                    cell.style.justifyContent = 'center';
+                    cell.style.fontSize = '18px';
+                    cell.textContent = matrix[i][j];
+                    cell.id = `cell-${i}-${j}`;
+                    container.appendChild(cell);
+                }
+            }
+        }
+
+        function updateDisplay(i, j) {
+            document.getElementById('code-display').innerHTML = `int matrix[3][4] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+};
+
+for (int <span style="background-color: #8e0000;">i = ${i}</span>; i < 3; i++) {
+    for (int <span style="background-color: #005500;">j = ${j}</span>; j < 4; j++) {
+        // Acessando matrix[<span style="background-color: #8e0000;">${i}</span>][<span style="background-color: #005500;">${j}</span>]
+    }
+}`;
+            document.getElementById('info-display').innerHTML = `Acessando elemento: matrix[<span style="background-color: #8e0000;">${i}</span>][<span style="background-color: #005500;">${j}</span>] = ${matrix[i][j]}`;
+        }
+
+        function highlightCell(i, j) {
+            const cell = document.getElementById(`cell-${i}-${j}`);
+            if (cell) {
+                cell.style.backgroundColor = '#6a6a00';
+            }
+        }
+
+        function resetMatrix() {
+            currentI = 0;
+            currentJ = 0;
+            clearInterval(intervalId);
+            createMatrix();
+            updateDisplay(0, 0);
+            highlightCell(0, 0);
+            document.getElementById('start-btn').disabled = false;
+        }
+
+        function startTraversal() {
+            document.getElementById('start-btn').disabled = true;
+            
+            function traverse() {
+                const prevCell = document.getElementById(`cell-${currentI}-${currentJ}`);
+                if (prevCell) {
+                    prevCell.style.backgroundColor = '';
+                }
+
+                currentJ++;
+                if (currentJ === 4) {
+                    currentJ = 0;
+                    currentI++;
+                    if (currentI === 3) {
+                        clearInterval(intervalId);
+                        document.getElementById('start-btn').disabled = false;
+                        return;
+                    }
+                }
+
+                highlightCell(currentI, currentJ);
+                updateDisplay(currentI, currentJ);
+            }
+
+            // Highlight the first cell immediately
+            highlightCell(currentI, currentJ);
+            updateDisplay(currentI, currentJ);
+
+            // Start the interval after a delay to show the first cell
+            intervalId = setInterval(traverse, 1000);
+        }
+
+        function init() {
+            createMatrix();
+            updateDisplay(0, 0);
+            highlightCell(0, 0);
+            document.getElementById('start-btn').addEventListener('click', startTraversal);
+            document.getElementById('reset-btn').addEventListener('click', resetMatrix);
+        }
+
+        // Inicializar a animação imediatamente
+        init();
+    })();
+    </script>
+</section>
+
             <section>
                 <h2>Aplicações Práticas</h2>
                 <ul>
