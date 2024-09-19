@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C++: Escrita e Leitura em Arquivos</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>C++: Escrita e Leitura em Arquivos</h1>
+                <h3>Manipulação de Dados Persistentes</h3>
+            </section>
+
+            <section>
+                <h2>Tópicos</h2>
+                <ul>
+                    <li>Introdução à manipulação de arquivos</li>
+                    <li>Biblioteca fstream</li>
+                    <li>Abertura e fechamento de arquivos</li>
+                    <li>Escrita em arquivos de texto</li>
+                    <li>Leitura de arquivos de texto</li>
+                    <li>Modos de abertura de arquivos</li>
+                    <li>Verificação de erros</li>
+                    <li>Manipulação de dados binários</li>
+                    <li>Boas práticas</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Introdução à Manipulação de Arquivos</h2>
+                <ul>
+                    <li>Importância do armazenamento persistente de dados</li>
+                    <li>Tipos de arquivos: texto e binário</li>
+                    <li>Operações básicas: abertura, leitura, escrita, fechamento</li>
+                    <li>Aplicações: logs, configurações, dados de usuário, etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Biblioteca fstream</h2>
+                <ul>
+                    <li>Parte da biblioteca padrão de C++</li>
+                    <li>Fornece classes para manipulação de arquivos</li>
+                    <li>Principais classes:
+                        <ul>
+                            <li>ofstream: para escrita em arquivos</li>
+                            <li>ifstream: para leitura de arquivos</li>
+                            <li>fstream: para leitura e escrita</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Abertura e Fechamento de Arquivos</h2>
+                <pre><code class="hljs cpp">
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    ofstream arquivo("exemplo.txt");
+    
+    if (arquivo.is_open()) {
+        arquivo << "Olá, mundo!" << endl;
+        arquivo.close();
+        cout << "Arquivo criado com sucesso." << endl;
+    } else {
+        cout << "Erro ao abrir o arquivo." << endl;
+    }
+
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Escrita em Arquivos de Texto</h2>
+                <pre><code class="hljs cpp">
+ofstream arquivo("dados.txt");
+
+if (arquivo.is_open()) {
+    arquivo << "Nome: João" << endl;
+    arquivo << "Idade: 30" << endl;
+    arquivo << "Profissão: Engenheiro" << endl;
+
+    arquivo.close();
+} else {
+    cout << "Não foi possível abrir o arquivo." << endl;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Leitura Simples de Arquivo</h2>
+                <pre><code class="hljs cpp">
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    ifstream arquivo("numeros.txt");
+    const int MAX_NUMEROS = 100;
+    int numeros[MAX_NUMEROS];
+    int contador = 0;
+
+    if (arquivo.is_open()) {
+        while (arquivo >> numeros[contador] && contador < MAX_NUMEROS) {
+            contador++;
+        }
+        arquivo.close();
+
+        cout << "Números lidos: ";
+        for (int i = 0; i < contador; i++) {
+            cout << numeros[i] << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "Não foi possível abrir o arquivo." << endl;
+    }
+
+    return 0;
+}
+                </code></pre>
+                <p>Este exemplo lê números inteiros de um arquivo e os armazena em um array.</p>
+            </section>
+
+            <section>
+                <h2>Modos de Abertura de Arquivos</h2>
+                <ul>
+                    <li>ios::out - Modo padrão, sobrescreve o conteúdo</li>
+                    <li>ios::app - Adiciona ao final do arquivo</li>
+                    <li>ios::trunc - Trunca o arquivo se já existir</li>
+                    <li>ios::binary - Modo binário</li>
+                </ul>
+                <pre><code class="hljs cpp">
+ofstream arquivo("log.txt", ios::app);
+arquivo << "Nova entrada de log" << endl;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Verificação de Erros</h2>
+                <pre><code class="hljs cpp">
+ofstream arquivo("dados.txt");
+
+if (!arquivo) {
+    cerr << "Erro ao abrir o arquivo!" << endl;
+    return 1;
+}
+
+arquivo << "Dados importantes" << endl;
+
+if (arquivo.fail()) {
+    cerr << "Erro ao escrever no arquivo!" << endl;
+    arquivo.close();
+    return 1;
+}
+
+arquivo.close();
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Entendendo o reinterpret_cast</h2>
+                <ul>
+                    <li>Usado para converter entre tipos de ponteiros incompatíveis</li>
+                    <li>Permite tratar dados como uma sequência de bytes</li>
+                    <li>Essencial para escrita/leitura binária de tipos complexos</li>
+                    <li>Sintaxe: reinterpret_cast&lt;novo_tipo&gt;(expressão)</li>
+                </ul>
+                <pre><code class="hljs cpp">
+int numero = 42;
+char* bytes = reinterpret_cast&lt;char*&gt;(&numero);
+// Agora 'bytes' aponta para os 4 bytes que compõem 'numero'
+                </code></pre>
+                <p>Cuidado: O uso incorreto pode levar a problemas de portabilidade e segurança!</p>
+            </section>
+
+            <section>
+                <h2>Escrita de Struct em Arquivo - Parte 1</h2>
+                <pre><code class="hljs cpp">
+struct Aluno {
+    int id;
+    char nome[50];
+    float nota;
+};
+
+void escreverAlunos(const Aluno alunos[], int tamanho, const char* nomeArquivo) {
+    ofstream arquivo(nomeArquivo, ios::binary);
+    if (arquivo.is_open()) {
+        for (int i = 0; i < tamanho; i++) {
+            arquivo.write(reinterpret_cast&lt;const char*&gt;(&alunos[i]), sizeof(Aluno));
+        }
+        arquivo.close();
+        cout << "Dados escritos com sucesso." << endl;
+    } else {
+        cout << "Erro ao abrir o arquivo para escrita." << endl;
+    }
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Leitura de Struct de Arquivo - Parte 2</h2>
+                <pre><code class="hljs cpp">
+int lerAlunos(Aluno alunos[], int maxAlunos, const char* nomeArquivo) {
+    ifstream arquivo(nomeArquivo, ios::binary);
+    int contador = 0;
+    if (arquivo.is_open()) {
+        while (arquivo.read(reinterpret_cast&lt;char*&gt;(&alunos[contador]), sizeof(Aluno))) {
+            if (++contador >= maxAlunos) break;
+        }
+        arquivo.close();
+        cout << "Dados lidos com sucesso." << endl;
+    } else {
+        cout << "Erro ao abrir o arquivo para leitura." << endl;
+    }
+    return contador;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Exemplo de Uso - Parte 3</h2>
+                <pre><code class="hljs cpp">
+int main() {
+    const int MAX_ALUNOS = 3;
+    Aluno alunos[MAX_ALUNOS] = {
+        {1, "João", 8.5},
+        {2, "Maria", 9.0},
+        {3, "Pedro", 7.5}
+    };
+
+    escreverAlunos(alunos, MAX_ALUNOS, "alunos.dat");
+
+    Aluno alunosLidos[MAX_ALUNOS];
+    int numLidos = lerAlunos(alunosLidos, MAX_ALUNOS, "alunos.dat");
+
+    for (int i = 0; i < numLidos; i++) {
+        cout << "ID: " << alunosLidos[i].id 
+             << ", Nome: " << alunosLidos[i].nome
+             << ", Nota: " << alunosLidos[i].nota << endl;
+    }
+
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Boas Práticas</h2>
+                <ul>
+                    <li>Sempre feche os arquivos após o uso</li>
+                    <li>Verifique erros ao abrir e manipular arquivos</li>
+                    <li>Use caminhos relativos ou absolutos com cuidado</li>
+                    <li>Considere o uso de try-catch para tratamento de exceções</li>
+                    <li>Faça backup de dados importantes antes de sobrescrever</li>
+                    <li>Use nomes de arquivos significativos e extensões apropriadas</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Conclusão</h2>
+                <ul>
+                    <li>A manipulação de arquivos é essencial para persistência de dados</li>
+                    <li>C++ oferece ferramentas poderosas através da biblioteca fstream</li>
+                    <li>É possível ler e escrever desde dados simples até estruturas complexas</li>
+                    <li>O uso de reinterpret_cast é crucial para manipulação binária de dados</li>
+                    <li>Compreender os modos de abertura e tratamento de erros é importante</li>
+                    <li>Práticas adequadas garantem segurança e confiabilidade dos dados</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1200,
+            height: 720,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
