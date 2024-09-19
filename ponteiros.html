@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponteiros em C++</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+
+        .memory-table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        .memory-table th, .memory-table td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+        .memory-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .highlight {
+            background-color: #FFFF00;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Ponteiros em C++</h1>
+                <h3>Para Estudantes de Engenharia</h3>
+            </section>
+
+            <section>
+                <h2>Tópicos</h2>
+                <ul>
+                    <li>Sistema Hexadecimal</li>
+                    <li>Operadores * e &amp;</li>
+                    <li>Declaração e uso de ponteiros</li>
+                    <li>Ilustração da memória do computador</li>
+                    <li>Aritmética de ponteiros</li>
+                    <li>Passagem de parâmetros por referência</li>
+                    <li>Ponteiros para ponteiros</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>O que é Hexadecimal?</h2>
+                <ul>
+                    <li>Sistema de numeração de base 16</li>
+                    <li>Dígitos: 0-9 e A-F (A=10, B=11, ..., F=15)</li>
+                    <li>Exemplo: 0x1A3 = 1*16² + 10*16¹ + 3*16⁰ = 256 + 160 + 3 = 419 (decimal)</li>
+                    <li>Útil para representar grandes números de forma compacta</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Endereços de Memória e Hexadecimais</h2>
+                <ul>
+                    <li>Endereços de memória são geralmente representados em hexadecimal</li>
+                    <li>Sistema hexadecimal: base 16 (0-9 e A-F)</li>
+                    <li>Exemplo: 0x7ffd5ca30a5c</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Operador *</h2>
+                <ul>
+                    <li>O operador * tem dois usos principais com ponteiros:</li>
+                    <li>1. Na declaração: indica que a variável é um ponteiro</li>
+                    <li>2. Na desreferenciação: acessa o valor apontado pelo ponteiro</li>
+                </ul>
+                <pre><code class="cpp">
+int* ptr;  // Declaração: ptr é um ponteiro para int
+*ptr = 10; // Desreferenciação: atribui 10 ao valor apontado por ptr
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Operador &amp;</h2>
+                <ul>
+                    <li>O operador &amp; é usado para obter o endereço de uma variável</li>
+                    <li>Retorna o endereço de memória onde a variável está armazenada</li>
+                </ul>
+                <pre><code class="cpp">
+int num = 5;
+int* ptr = &amp;num; // ptr recebe o endereço de num
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Declaração e Uso de Ponteiros</h2>
+                <pre><code class="cpp">
+int num = 10;
+int* ptr = &amp;num; // Declaração e inicialização correta
+
+cout &lt;&lt; "Valor de num: " &lt;&lt; num &lt;&lt; endl;
+cout &lt;&lt; "Endereço de num: " &lt;&lt; ptr &lt;&lt; endl;
+cout &lt;&lt; "Valor apontado por ptr: " &lt;&lt; *ptr &lt;&lt; endl;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Ilustração da Memória do Computador</h2>
+                <table class="memory-table">
+                    <tr>
+                        <th>Endereço</th>
+                        <th>Valor</th>
+                        <th>Variável</th>
+                    </tr>
+                    <tr>
+                        <td>0x1000</td>
+                        <td>10</td>
+                        <td>int a</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>0x1004</td>
+                        <td>20</td>
+                        <td>int b</td>
+                    </tr>
+                    <tr>
+                        <td>0x1008</td>
+                        <td>0x1004</td>
+                        <td>int* ptr</td>
+                    </tr>
+                    <tr>
+                        <td>0x100C</td>
+                        <td>30</td>
+                        <td>int c</td>
+                    </tr>
+                </table>
+                <p>O ponteiro 'ptr' (0x1008) armazena o endereço de 'b' (0x1004)</p>
+            </section>
+
+<section>
+    <h2>Animação de Ponteiros em C++</h2>
+    <div class="pointer-animation-container" style="display: flex; justify-content: space-around; width: 100%; max-width: 1000px; margin: 0 auto;">
+        <div class="code-section" style="width: 48%;">
+            <h3 style="color: #ffd700;">Código C++</h3>
+            <pre id="pointerCodeBlock" style="background-color: #333; padding: 10px; border-radius: 5px; overflow-x: auto; color: white; height: 220px; font-size: 14px;"></pre>
+        </div>
+        <div class="memory-section" style="width: 48%;">
+            <h3 style="color: #ffd700;">Representação da Memória</h3>
+            <canvas id="pointerMemoryCanvas" width="300" height="220" style="border: 1px solid #555; background-color: #222;"></canvas>
+            <div>
+                <button id="pointerNextStep" style="margin: 10px; padding: 5px 10px; font-size: 16px; background-color: #444; color: white; border: none; border-radius: 3px; cursor: pointer;">Próximo Passo</button>
+                <button id="pointerReset" style="margin: 10px; padding: 5px 10px; font-size: 16px; background-color: #444; color: white; border: none; border-radius: 3px; cursor: pointer;">Reiniciar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            const pointerAnimation = {
+                codeLines: [
+                    'int* ptr = NULL;',
+                    'int var_a;  // Endereço: 0x1000',
+                    'int var_b;  // Endereço: 0x1004',
+                    'var_a = 10;',
+                    'var_b = 20;',
+                    'ptr = &var_a;',
+                    '*ptr = 15;',
+                    'ptr = &var_b;',
+                    '*ptr = 25;'
+                ],
+                memoryState: [
+                    { ptr: null, var_a: undefined, var_b: undefined },
+                    { ptr: null, var_a: '?', var_b: undefined },
+                    { ptr: null, var_a: '?', var_b: '?' },
+                    { ptr: null, var_a: 10, var_b: '?' },
+                    { ptr: null, var_a: 10, var_b: 20 },
+                    { ptr: '0x1000', var_a: 10, var_b: 20 },
+                    { ptr: '0x1000', var_a: 15, var_b: 20 },
+                    { ptr: '0x1004', var_a: 15, var_b: 20 },
+                    { ptr: '0x1004', var_a: 15, var_b: 25 }
+                ],
+                currentStep: 0,
+
+                updateCode: function() {
+                    const codeBlock = document.getElementById('pointerCodeBlock');
+                    codeBlock.innerHTML = this.codeLines.map((line, index) => 
+                        `<div style="${index === this.currentStep ? 'background-color: #ffd700; color: black;' : 'color: white;'} padding: 2px 0;">${line}</div>`
+                    ).join('');
+                },
+
+                drawMemory: function() {
+                    const canvas = document.getElementById('pointerMemoryCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    const cellWidth = 140;
+                    const cellHeight = 40;
+                    const startX = 10;
+                    const startY = 10;
+                    const gap = 10;
+
+                    ctx.font = '14px Arial';
+
+                    // Desenhar caixa de NULL
+                    ctx.fillStyle = '#444';
+                    ctx.fillRect(startX, startY, cellWidth, cellHeight);
+                    ctx.fillStyle = 'white';
+                    ctx.fillText('NULL', startX + 5, startY + 25);
+
+                    // Desenhar caixas das variáveis apenas se estiverem declaradas
+                    if (this.memoryState[this.currentStep].var_a !== undefined) {
+                        ctx.fillStyle = '#444';
+                        ctx.fillRect(startX, startY + cellHeight + gap, cellWidth, cellHeight);
+                        ctx.fillStyle = 'white';
+                        ctx.fillText('0x1000', startX + 5, startY + cellHeight + gap + 25);
+                        ctx.fillStyle = '#ffd700';
+                        ctx.fillText(`| ${this.memoryState[this.currentStep].var_a}`, startX + 70, startY + cellHeight + gap + 25);
+                    }
+
+                    if (this.memoryState[this.currentStep].var_b !== undefined) {
+                        ctx.fillStyle = '#444';
+                        ctx.fillRect(startX, startY + 2 * (cellHeight + gap), cellWidth, cellHeight);
+                        ctx.fillStyle = 'white';
+                        ctx.fillText('0x1004', startX + 5, startY + 2 * (cellHeight + gap) + 25);
+                        ctx.fillStyle = '#ffd700';
+                        ctx.fillText(`| ${this.memoryState[this.currentStep].var_b}`, startX + 70, startY + 2 * (cellHeight + gap) + 25);
+                    }
+
+                    // Desenhar caixa do ponteiro
+                    ctx.fillStyle = '#444';
+                    ctx.fillRect(startX, startY + 3 * (cellHeight + gap), cellWidth, cellHeight);
+                    ctx.fillStyle = 'white';
+                    ctx.fillText('ptr', startX + 5, startY + 3 * (cellHeight + gap) + 25);
+                    ctx.fillStyle = '#ffd700';
+                    ctx.fillText(`| ${this.memoryState[this.currentStep].ptr || 'NULL'}`, startX + 70, startY + 3 * (cellHeight + gap) + 25);
+                    
+                    // Desenhar seta do ponteiro
+                    ctx.beginPath();
+                    ctx.moveTo(startX + cellWidth, startY + 3 * (cellHeight + gap) + cellHeight / 2);
+                    let endY;
+                    switch(this.memoryState[this.currentStep].ptr) {
+                        case null:
+                            endY = startY + cellHeight / 2;
+                            break;
+                        case '0x1000':
+                            endY = startY + cellHeight + gap + cellHeight / 2;
+                            break;
+                        case '0x1004':
+                            endY = startY + 2 * (cellHeight + gap) + cellHeight / 2;
+                            break;
+                        default:
+                            endY = startY + 3 * (cellHeight + gap) + cellHeight / 2;
+                    }
+                    ctx.lineTo(startX + cellWidth + 20, startY + 3 * (cellHeight + gap) + cellHeight / 2);
+                    ctx.lineTo(startX + cellWidth + 20, endY);
+                    ctx.lineTo(startX + cellWidth, endY);
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                },
+
+                nextStep: function() {
+                    if (this.currentStep < this.codeLines.length - 1) {
+                        this.currentStep++;
+                        this.updateCode();
+                        this.drawMemory();
+                    }
+                },
+
+                reset: function() {
+                    this.currentStep = 0;
+                    this.updateCode();
+                    this.drawMemory();
+                },
+
+                init: function() {
+                    this.updateCode();
+                    this.drawMemory();
+                    document.getElementById('pointerNextStep').addEventListener('click', () => this.nextStep());
+                    document.getElementById('pointerReset').addEventListener('click', () => this.reset());
+                }
+            };
+
+            // Inicializar a animação quando o slide for mostrado
+            if (typeof Reveal !== 'undefined') {
+                Reveal.addEventListener('slidechanged', function(event) {
+                    if (event.currentSlide.querySelector('#pointerCodeBlock')) {
+                        pointerAnimation.init();
+                    }
+                });
+
+                // Inicializar a animação se este for o slide inicial
+                if (Reveal.getCurrentSlide().querySelector('#pointerCodeBlock')) {
+                    pointerAnimation.init();
+                }
+            } else {
+                // Fallback para quando Reveal.js não estiver disponível (para testes)
+                window.addEventListener('load', function() {
+                    pointerAnimation.init();
+                });
+            }
+        })();
+    </script>
+</section>
+
+            <section>
+                <h2>Aritmética de Ponteiros</h2>
+                <ul>
+                    <li>O compilador aloca elementos de arrays de maneira sequencial na memória</li>
+                    <li>Ao incrementar um ponteiro, o compilador entende que queremos apontar para o próximo espaço de memória do tipo do ponteiro</li>
+                </ul>
+                <pre><code class="cpp">
+int arr[] = {10, 20, 30, 40, 50};
+int* p = arr;
+
+cout &lt;&lt; "*p: " &lt;&lt; *p &lt;&lt; endl;     // Imprime 10
+cout &lt;&lt; "*(p+1): " &lt;&lt; *(p+1) &lt;&lt; endl; // Imprime 20
+cout &lt;&lt; "*(p+2): " &lt;&lt; *(p+2) &lt;&lt; endl; // Imprime 30
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Ilustração de Array na Memória</h2>
+                <table class="memory-table">
+                    <tr>
+                        <th>Endereço</th>
+                        <th>Valor</th>
+                        <th>Elemento</th>
+                    </tr>
+                    <tr>
+                        <td>0x1000</td>
+                        <td>10</td>
+                        <td>arr[0]</td>
+                    </tr>
+                    <tr>
+                        <td>0x1004</td>
+                        <td>20</td>
+                        <td>arr[1]</td>
+                    </tr>
+                    <tr>
+                        <td>0x1008</td>
+                        <td>30</td>
+                        <td>arr[2]</td>
+                    </tr>
+                    <tr>
+                        <td>0x100C</td>
+                        <td>40</td>
+                        <td>arr[3]</td>
+                    </tr>
+                    <tr>
+                        <td>0x1010</td>
+                        <td>50</td>
+                        <td>arr[4]</td>
+                    </tr>
+                </table>
+                <p>p+1 aponta para 0x1004, p+2 para 0x1008, etc.</p>
+            </section>
+
+            <section>
+                <h2>Passagem de Parâmetros por Referência</h2>
+                <pre><code class="cpp">
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int x = 5, y = 10;
+swap(&amp;x, &amp;y);
+cout &lt;&lt; "x: " &lt;&lt; x &lt;&lt; ", y: " &lt;&lt; y &lt;&lt; endl; // x: 10, y: 5
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Ponteiros para Ponteiros</h2>
+                <ul>
+                    <li>Um ponteiro para ponteiro é uma variável que armazena o endereço de outro ponteiro</li>
+                    <li>Declaração: use dois asteriscos, por exemplo: int**</li>
+                    <li>Útil para arrays multidimensionais e estruturas de dados complexas</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Ponteiros para Ponteiros - Exemplo</h2>
+
+                <pre><code class="cpp">
+int num = 42;
+int* ptr = &amp;num;     // Ponteiro para int
+int** ptr_to_ptr = &amp;ptr; // Ponteiro para ponteiro para int
+
+cout &lt;&lt; "Valor de num: " &lt;&lt; num &lt;&lt; endl;
+cout &lt;&lt; "Endereço de num: " &lt;&lt; ptr &lt;&lt; endl;
+cout &lt;&lt; "Valor apontado por ptr: " &lt;&lt; *ptr &lt;&lt; endl;
+cout &lt;&lt; "Endereço de ptr: " &lt;&lt; ptr_to_ptr &lt;&lt; endl;
+cout &lt;&lt; "Valor apontado por ptr_to_ptr: " &lt;&lt; *ptr_to_ptr &lt;&lt; endl;
+cout &lt;&lt; "Valor de num através de ptr_to_ptr: " &lt;&lt; **ptr_to_ptr &lt;&lt; endl;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Ilustração: Ponteiros para Ponteiros na Memória</h2>
+                <table class="memory-table">
+                    <tr>
+                        <th>Endereço</th>
+                        <th>Valor</th>
+                        <th>Variável</th>
+                    </tr>
+                    <tr>
+                        <td>0x1000</td>
+                        <td>42</td>
+                        <td>int num</td>
+                    </tr>
+                    <tr>
+                        <td>0x1004</td>
+                        <td>0x1000</td>
+                        <td>int* ptr</td>
+                    </tr>
+                    <tr>
+                        <td>0x1008</td>
+                        <td>0x1004</td>
+                        <td>int** ptr_to_ptr</td>
+                    </tr>
+                </table>
+                <p>ptr_to_ptr (0x1008) → ptr (0x1004) → num (0x1000) = 42</p>
+            </section>
+
+            <section>
+                <h2>Considerações Finais</h2>
+                <ul>
+                    <li>Ponteiros são ferramentas poderosas em C++</li>
+                    <li>Permitem manipulação eficiente de memória</li>
+                    <li>Requerem cuidado para evitar erros e vazamentos de memória</li>
+                    <li>Compreender os operadores * e &amp; é fundamental</li>
+                    <li>Endereços hexadecimais são comuns ao trabalhar com ponteiros</li>
+                    <li>Ponteiros para ponteiros ampliam as possibilidades de manipulação de dados</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1200,
+            height: 720,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
