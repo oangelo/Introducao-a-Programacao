@@ -68,12 +68,12 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Alocação de arrays dinamicamente
     - Desafios e boas práticas na alocação dinâmica
 
-11. **Estruturas (struct)**:
+11. **[Estruturas (struct)](https://oangelo.github.io/Introducao-a-Programacao/estruturas.html)**:
     - Definição e uso de estruturas
     - Aninhamento de estruturas
     - Arrays de estruturas
 
-12. **Manipulação de Arquivos**:
+12. **[Manipulação de Arquivos](https://oangelo.github.io/Introducao-a-Programacao/arquivos.html)**:
     - Abertura e fechamento de arquivos
     - Leitura e escrita em arquivos de texto
     - Manipulação de arquivos binários
