@@ -48,13 +48,13 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - [Exercícios 2](exercicios/condicionais_loops_fucoes_arrays2.md)
    - Data da prova e local: 16/09/2024 - Sala 216
 
-8. **[Arrays Multidimensionais e Matrizes](https://oangelo.github.io/Introducao-a-Programacao/matriz.html)**
+8. **[Arrays Multidimensionais e Matrizes](https://oangelo.github.io/Introducao-a-Programacao/matriz.html)**:
    - Declaração e inicialização de arrays 2D e 3D
    - Acesso e manipulação de elementos em arrays multidimensionais
    - Aplicações práticas de matrizes
    - [Exercícios](exercicios/matrizes.md)
 
-9. **[Ponteiros:](https://oangelo.github.io/Introducao-a-Programacao/ponteiros.html)**:
+9. **[Ponteiros](https://oangelo.github.io/Introducao-a-Programacao/ponteiros.html)**:
    - Sistema Hexadecimal
    - Operadores * e &
    - Declaração e uso de ponteiros
@@ -63,7 +63,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Passagem de parâmetros por referência
    - Ponteiros para ponteiros
 
-10. **[Alocação Dinâmica de Memória*](https://oangelo.github.io/Introducao-a-Programacao/memoria.html)*:
+10. **[Alocação Dinâmica de Memória](https://oangelo.github.io/Introducao-a-Programacao/memoria.html)**:
     - Uso das funções `new` e `delete` para alocar e liberar memória
     - Alocação de arrays dinamicamente
     - Desafios e boas práticas na alocação dinâmica
