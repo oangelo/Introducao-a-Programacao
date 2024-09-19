@@ -63,7 +63,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Passagem de parâmetros por referência
    - Ponteiros para ponteiros
 
-10. **Alocação Dinâmica de Memória**:
+10. **[Alocação Dinâmica de Memória*](https://oangelo.github.io/Introducao-a-Programacao/memoria.html)*:
     - Uso das funções `new` e `delete` para alocar e liberar memória
     - Alocação de arrays dinamicamente
     - Desafios e boas práticas na alocação dinâmica
