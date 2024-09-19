@@ -54,10 +54,14 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Aplicações práticas de matrizes
    - [Exercícios](exercicios/matrizes.md)
 
-9. **Ponteiros**:
+9. **[Ponteiros**:](https://oangelo.github.io/Introducao-a-Programacao/ponteiros.html)
+   - Sistema Hexadecimal
+   - Operadores * e &
    - Declaração e uso de ponteiros
+   - Ilustração da memória do computador
    - Aritmética de ponteiros
-   - Passagem de parâmetros por referência usando ponteiros
+   - Passagem de parâmetros por referência
+   - Ponteiros para ponteiros
 
 10. **Alocação Dinâmica de Memória**:
     - Uso das funções `new` e `delete` para alocar e liberar memória
