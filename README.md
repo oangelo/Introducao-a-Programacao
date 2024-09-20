@@ -62,6 +62,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - Aritmética de ponteiros
    - Passagem de parâmetros por referência
    - Ponteiros para ponteiros
+   - [Exercícios](exercicios/ponteiros.md)
 
 10. **[Alocação Dinâmica de Memória](https://oangelo.github.io/Introducao-a-Programacao/memoria.html)**:
     - Uso das funções `new` e `delete` para alocar e liberar memória
