@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha para Prova de Programação</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            position: relative;
+            page-break-after: always;
+        }
+        .vertical-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #666;
+        }
+        .horizontal-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #bbb; /* Mudado de #ccc para #bbb para ficar levemente mais escuro */
+        }
+        .indent-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            border-left: 1px dashed #ddd;
+        }
+        @media print {
+            body { -webkit-print-color-adjust: exact; }
+            .page { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="vertical-line"></div>
+        
+        <!-- Linhas horizontais -->
+        <div class="horizontal-line" style="top: 8mm"></div>
+        <div class="horizontal-line" style="top: 16mm"></div>
+        <div class="horizontal-line" style="top: 24mm"></div>
+        <div class="horizontal-line" style="top: 32mm"></div>
+        <div class="horizontal-line" style="top: 40mm"></div>
+        <div class="horizontal-line" style="top: 48mm"></div>
+        <div class="horizontal-line" style="top: 56mm"></div>
+        <div class="horizontal-line" style="top: 64mm"></div>
+        <div class="horizontal-line" style="top: 72mm"></div>
+        <div class="horizontal-line" style="top: 80mm"></div>
+        <div class="horizontal-line" style="top: 88mm"></div>
+        <div class="horizontal-line" style="top: 96mm"></div>
+        <div class="horizontal-line" style="top: 104mm"></div>
+        <div class="horizontal-line" style="top: 112mm"></div>
+        <div class="horizontal-line" style="top: 120mm"></div>
+        <div class="horizontal-line" style="top: 128mm"></div>
+        <div class="horizontal-line" style="top: 136mm"></div>
+        <div class="horizontal-line" style="top: 144mm"></div>
+        <div class="horizontal-line" style="top: 152mm"></div>
+        <div class="horizontal-line" style="top: 160mm"></div>
+        <div class="horizontal-line" style="top: 168mm"></div>
+        <div class="horizontal-line" style="top: 176mm"></div>
+        <div class="horizontal-line" style="top: 184mm"></div>
+        <div class="horizontal-line" style="top: 192mm"></div>
+        <div class="horizontal-line" style="top: 200mm"></div>
+        <div class="horizontal-line" style="top: 208mm"></div>
+        <div class="horizontal-line" style="top: 216mm"></div>
+        <div class="horizontal-line" style="top: 224mm"></div>
+        <div class="horizontal-line" style="top: 232mm"></div>
+        <div class="horizontal-line" style="top: 240mm"></div>
+        <div class="horizontal-line" style="top: 248mm"></div>
+        <div class="horizontal-line" style="top: 256mm"></div>
+        <div class="horizontal-line" style="top: 264mm"></div>
+        <div class="horizontal-line" style="top: 272mm"></div>
+        <div class="horizontal-line" style="top: 280mm"></div>
+        <div class="horizontal-line" style="top: 288mm"></div>
+        <div class="horizontal-line" style="top: 296mm"></div>
+        
+        <!-- Linhas de indentação à esquerda -->
+        <div class="indent-line" style="left: 10mm"></div>
+        <div class="indent-line" style="left: 20mm"></div>
+        <div class="indent-line" style="left: 30mm"></div>
+        
+        <!-- Linhas de indentação à direita da linha central -->
+        <div class="indent-line" style="left: calc(50% + 10mm)"></div>
+        <div class="indent-line" style="left: calc(50% + 20mm)"></div>
+        <div class="indent-line" style="left: calc(50% + 30mm)"></div>
+    </div>
+</body>
+</html>
