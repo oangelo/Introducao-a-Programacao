@@ -68,6 +68,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Uso das funções `new` e `delete` para alocar e liberar memória
     - Alocação de arrays dinamicamente
     - Desafios e boas práticas na alocação dinâmica
+   - [Exercícios](exercicios/memoria.md)
 
 11. **[Estruturas (struct)](https://oangelo.github.io/Introducao-a-Programacao/estruturas.html)**:
     - Definição e uso de estruturas
