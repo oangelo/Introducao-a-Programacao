@@ -1,4 +1,4 @@
-# Lista Completa de Exercícios Revisados: Ponteiros em C++
+# Lista de Exercícios de Ponteiros em C++
 
 Antes de mergulhar nas soluções, lembre-se: a melhor maneira de aprender programação é fazendo por conta própria. Tente resolver cada problema sozinho primeiro. Escrever código, mesmo que não seja perfeito, é crucial para desenvolver suas habilidades de resolução de problemas e compreensão de C++. Só olhe as soluções quando estiver realmente travado ou quiser comparar sua abordagem.
 
