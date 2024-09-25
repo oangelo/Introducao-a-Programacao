@@ -7,9 +7,9 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 
   # Como não passar nesta matéria
 
-  Olá, queridos alunos! Vamos falar sobre como ter sucesso neste curso? Não? Ah, você quer saber como não passar? Bem, se esse for realmente seu objetivo (embora eu realmente espere que não seja), aqui vai um guia de como alcançar essa façanha. Lembre-se, o ideal é estudar e passar, mas se por algum motivo misterioso você decidiu que passar não é para você, aqui estão algumas "dicas" infalíveis:
+  Olá, queridos alunos! Vamos falar sobre como ter sucesso neste curso? Não? Ah, você quer saber como não passar? Bem, se esse for realmente seu objetivo aqui vai um guia de como alcançar essa façanha de forma eficiente:
 
-  ## 1. Estude na véspera da prova - o segredo do fracasso!
+  ## 1. Estude só na véspera da prova - o segredo do fracasso!
 
   Lembre-se: a universidade é igualzinha ao ensino médio! Aquelas matérias complexas e extensas? Pfff, besteira! Você consegue absorver todo esse conteúdo em uma única noite de estudos intensos. Afinal, quem precisa de tempo para processar informações, não é mesmo?
 
@@ -29,7 +29,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 
   ## Conclusão
 
-  Seguindo essas dicas, você estará no caminho certo para não passar nesta matéria. Mas hey, se por algum motivo bizarro você decidir fazer o oposto do que foi sugerido aqui - estudar consistentemente, dormir bem e respeitar os processos de aprendizagem do seu cérebro - bem, aí a responsabilidade é toda sua se acabar passando com louvor!
+  Seguindo essas dicas, você estará no caminho certo para não passar nesta matéria. Mas hey, se por algum motivo você decidir fazer o oposto do que foi sugerido aqui - estudar consistentemente, dormir bem e respeitar os processos de aprendizagem do seu cérebro - bem, aí a responsabilidade é toda sua se acabar passando com louvor!
 
 </details>
 
