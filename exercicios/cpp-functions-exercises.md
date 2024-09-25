@@ -377,51 +377,7 @@ int main() {
 
 </details>
 
-### 12. Manipulação de Strings ★★★★
-**Objetivo:** Implemente uma função chamada `processarString` que recebe uma string por referência. A função deve converter a primeira letra para maiúscula, remover espaços em branco no início e no fim, e substituir múltiplos espaços por um único espaço.
-
-**Importância:** Este exercício mostra como a passagem por referência pode ser usada para modificar strings de forma eficiente, sem necessidade de retornar uma nova string.
-
-**Dica de implementação:** Use funções da biblioteca `<string>` como `erase()`, `find()`, e `toupper()`.
-
-<details>
-<summary>Solução</summary>
-
-```cpp
-#include <iostream>
-#include <string>
-#include <algorithm>
-
-void processarString(std::string& str) {
-    // Remover espaços no início e no fim
-    str.erase(0, str.find_first_not_of(" \t\n\r\f\v"));
-    str.erase(str.find_last_not_of(" \t\n\r\f\v") + 1);
-    
-    // Converter primeira letra para maiúscula
-    if (!str.empty()) {
-        str[0] = toupper(str[0]);
-    }
-    
-    // Substituir múltiplos espaços por um único espaço
-    auto new_end = std::unique(str.begin(), str.end(),
-                               [](char a, char b) { return a == ' ' && b == ' '; });
-    str.erase(new_end, str.end());
-}
-
-int main() {
-    std::string texto = "   hello   world  ";
-    std::cout << "Original: '" << texto << "'" << std::endl;
-    
-    processarString(texto);
-    std::cout << "Processada: '" << texto << "'" << std::endl;
-    
-    return 0;
-}
-```
-
-</details>
-
-### 14. Swap de Inteiros ★★
+### 13. Swap de Inteiros ★★
 **Objetivo:** Implemente uma função chamada `trocar` que pode trocar os valores de dois inteiros. Use referências para realizar a troca.
 
 **Importância:** Este exercício demonstra como usar referências para modificar valores de variáveis fora da função, uma técnica comum e útil em C++.
