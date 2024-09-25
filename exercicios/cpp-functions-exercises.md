@@ -421,24 +421,21 @@ int main() {
 
 </details>
 
+### 14. Swap de Inteiros ★★
+**Objetivo:** Implemente uma função chamada `trocar` que pode trocar os valores de dois inteiros. Use referências para realizar a troca.
 
-### 14. Swap Genérico ★★★★
-**Objetivo:** Implemente uma função template chamada `trocar` que pode trocar os valores de dois itens de qualquer tipo. Use referências para realizar a troca.
+**Importância:** Este exercício demonstra como usar referências para modificar valores de variáveis fora da função, uma técnica comum e útil em C++.
 
-**Importância:** Introduz o conceito de templates junto com referências, mostrando como criar funções genéricas que podem trabalhar com diferentes tipos de dados.
-
-**Dica de implementação:** Use a palavra-chave `template` e um tipo genérico `T`.
+**Dica de implementação:** Use uma variável temporária para realizar a troca.
 
 <details>
 <summary>Solução</summary>
 
 ```cpp
 #include <iostream>
-#include <string>
 
-template <typename T>
-void trocar(T& a, T& b) {
-    T temp = a;
+void trocar(int& a, int& b) {
+    int temp = a;
     a = b;
     b = temp;
 }
@@ -449,13 +446,18 @@ int main() {
     trocar(x, y);
     std::cout << "Depois da troca: x = " << x << ", y = " << y << std::endl;
 
-    std::string s1 = "Hello", s2 = "World";
-    std::cout << "Antes da troca: s1 = " << s1 << ", s2 = " << s2 << std::endl;
-    trocar(s1, s2);
-    std::cout << "Depois da troca: s1 = " << s1 << ", s2 = " << s2 << std::endl;
-
     return 0;
 }
 ```
 
 </details>
+
+**Explicação da solução:**
+1. A função `trocar` recebe dois parâmetros por referência (`int& a` e `int& b`). Isso significa que ela trabalha diretamente com as variáveis originais, não com cópias.
+2. Dentro da função, usamos uma variável temporária `temp` para armazenar o valor de `a`.
+3. Atribuímos o valor de `b` para `a`.
+4. Finalmente, atribuímos o valor original de `a` (armazenado em `temp`) para `b`.
+5. No `main()`, chamamos `trocar(x, y)`, que troca os valores de `x` e `y`.
+6. Imprimimos os valores antes e depois da troca para demonstrar que a função realmente modificou as variáveis originais.
+
+Esta versão do exercício mantém o foco na passagem por referência e na manipulação de variáveis através de funções, sem introduzir o conceito de templates.
