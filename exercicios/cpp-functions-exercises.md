@@ -377,7 +377,7 @@ int main() {
 
 </details>
 
-### 13. Swap de Inteiros ★★
+### 12. Swap de Inteiros ★★
 **Objetivo:** Implemente uma função chamada `trocar` que pode trocar os valores de dois inteiros. Use referências para realizar a troca.
 
 **Importância:** Este exercício demonstra como usar referências para modificar valores de variáveis fora da função, uma técnica comum e útil em C++.
@@ -408,12 +408,3 @@ int main() {
 
 </details>
 
-**Explicação da solução:**
-1. A função `trocar` recebe dois parâmetros por referência (`int& a` e `int& b`). Isso significa que ela trabalha diretamente com as variáveis originais, não com cópias.
-2. Dentro da função, usamos uma variável temporária `temp` para armazenar o valor de `a`.
-3. Atribuímos o valor de `b` para `a`.
-4. Finalmente, atribuímos o valor original de `a` (armazenado em `temp`) para `b`.
-5. No `main()`, chamamos `trocar(x, y)`, que troca os valores de `x` e `y`.
-6. Imprimimos os valores antes e depois da troca para demonstrar que a função realmente modificou as variáveis originais.
-
-Esta versão do exercício mantém o foco na passagem por referência e na manipulação de variáveis através de funções, sem introduzir o conceito de templates.
