@@ -115,13 +115,15 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 Ao final deste curso, você terá uma sólida compreensão dos conceitos fundamentais da linguagem C++ e estará pronto para começar a desenvolver seus próprios programas.
 
 <details>
-  <summary>Calendário</summary>
+  <summary>Calendário de Provas</summary>
   <ul>
     <li>P2: 04/11/09</li>
     <li>P3: 02/12/24</li>
     <li>PS: 09/12/24 (Prova para quem faltou alguma prova ou gostaria de substituir alguma nota por esta)</li>
     <li>PF: 16/12/24</li>
   </ul>
+  ![meme cachorro](img/prova.png)
+
 </details>
 
 Bons estudos!
