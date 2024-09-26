@@ -122,8 +122,7 @@ Ao final deste curso, você terá uma sólida compreensão dos conceitos fundame
     <li>PS: 09/12/24 (Prova para quem faltou alguma prova ou gostaria de substituir alguma nota por esta)</li>
     <li>PF: 16/12/24</li>
   </ul>
-  ![meme cachorro](img/prova.png)
-
+  <img src="img/prova.png" alt="meme cachorro">
 </details>
 
 Bons estudos!
