@@ -174,6 +174,116 @@ Para uma matriz 4x4, o preenchimento em espiral resultaria em:
 - Use variáveis para controlar os limites atuais da espiral (linha/coluna inicial e final).
 - A cada volta completa da espiral, atualize esses limites.
 
+<details>
+<summary>Solução</summary>
+
+```cpp
+#include <iostream>
+#include <iomanip>
+
+// Função para alocar uma matriz quadrada de tamanho n x n
+int** alocarMatriz(int n) {
+    int** matriz = new int*[n];
+    if (matriz == nullptr) {
+        std::cerr << "Erro ao alocar memória." << std::endl;
+        std::exit(1);
+    }
+    for(int i = 0; i < n; ++i) {
+        matriz[i] = new int[n];
+        if(matriz[i] == nullptr) {
+            std::cerr << "Erro ao alocar memória." << std::endl;
+            std::exit(1);
+        }
+    }
+    return matriz;
+}
+
+// Função para preencher a matriz em espiral
+void preencherEspiral(int** matriz, int n) {
+    int inicioLinha = 0, fimLinha = n - 1;
+    int inicioColuna = 0, fimColuna = n - 1;
+    int contador = 1;
+
+    while(inicioLinha <= fimLinha && inicioColuna <= fimColuna) {
+        // Preenche a borda superior
+        for(int i = inicioColuna; i <= fimColuna; ++i) {
+            matriz[inicioLinha][i] = contador++;
+        }
+        inicioLinha++;
+
+        // Preenche a borda direita
+        for(int i = inicioLinha; i <= fimLinha; ++i) {
+            matriz[i][fimColuna] = contador++;
+        }
+        fimColuna--;
+
+        // Preenche a borda inferior
+        if(inicioLinha <= fimLinha) {
+            for(int i = fimColuna; i >= inicioColuna; --i) {
+                matriz[fimLinha][i] = contador++;
+            }
+            fimLinha--;
+        }
+
+        // Preenche a borda esquerda
+        if(inicioColuna <= fimColuna) {
+            for(int i = fimLinha; i >= inicioLinha; --i) {
+                matriz[i][inicioColuna] = contador++;
+            }
+            inicioColuna++;
+        }
+    }
+}
+
+// Função para imprimir a matriz
+void imprimirMatriz(int** matriz, int n) {
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j) {
+            std::cout << std::setw(4) << matriz[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+// Função para desalocar a memória da matriz
+void desalocarMatriz(int** matriz, int n) {
+    for(int i = 0; i < n; ++i) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+}
+
+int main() {
+    int n;
+
+    std::cout << "Digite o tamanho da matriz (n x n): ";
+    std::cin >> n;
+
+    if(n <= 0) {
+        std::cerr << "Tamanho da matriz deve ser positivo." << std::endl;
+        return 1;
+    }
+
+    // Aloca a matriz
+    int** matriz = alocarMatriz(n);
+
+    // Preenche a matriz em espiral
+    preencherEspiral(matriz, n);
+
+    // Imprime a matriz
+    std::cout << "Matriz preenchida em espiral:\n";
+    imprimirMatriz(matriz, n);
+
+    // Desaloca a memória
+    desalocarMatriz(matriz, n);
+
+    return 0;
+}
+
+```
+</details>
+
+
 ## 3. Detector de Ilhas
 
 ### Objetivo
