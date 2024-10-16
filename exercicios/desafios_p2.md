@@ -321,6 +321,158 @@ Esta matriz contém 5 ilhas.
 - Ao encontrar um 1, marque-o como visitado (por exemplo, mudando para 2) e explore seus vizinhos usando um loop.
 - Lembre-se de verificar os limites da matriz ao explorar os vizinhos.
 
+<details>
+<summary>Solução</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Função para alocar dinamicamente uma matriz 2D
+int** alocarMatriz(int linhas, int colunas) {
+    int** matriz = new int*[linhas];
+    for(int i = 0; i < linhas; i++) {
+        matriz[i] = new int[colunas];
+    }
+    return matriz;
+}
+
+// Função para preencher a matriz com valores predefinidos
+void preencherMatriz(int** matriz, int linhas, int colunas) {
+    // Exemplo predefinido conforme o enunciado
+    int valores[5][5] = {
+        {1, 0, 1, 0, 0},
+        {1, 1, 0, 0, 1},
+        {0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 1},
+        {1, 0, 1, 0, 1}
+    };
+    
+    for(int i = 0; i < linhas; i++) {
+        for(int j = 0; j < colunas; j++) {
+            matriz[i][j] = valores[i][j];
+        }
+    }
+}
+
+// Função para imprimir a matriz
+void imprimirMatriz(int** matriz, int linhas, int colunas) {
+    cout << "Matriz:" << endl;
+    for(int i = 0; i < linhas; i++) {
+        for(int j = 0; j < colunas; j++) {
+            cout << matriz[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Função para marcar uma ilha inteira usando busca em profundidade iterativa
+void marcarIlha(int** matriz, int linhas, int colunas, int x, int y) {
+    // Pilha simples usando arrays
+    int stackX[linhas * colunas];
+    int stackY[linhas * colunas];
+    int topo = -1;
+
+    // Adiciona a posição inicial à pilha
+    topo++;
+    stackX[topo] = x;
+    stackY[topo] = y;
+
+    while(topo >= 0) {
+        // Remove o elemento do topo da pilha
+        int currentX = stackX[topo];
+        int currentY = stackY[topo];
+        topo--;
+
+        // Marca como visitado (por exemplo, mudando para 2)
+        if(matriz[currentX][currentY] == 1) {
+            matriz[currentX][currentY] = 2;
+
+            // Verifica os vizinhos (cima, baixo, esquerda, direita)
+            // Cima
+            if(currentX > 0 && matriz[currentX - 1][currentY] == 1) {
+                topo++;
+                stackX[topo] = currentX - 1;
+                stackY[topo] = currentY;
+            }
+            // Baixo
+            if(currentX < linhas - 1 && matriz[currentX + 1][currentY] == 1) {
+                topo++;
+                stackX[topo] = currentX + 1;
+                stackY[topo] = currentY;
+            }
+            // Esquerda
+            if(currentY > 0 && matriz[currentX][currentY - 1] == 1) {
+                topo++;
+                stackX[topo] = currentX;
+                stackY[topo] = currentY - 1;
+            }
+            // Direita
+            if(currentY < colunas - 1 && matriz[currentX][currentY + 1] == 1) {
+                topo++;
+                stackX[topo] = currentX;
+                stackY[topo] = currentY + 1;
+            }
+        }
+    }
+}
+
+// Função para contar o número de ilhas na matriz
+int contarIlhas(int** matriz, int linhas, int colunas) {
+    int contagem = 0;
+    for(int i = 0; i < linhas; i++) {
+        for(int j = 0; j < colunas; j++) {
+            if(matriz[i][j] == 1) { // Encontrou uma nova ilha
+                contagem++;
+                marcarIlha(matriz, linhas, colunas, i, j);
+            }
+        }
+    }
+    return contagem;
+}
+
+// Função para desalocar a memória da matriz
+void desalocarMatriz(int** matriz, int linhas) {
+    for(int i = 0; i < linhas; i++) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+}
+
+int main() {
+    int linhas = 5;
+    int colunas = 5;
+
+    // Aloca a matriz
+    int** matriz = alocarMatriz(linhas, colunas);
+
+    // Preenche a matriz com valores predefinidos
+    preencherMatriz(matriz, linhas, colunas);
+
+    // Imprime a matriz original
+    imprimirMatriz(matriz, linhas, colunas);
+
+    // Conta o número de ilhas
+    int numeroDeIlhas = contarIlhas(matriz, linhas, colunas);
+
+    // Imprime o número de ilhas encontradas
+    cout << "Número de ilhas encontradas: " << numeroDeIlhas << endl;
+
+    // Opcional: Imprime a matriz após a marcação das ilhas
+    // Isso mostra como as ilhas foram marcadas como '2'
+    cout << "\nMatriz após a marcação das ilhas:" << endl;
+    imprimirMatriz(matriz, linhas, colunas);
+
+    // Desaloca a memória da matriz
+    desalocarMatriz(matriz, linhas);
+
+    return 0;
+}
+```
+
+</details>
+
+
 ## 4. Jogo da Vida de Conway
 
 ### Objetivo
