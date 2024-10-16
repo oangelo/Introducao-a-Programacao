@@ -306,7 +306,7 @@ Para a seguinte matriz 5x5:
 0 0 0 1 1
 1 0 1 0 1
 ```
-Esta matriz contém 5 ilhas.
+Esta matriz contém 6 ilhas.
 
 ### Tarefas
 1. Implemente uma função para alocar dinamicamente uma matriz binária.
