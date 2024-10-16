@@ -520,6 +520,186 @@ Geração 2:
 - Considere as células nas bordas da matriz como tendo vizinhos "mortos" além da borda.
 - Para melhor visualização, use caracteres diferentes para representar células vivas e mortas ao imprimir.
 
+<details>
+<summary>Solução</summary>
+
+```cpp
+#include <iostream>
+#include <cstdlib> // Para rand() e srand()
+#include <ctime>   // Para time()
+using namespace std;
+
+// Função para alocar dinamicamente uma matriz 2D
+int** alocarMatriz(int linhas, int colunas) {
+    int** matriz = new int*[linhas];
+    for(int i = 0; i < linhas; ++i) {
+        matriz[i] = new int[colunas];
+    }
+    return matriz;
+}
+
+// Função para desalocar uma matriz 2D
+void desalocarMatriz(int** matriz, int linhas) {
+    for(int i = 0; i < linhas; ++i) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+}
+
+// Função para inicializar a matriz com um padrão predefinido ou aleatório
+void inicializarMatriz(int** matriz, int linhas, int colunas, int tipo) {
+    if(tipo == 2) { // Aleatório
+        // Inicializa a matriz de forma aleatória
+        for(int i = 0; i < linhas; ++i) {
+            for(int j = 0; j < colunas; ++j) {
+                // 50% de chance de a célula estar viva
+                matriz[i][j] = rand() % 2;
+            }
+        }
+    }
+    else { // Padrão Predefinido
+        // Inicializa todas as células como mortas
+        for(int i = 0; i < linhas; ++i) {
+            for(int j = 0; j < colunas; ++j) {
+                matriz[i][j] = 0;
+            }
+        }
+
+        // Define um padrão inicial (exemplo: "Blinker")
+        // Geração 1:
+        // .*.
+        // .*.
+        // .*.
+        if(linhas >= 3 && colunas >= 3) {
+            matriz[0][1] = 1;
+            matriz[1][1] = 1;
+            matriz[2][1] = 1;
+        }
+    }
+}
+
+// Função para exibir a matriz no console
+void exibirMatriz(int** matriz, int linhas, int colunas) {
+    for(int i = 0; i < linhas; ++i) {
+        for(int j = 0; j < colunas; ++j) {
+            if(matriz[i][j] == 1)
+                cout << "*";
+            else
+                cout << ".";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+// Função para contar os vizinhos vivos de uma célula
+int contarVizinhos(int** matriz, int linhas, int colunas, int x, int y) {
+    int contagem = 0;
+    // Percorre todas as células vizinhas
+    for(int i = x-1; i <= x+1; ++i) {
+        for(int j = y-1; j <= y+1; ++j) {
+            // Verifica se está dentro dos limites da matriz
+            if(i >= 0 && i < linhas && j >= 0 && j < colunas) {
+                if(i == x && j == y)
+                    continue; // Ignora a célula atual
+                if(matriz[i][j] == 1)
+                    contagem++;
+            }
+        }
+    }
+    return contagem;
+}
+
+// Função para calcular a próxima geração
+void proximaGeracao(int** atual, int** proximo, int linhas, int colunas) {
+    for(int i = 0; i < linhas; ++i) {
+        for(int j = 0; j < colunas; ++j) {
+            int vizinhos = contarVizinhos(atual, linhas, colunas, i, j);
+            
+            // Aplicar as regras do Jogo da Vida
+            if(atual[i][j] == 1) {
+                if(vizinhos < 2 || vizinhos > 3)
+                    proximo[i][j] = 0; // Morte por solidão ou superpopulação
+                else
+                    proximo[i][j] = 1; // Continua viva
+            }
+            else {
+                if(vizinhos == 3)
+                    proximo[i][j] = 1; // Reprodução
+                else
+                    proximo[i][j] = 0; // Continua morta
+            }
+        }
+    }
+}
+
+int main() {
+    int linhas, colunas, geracoes;
+    int escolha;
+
+    // Inicializa o gerador de números aleatórios
+    srand(time(0));
+
+    // Solicita ao usuário as dimensões da matriz e o número de gerações
+    cout << "Digite o número de linhas: ";
+    cin >> linhas;
+    cout << "Digite o número de colunas: ";
+    cin >> colunas;
+    cout << "Digite o número de gerações: ";
+    cin >> geracoes;
+    cout << endl;
+
+    // Solicita ao usuário o tipo de inicialização
+    cout << "Escolha o tipo de condição inicial:" << endl;
+    cout << "1 - Padrão Predefinido (Blinker)" << endl;
+    cout << "2 - Aleatório" << endl;
+    cout << "Digite sua escolha (1 ou 2): ";
+    cin >> escolha;
+    cout << endl;
+
+    // Valida a escolha do usuário
+    if(escolha != 1 && escolha != 2) {
+        cout << "Escolha inválida! Usando Padrão Predefinido (Blinker)." << endl;
+        escolha = 1;
+    }
+
+    // Aloca duas matrizes: atual e próxima
+    int** atual = alocarMatriz(linhas, colunas);
+    int** proximo = alocarMatriz(linhas, colunas);
+
+    // Inicializa a matriz atual com o estado inicial
+    inicializarMatriz(atual, linhas, colunas, escolha);
+
+    // Mostra o estado inicial
+    cout << "Geração 0:" << endl;
+    exibirMatriz(atual, linhas, colunas);
+
+    // Loop para cada geração
+    for(int g = 1; g <= geracoes; ++g) {
+        // Calcula a próxima geração
+        proximaGeracao(atual, proximo, linhas, colunas);
+
+        // Exibe a próxima geração
+        cout << "Geração " << g << ":" << endl;
+        exibirMatriz(proximo, linhas, colunas);
+
+        // Troca os ponteiros das matrizes
+        int** temp = atual;
+        atual = proximo;
+        proximo = temp;
+    }
+
+    // Desaloca as matrizes
+    desalocarMatriz(atual, linhas);
+    desalocarMatriz(proximo, linhas);
+
+    return 0;
+}
+```
+
+</details>
+
+
 ## 5. Editor de Texto Simples
 
 ### Objetivo
