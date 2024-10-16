@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>A Incrível Jornada da Programação</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.reveal section img { background:none; border:none; box-shadow:none; }
+		</style>
+	</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>C++ Control Structures</h1>
+        <h3>Uma Jornada Divertida pelo Controle de Fluxo</h3>
+      </section>
+
+      <section>
+        <h2>Nossa Aventura de Hoje</h2>
+        <ul>
+          <li>Operadores lógicos e de comparação</li>
+          <li>Declarações if-else: Escolhendo seu próprio caminho</li>
+          <li>Operador ternário: O atalho mágico</li>
+          <li>Loops: Girando como um DJ</li>
+          <li>Break e Continue: Pulando obstáculos</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Operadores Lógicos e de Comparação</h2>
+        <h3>As ferramentas do detetive de código</h3>
+        <pre><code class="hljs cpp">
+// Operadores de comparação
+==  // Igual a
+!=  // Diferente de
+<   // Menor que
+>   // Maior que
+<=  // Menor ou igual a
+>=  // Maior ou igual a
+
+// Operadores lógicos
+&&  // E lógico
+||  // OU lógico
+!   // NÃO lógico
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Operadores em Ação</h2>
+        <pre><code class="hljs cpp">
+int idade = 25;
+bool temCarteira = true;
+
+if (idade >= 18 && temCarteira) {
+    cout << "Pode dirigir!";
+} else if (idade >= 18 || temCarteira) {
+    cout << "Quase lá, confira os requisitos!";
+} else {
+    cout << "Melhor pegar o ônibus!";
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Declarações if-else</h2>
+        <h3>Escolhendo seu próprio caminho</h3>
+        <pre><code class="hljs cpp">
+int horasDeSono = 5;
+if (horasDeSono < 6) {
+    cout << "Mais café, por favor!";
+} else if (horasDeSono < 8) {
+    cout << "Estou bem, mas um café não faz mal.";
+} else {
+    cout << "Estou pronto para conquistar o mundo!";
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Operador Ternário</h2>
+        <h3>O atalho mágico</h3>
+        <pre><code class="hljs cpp">
+int idade = 20;
+string status = (idade >= 18) ? "Pode dirigir" : "Melhor pegar uma carona";
+cout << status;
+        </code></pre>
+      </section>
+
+    <section>
+        <h2>Estrutura switch-case</h2>
+        <h3>O menu de opções mágico</h3>
+        <pre><code class="hljs cpp">
+int opcao;
+cout << "Escolha seu feitiço:\n";
+cout << "1. Fireball\n2. Healing\n3. Invisibility\n";
+cin >> opcao;
+
+switch (opcao) {
+    case 1:
+        cout << "Você lança uma bola de fogo!";
+        break;
+    case 2:
+        cout << "Você se cura completamente!";
+        break;
+    case 3:
+        cout << "Você fica invisível!";
+        break;
+    default:
+        cout << "Opção inválida. O feitiço falha!";
+}
+        </code></pre>
+      </section>
+
+
+      <section>
+        <h2>Loop for</h2>
+        <h3>Contagem regressiva para o lançamento</h3>
+        <pre><code class="hljs cpp">
+cout << "Preparar para lançamento!\n";
+for (int i = 10; i > 0; i--) {
+    cout << i << "... ";
+    // Simula um atraso
+    for(int j = 0; j < 100000000; j++) {}
+}
+cout << "Decolagem!";
+        </code></pre>
+      </section>
+
+     <section>
+        <h2>Loop while</h2>
+        <h3>O contador de ovelhas</h3>
+        <pre><code class="hljs cpp">
+int ovelhas = 0;
+bool estaDormindo = false;
+
+while (!estaDormindo) {
+    ovelhas++;
+    cout << "Contando ovelha número " << ovelhas << "...\n";
+    
+    if (ovelhas >= 10) {
+        estaDormindo = true;
+        cout << "Zzzz... Finalmente dormiu!";
+    }
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Loop do-while</h2>
+        <h3>O jogo de adivinhação</h3>
+        <pre><code class="hljs cpp">
+int numeroSecreto = 42;
+int palpite;
+do {
+    cout << "Adivinhe o número (entre 1 e 100): ";
+    cin >> palpite;
+    if (palpite < numeroSecreto) cout << "Muito baixo!\n";
+    if (palpite > numeroSecreto) cout << "Muito alto!\n";
+} while (palpite != numeroSecreto);
+cout << "Parabéns! Você acertou!";
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Instrução break</h2>
+        <h3>Encontrando o bug</h3>
+        <pre><code class="hljs cpp">
+int bugLinha = 42;
+for (int linha = 1; linha <= 100; linha++) {
+    cout << "Verificando linha " << linha << "...\n";
+    if (linha == bugLinha) {
+        cout << "Bug encontrado na linha " << linha << "!\n";
+        break;
+    }
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Instrução continue</h2>
+        <h3>Pulando os números azarados</h3>
+        <pre><code class="hljs cpp">
+cout << "Contando de 1 a 20 (pulando números 'azarados'):\n";
+for (int i = 1; i <= 20; i++) {
+    if (i == 13 || i == 7) {
+        continue;  // Pula os números 13 e 7
+    }
+    cout << i << " ";
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Desafio Final</h2>
+        <h3>O Gerador de Piadas Ruins</h3>
+        <pre><code class="hljs cpp">
+int numPiadas = 3;
+for (int i = 1; i <= numPiadas; i++) {
+    string setup, punchline;
+    if (i == 1) {
+        setup = "Por que o programador ficou pobre?";
+        punchline = "Porque ele usou todo seu cache!";
+    } else if (i == 2) {
+        setup = "Como um programador abre uma porta?";
+        punchline = "Com uma chave de API!";
+    } else {
+        setup = "O que um programador faz quando está com fome?";
+        punchline = "Ele C++!";
+    }
+    
+    cout << setup << "\n";
+    string resposta;
+    cin >> resposta;
+    if (resposta == "Não sei" || resposta == "Desisto") {
+        cout << punchline << "\n\n";
+    } else {
+        cout << "Boa tentativa! A resposta era: " << punchline << endl;
+    }
+}
+        </code></pre>
+      </section>
+
+    </div>
+  </div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+
+</body>
+</html>

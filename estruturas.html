@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C++: Estruturas (struct)</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>C++: Estruturas (struct)</h1>
+                <h3>Conceitos Fundamentais para Engenharia</h3>
+            </section>
+
+            <section>
+                <h2>Tópicos</h2>
+                <ul>
+                    <li>Definição e uso de estruturas</li>
+                    <li>Aninhamento de estruturas</li>
+                    <li>Arrays de estruturas</li>
+                    <li>Passagem de estruturas para funções</li>
+                    <li>Inicialização de estruturas</li>
+                    <li>Boas práticas</li>
+                    <li>Estruturas e Programação Orientada a Objetos</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Definição e Uso de Estruturas</h2>
+                <pre><code class="hljs cpp">
+struct Ponto {
+    int x; // Coordenada x
+    int y; // Coordenada y
+};
+
+int main() {
+    Ponto p1;          // Declaração de uma estrutura Ponto
+    p1.x = 10;        // Atribuição do valor 10 ao membro x
+    p1.y = 20;        // Atribuição do valor 20 ao membro y
+    
+    Ponto p2 = {30, 40}; // Inicialização usando lista de inicialização
+    
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Vantagens das Estruturas</h2>
+                <ul>
+                    <li>Agrupamento de dados relacionados</li>
+                    <li>Melhora a organização do código</li>
+                    <li>Facilita a passagem de dados complexos</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Aninhamento de Estruturas</h2>
+                <pre><code class="hljs cpp">
+struct Endereco {
+    string rua;   // Nome da rua
+    int numero;    // Número do endereço
+};
+
+struct Pessoa {
+    string nome;       // Nome da pessoa
+    int idade;         // Idade da pessoa
+    Endereco endereco; // Endereço aninhado
+};
+
+int main() {
+    Pessoa p;
+    p.nome = "Ana";
+    p.idade = 30;
+    p.endereco.rua = "Rua Principal";
+    p.endereco.numero = 123;
+    
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Benefícios do Aninhamento</h2>
+                <ul>
+                    <li>Hierarquia de dados</li>
+                    <li>Representação de relações complexas</li>
+                    <li>Modularidade e reusabilidade</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Arrays de Estruturas</h2>
+                <pre><code class="hljs cpp">
+struct Aluno {
+    string nome;      // Nome do aluno
+    int matricula;    // Número de matrícula
+    float nota;       // Nota do aluno
+};
+
+int main() {
+    Aluno turma[3] = {
+        {"Carlos", 1001, 8.5},
+        {"Maria", 1002, 9.0},
+        {"João", 1003, 7.5}
+    };
+    
+    for (int i = 0; i < 3; i++) {
+        cout << turma[i].nome << ": " << turma[i].nota << endl;
+    }
+    
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Passagem de Estruturas para Funções</h2>
+                <pre><code class="hljs cpp">
+struct Aluno {
+    string nome;
+    int matricula;
+    float nota;
+};
+
+// Função que imprime um aluno (passagem por valor)
+void imprimirAluno(Aluno a) {
+    cout << a.nome << " - " << a.nota << endl;
+}
+
+// Função que atualiza a nota do aluno (passagem por referência)
+void atualizarNota(Aluno &a, float novaNota) {
+    a.nota = novaNota;
+}
+
+int main() {
+    Aluno aluno = {"Carlos", 1001, 8.5};
+    imprimirAluno(aluno); // Saída: Carlos - 8.5
+    atualizarNota(aluno, 9.0);
+    imprimirAluno(aluno); // Saída: Carlos - 9.0
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Inicialização de Estruturas</h2>
+                <pre><code class="hljs cpp">
+struct Produto {
+    string nome;
+    double preco;
+    int quantidade = 0; // Valor padrão
+};
+
+int main() {
+    // Inicialização direta
+    Produto p1;
+    p1.nome = "Caneta";
+    p1.preco = 1.50;
+    
+    // Inicialização com lista
+    Produto p2 = {"Caderno", 5.00, 10};
+    
+    // Inicialização com lista omitindo o valor padrão
+    Produto p3 = {"Borracha", 0.50};
+    
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Boas Práticas no Uso de Estruturas</h2>
+                <ul>
+                    <li>Mantenha Estruturas Simples: Agrupe apenas dados relacionados sem lógica complexa.</li>
+                    <li>Nomenclatura Clara: Use nomes descritivos para estruturas e seus membros.</li>
+                    <li>Consistência: Mantenha um padrão consistente na definição e uso das estruturas.</li>
+                    <li>Comentários: Documente a finalidade de cada estrutura e seus membros.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Estruturas e Programação Orientada a Objetos</h2>
+                <ul>
+                    <li>Estruturas dão origem à programação orientada a objetos (POO)</li>
+                    <li>Classes em POO são evoluções das estruturas</li>
+                    <li>Conceitos como encapsulamento, herança e polimorfismo derivam dessa evolução</li>
+                    <li>Esses conceitos avançados estão além do escopo desta disciplina</li>
+                    <li>Estruturas fornecem uma base sólida para entender organização de dados</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Conclusão</h2>
+                <ul>
+                    <li>Estruturas são fundamentais em C++</li>
+                    <li>Permitem organização eficiente de dados</li>
+                    <li>Essenciais para problemas de engenharia complexos</li>
+                    <li>Base para conceitos avançados de programação</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1200,
+            height: 720,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
