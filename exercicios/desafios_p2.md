@@ -43,6 +43,104 @@ Matriz após rotação 90 graus no sentido horário:
 - Comece pelos elementos das bordas e vá se movendo para o centro da matriz.
 - Lembre-se de que em C++, as matrizes são armazenadas em ordem de linha (row-major order).
 
+<details>
+<summary>Solução</summary>
+
+```cpp
+#include <iostream>
+
+// Função para alocar dinamicamente uma matriz quadrada de tamanho n x n
+int** alocarMatriz(int n) {
+    int** matriz = new int*[n];
+    for(int i = 0; i < n; ++i) {
+        matriz[i] = new int[n];
+    }
+    return matriz;
+}
+
+// Função para preencher a matriz com valores
+void preencherMatriz(int** matriz, int n) {
+    std::cout << "Digite os elementos da matriz (" << n*n << " elementos):\n";
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j) {
+            std::cin >> matriz[i][j];
+        }
+    }
+}
+
+// Função para imprimir a matriz
+void imprimirMatriz(int** matriz, int n) {
+    std::cout << "Matriz atual:\n";
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j) {
+            std::cout << matriz[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << std::endl;
+}
+
+void rotacionarMatriz(int** matriz, int n) {
+    // 1. Transpor a matriz (trocar elementos [i][j] com [j][i] para i < j)
+    for(int i = 0; i < n; ++i) {
+        for(int j = i + 1; j < n; ++j) {
+            // Troca manualmente 
+            int temp = matriz[i][j];
+            matriz[i][j] = matriz[j][i];
+            matriz[j][i] = temp;
+        }
+    }
+
+    // 2. Reverter cada linha da matriz
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n / 2; ++j) {
+            // Troca manualmente 
+            int temp = matriz[i][j];
+            matriz[i][j] = matriz[i][n - 1 - j];
+            matriz[i][n - 1 - j] = temp;
+        }
+    }
+}
+
+// Função para desalocar a memória da matriz
+void desalocarMatriz(int** matriz, int n) {
+    for(int i = 0; i < n; ++i) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+}
+
+int main() {
+    int n;
+    std::cout << "Digite o tamanho da matriz quadrada (n): ";
+    std::cin >> n;
+    
+    // Aloca a matriz
+    int** matriz = alocarMatriz(n);
+    
+    // Preenche a matriz
+    preencherMatriz(matriz, n);
+    
+    // Imprime a matriz original
+    std::cout << "\nMatriz Original:\n";
+    imprimirMatriz(matriz, n);
+    
+    // Rotaciona a matriz 90 graus no sentido horário
+    rotacionarMatriz(matriz, n);
+    
+    // Imprime a matriz rotacionada
+    std::cout << "Matriz após rotação 90 graus no sentido horário:\n";
+    imprimirMatriz(matriz, n);
+    
+    // Desaloca a matriz
+    desalocarMatriz(matriz, n);
+    
+    return 0;
+}
+```
+
+</details>
+
 ## 2. Espiral de Matriz
 
 ### Objetivo
