@@ -699,8 +699,46 @@ int main() {
 
 </details>
 
+## 5. Jogo da Velha Dinâmico
 
-## 5. Editor de Texto Simples
+### Objetivo
+Implementar o jogo da velha com um tabuleiro de tamanho variável.
+
+### Conceitos Necessários
+- Alocação dinâmica de memória para matriz 2D
+- Manipulação de matrizes usando ponteiros
+- Lógica de verificação de vitória em um jogo da velha
+
+### Explicação Detalhada
+O jogo da velha tradicional é jogado em um tabuleiro 3x3. Nesta versão dinâmica, o tabuleiro pode ter qualquer tamanho n x n, onde n é definido pelo usuário. As regras permanecem as mesmas: os jogadores alternam colocando seus símbolos (geralmente X e O) no tabuleiro, e o primeiro a formar uma linha, coluna ou diagonal completa com seu símbolo vence.
+
+### Exemplo
+Para um tabuleiro 4x4:
+```
+ X | O |   |   
+---+---+---+---
+ O | X |   |   
+---+---+---+---
+   |   | X |   
+---+---+---+---
+   |   | O | X 
+```
+
+### Tarefas
+1. Crie uma função para alocar dinamicamente um tabuleiro n x n.
+2. Implemente uma função para imprimir o estado atual do tabuleiro.
+3. Desenvolva funções para fazer jogadas e verificar se são válidas.
+4. Crie uma função iterativa para verificar se há um vencedor ou empate.
+5. Implemente a lógica principal do jogo, alternando entre os jogadores.
+6. Crie uma função para desalocar a memória do tabuleiro.
+
+### Dicas
+- Use caracteres para representar os espaços vazios, 'X' e 'O'.
+- A verificação de vitória deve ser adaptável ao tamanho do tabuleiro.
+- Considere implementar uma opção para o usuário escolher o tamanho do tabuleiro no início do jogo.
+
+
+## 6. Editor de Texto Simples
 
 ### Objetivo
 Criar um editor de texto simples que use um array dinâmico de arrays de char.
@@ -745,41 +783,268 @@ Encontrado em: linha 1, linha 2
 - Lembre-se de alocar memória suficiente para o caractere nulo '\0' ao final de cada linha.
 - Ao realocar o array de ponteiros, crie um novo array maior e copie os ponteiros existentes.
 
-## 6. Jogo da Velha Dinâmico
+<details>
+<summary>Solução</summary>
 
-### Objetivo
-Implementar o jogo da velha com um tabuleiro de tamanho variável.
+```cpp
+#include <iostream>
 
-### Conceitos Necessários
-- Alocação dinâmica de memória para matriz 2D
-- Manipulação de matrizes usando ponteiros
-- Lógica de verificação de vitória em um jogo da velha
+using namespace std;
 
-### Explicação Detalhada
-O jogo da velha tradicional é jogado em um tabuleiro 3x3. Nesta versão dinâmica, o tabuleiro pode ter qualquer tamanho n x n, onde n é definido pelo usuário. As regras permanecem as mesmas: os jogadores alternam colocando seus símbolos (geralmente X e O) no tabuleiro, e o primeiro a formar uma linha, coluna ou diagonal completa com seu símbolo vence.
+// Variáveis globais para o documento
+char** document = nullptr; // Array dinâmico de ponteiros para char
+int numLines = 0;          // Número atual de linhas no documento
+int capacity = 0;          // Capacidade atual do documento
 
-### Exemplo
-Para um tabuleiro 4x4:
+// Função para calcular o comprimento de uma string em C
+int stringLength(const char* str) {
+    int length = 0;
+    while (str[length] != '\0') {
+        length++;
+    }
+    return length;
+}
+
+// Função para copiar uma string em C de src para dest
+void copyString(char* dest, const char* src) {
+    int i = 0;
+    while (src[i] != '\0') {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0'; // Adiciona o terminador nulo
+}
+
+// Função para comparar duas strings em C
+int compareStrings(const char* str1, const char* str2) {
+    int i = 0;
+    while (str1[i] != '\0' && str2[i] != '\0') {
+        if (str1[i] != str2[i]) {
+            return str1[i] - str2[i]; // Retorna a diferença dos primeiros caracteres não correspondentes
+        }
+        i++;
+    }
+    return str1[i] - str2[i];
+}
+
+// Função para encontrar uma substring dentro de uma string
+int findSubstring(const char* str, const char* substr) {
+    int lenStr = stringLength(str);
+    int lenSubstr = stringLength(substr);
+    if (lenSubstr == 0)
+        return 0; // Substring vazia corresponde na posição 0
+    for (int i = 0; i <= lenStr - lenSubstr; i++) {
+        int j = 0;
+        while (j < lenSubstr && str[i + j] == substr[j]) {
+            j++;
+        }
+        if (j == lenSubstr) {
+            return i; // Substring encontrada na posição i
+        }
+    }
+    return -1; // Substring não encontrada
+}
+
+// Função para ler uma linha de texto do usuário
+char* readLine() {
+    int capacity = 10; // Capacidade inicial para a linha
+    char* buffer = new char[capacity];
+    int length = 0;
+    char ch;
+    while (true) {
+        cin.get(ch); // Lê um caractere
+        if (ch == '\n') {
+            break; // Para de ler ao encontrar uma nova linha
+        }
+        if (length + 1 >= capacity) {
+            // Realoca o buffer com maior capacidade
+            int newCapacity = capacity * 2;
+            char* newBuffer = new char[newCapacity];
+            for (int i = 0; i < length; i++) {
+                newBuffer[i] = buffer[i];
+            }
+            delete[] buffer;
+            buffer = newBuffer;
+            capacity = newCapacity;
+        }
+        buffer[length] = ch;
+        length++;
+    }
+    buffer[length] = '\0'; // Adiciona o terminador nulo
+    return buffer;
+}
+
+// Função para alocar o documento com uma capacidade inicial
+void allocateDocument(int initialCapacity) {
+    document = new char*[initialCapacity];
+    capacity = initialCapacity;
+    numLines = 0;
+}
+
+// Função para desalocar o documento e liberar memória
+void deallocateDocument() {
+    for (int i = 0; i < numLines; i++) {
+        delete[] document[i]; // Deleta cada linha
+    }
+    delete[] document; // Deleta o array de ponteiros
+    document = nullptr;
+    capacity = 0;
+    numLines = 0;
+}
+
+// Função para inserir uma nova linha em uma posição específica
+void insertLine(int position, const char* newLine) {
+    if (position < 0 || position > numLines) {
+        cout << "Posição inválida.\n";
+        return;
+    }
+    if (numLines == capacity) {
+        // Realoca o documento com maior capacidade
+        int newCapacity = capacity * 2;
+        char** newDocument = new char*[newCapacity];
+        for (int i = 0; i < numLines; i++) {
+            newDocument[i] = document[i];
+        }
+        delete[] document;
+        document = newDocument;
+        capacity = newCapacity;
+    }
+    // Desloca as linhas após a posição para baixo
+    for (int i = numLines; i > position; i--) {
+        document[i] = document[i - 1];
+    }
+    // Aloca memória para a nova linha
+    int lineLength = stringLength(newLine);
+    document[position] = new char[lineLength + 1];
+    copyString(document[position], newLine); // Copia a nova linha para o documento
+    numLines++;
+}
+
+// Função para remover uma linha em uma posição específica
+void removeLine(int position) {
+    if (position < 0 || position >= numLines) {
+        cout << "Posição inválida.\n";
+        return;
+    }
+    // Deleta a linha na posição
+    delete[] document[position];
+    // Desloca as linhas após a posição para cima
+    for (int i = position; i < numLines - 1; i++) {
+        document[i] = document[i + 1];
+    }
+    numLines--;
+}
+
+// Função para editar uma linha em uma posição específica
+void editLine(int position, const char* newLine) {
+    if (position < 0 || position >= numLines) {
+        cout << "Posição inválida.\n";
+        return;
+    }
+    // Deleta a linha antiga
+    delete[] document[position];
+    // Aloca memória para a nova linha
+    int lineLength = stringLength(newLine);
+    document[position] = new char[lineLength + 1];
+    copyString(document[position], newLine); // Copia a nova linha para o documento
+}
+
+// Função para buscar uma palavra-chave em todas as linhas
+void searchKeyword(const char* keyword) {
+    bool found = false;
+    for (int i = 0; i < numLines; i++) {
+        if (findSubstring(document[i], keyword) != -1) {
+            cout << "Encontrado na linha " << i + 1 << ": " << document[i] << "\n";
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "Palavra-chave não encontrada.\n";
+    }
+}
+
+// Função para imprimir o documento inteiro
+void printDocument() {
+    for (int i = 0; i < numLines; i++) {
+        cout << i + 1 << ": " << document[i] << "\n";
+    }
+}
+
+int main() {
+    allocateDocument(10); // Inicializa o documento com capacidade 10
+    bool running = true;
+    while (running) {
+        // Exibe o menu
+        cout << "\nEditor de Texto Simples\n";
+        cout << "1. Inserir linha\n";
+        cout << "2. Remover linha\n";
+        cout << "3. Editar linha\n";
+        cout << "4. Buscar palavra-chave\n";
+        cout << "5. Imprimir documento\n";
+        cout << "6. Sair\n";
+        cout << "Escolha uma opção: ";
+        int choice;
+        cin >> choice;
+        cin.ignore(); // Limpa o caractere de nova linha do buffer de entrada
+
+        int pos;         // Posição para operações de linha
+        char* newLine;   // Ponteiro para a nova linha
+        char* keyword;   // Ponteiro para a palavra-chave
+
+        switch (choice) {
+            case 1:
+                // Insere uma nova linha
+                cout << "Posição para inserir (1 a " << numLines + 1 << "): ";
+                cin >> pos;
+                cin.ignore();
+                cout << "Digite o texto da nova linha:\n";
+                newLine = readLine();
+                insertLine(pos - 1, newLine); // Ajusta a posição para índice baseado em 0
+                delete[] newLine; // Libera a memória alocada por readLine
+                break;
+            case 2:
+                // Remove uma linha
+                cout << "Posição da linha para remover (1 a " << numLines << "): ";
+                cin >> pos;
+                cin.ignore();
+                removeLine(pos - 1); // Ajusta a posição para índice baseado em 0
+                break;
+            case 3:
+                // Edita uma linha
+                cout << "Posição da linha para editar (1 a " << numLines << "): ";
+                cin >> pos;
+                cin.ignore();
+                cout << "Digite o novo texto da linha:\n";
+                newLine = readLine();
+                editLine(pos - 1, newLine); // Ajusta a posição para índice baseado em 0
+                delete[] newLine; // Libera a memória alocada por readLine
+                break;
+            case 4:
+                // Busca por uma palavra-chave
+                cout << "Digite a palavra-chave para buscar: ";
+                keyword = readLine();
+                searchKeyword(keyword);
+                delete[] keyword; // Libera a memória alocada por readLine
+                break;
+            case 5:
+                // Imprime o documento
+                printDocument();
+                break;
+            case 6:
+                // Sai do programa
+                running = false;
+                break;
+            default:
+                cout << "Opção inválida.\n";
+                break;
+        }
+    }
+    deallocateDocument(); // Libera toda a memória alocada antes de encerrar
+    return 0;
+}
+
 ```
- X | O |   |   
----+---+---+---
- O | X |   |   
----+---+---+---
-   |   | X |   
----+---+---+---
-   |   | O | X 
-```
+</details>
 
-### Tarefas
-1. Crie uma função para alocar dinamicamente um tabuleiro n x n.
-2. Implemente uma função para imprimir o estado atual do tabuleiro.
-3. Desenvolva funções para fazer jogadas e verificar se são válidas.
-4. Crie uma função iterativa para verificar se há um vencedor ou empate.
-5. Implemente a lógica principal do jogo, alternando entre os jogadores.
-6. Crie uma função para desalocar a memória do tabuleiro.
 
-### Dicas
-- Use caracteres para representar os espaços vazios, 'X' e 'O'.
-- A verificação de vitória deve ser adaptável ao tamanho do tabuleiro.
-- Considere implementar uma opção para o usuário escolher o tamanho do tabuleiro no início do jogo.
 
