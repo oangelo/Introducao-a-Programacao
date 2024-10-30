@@ -736,6 +736,197 @@ Para um tabuleiro 4x4:
 - Use caracteres para representar os espaços vazios, 'X' e 'O'.
 - A verificação de vitória deve ser adaptável ao tamanho do tabuleiro.
 - Considere implementar uma opção para o usuário escolher o tamanho do tabuleiro no início do jogo.
+<details>
+<summary>Solução</summary>
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+// Função para alocar dinamicamente o tabuleiro n x n
+char** alocarTabuleiro(int n) {
+    // Aloca um array de ponteiros para linhas
+    char** tabuleiro = new char*[n];
+    for(int i = 0; i < n; i++) {
+        // Para cada linha, aloca um array de caracteres
+        tabuleiro[i] = new char[n];
+        for(int j = 0; j < n; j++) {
+            tabuleiro[i][j] = ' '; // Inicializa com espaço vazio
+        }
+    }
+    return tabuleiro;
+}
+
+// Função para imprimir o tabuleiro
+void imprimirTabuleiro(char** tabuleiro, int n) {
+    for(int i = 0; i < n; i++) {
+        // Imprime os símbolos das células com separadores
+        for(int j = 0; j < n; j++) {
+            cout << " " << tabuleiro[i][j] << " ";
+            if(j < n - 1)
+                cout << "|";
+        }
+        cout << endl;
+        // Imprime linhas de separação entre as linhas do tabuleiro
+        if(i < n - 1) {
+            for(int k = 0; k < n; k++) {
+                cout << "---";
+                if(k < n - 1)
+                    cout << "+";
+            }
+            cout << endl;
+        }
+    }
+}
+
+// Função para verificar se a jogada é válida
+bool jogadaValida(char** tabuleiro, int n, int linha, int coluna) {
+    // Verifica se as coordenadas estão dentro do tabuleiro
+    if(linha < 0 || linha >= n || coluna < 0 || coluna >= n)
+        return false;
+    // Verifica se a célula está vazia
+    if(tabuleiro[linha][coluna] != ' ')
+        return false;
+    return true;
+}
+
+// Função para realizar uma jogada
+void realizarJogada(char** tabuleiro, int n, int linha, int coluna, char jogador) {
+    tabuleiro[linha][coluna] = jogador;
+}
+
+// Função para verificar se há um vencedor
+bool verificarVencedor(char** tabuleiro, int n, char jogador) {
+    bool venceu;
+
+    // Verificar linhas
+    for(int i = 0; i < n; i++) {
+        venceu = true;
+        for(int j = 0; j < n; j++) {
+            if(tabuleiro[i][j] != jogador) {
+                venceu = false;
+                break;
+            }
+        }
+        if(venceu)
+            return true;
+    }
+
+    // Verificar colunas
+    for(int j = 0; j < n; j++) {
+        venceu = true;
+        for(int i = 0; i < n; i++) {
+            if(tabuleiro[i][j] != jogador) {
+                venceu = false;
+                break;
+            }
+        }
+        if(venceu)
+            return true;
+    }
+
+    // Verificar diagonal principal
+    venceu = true;
+    for(int i = 0; i < n; i++) {
+        if(tabuleiro[i][i] != jogador) {
+            venceu = false;
+            break;
+        }
+    }
+    if(venceu)
+        return true;
+
+    // Verificar diagonal secundária
+    venceu = true;
+    for(int i = 0; i < n; i++) {
+        if(tabuleiro[i][n - 1 - i] != jogador) {
+            venceu = false;
+            break;
+        }
+    }
+    if(venceu)
+        return true;
+
+    // Se nenhuma condição foi satisfeita, retorna falso
+    return false;
+}
+
+// Função para verificar se o tabuleiro está cheio (empate)
+bool verificarEmpate(char** tabuleiro, int n) {
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            if(tabuleiro[i][j] == ' ')
+                return false;
+        }
+    }
+    return true;
+}
+
+// Função para desalocar a memória do tabuleiro
+void desalocarTabuleiro(char** tabuleiro, int n) {
+    for(int i = 0; i < n; i++) {
+        delete[] tabuleiro[i]; // Deleta cada linha
+    }
+    delete[] tabuleiro; // Deleta o array de ponteiros
+}
+
+int main() {
+    int n;
+    cout << "Bem-vindo ao Jogo da Velha Dinâmico!\n";
+    cout << "Digite o tamanho do tabuleiro (n x n): ";
+    cin >> n;
+
+    // Aloca o tabuleiro
+    char** tabuleiro = alocarTabuleiro(n);
+
+    char jogadorAtual = 'X';
+    bool jogoAtivo = true;
+
+    while(jogoAtivo) {
+        imprimirTabuleiro(tabuleiro, n);
+        int linha, coluna;
+        cout << "Jogador " << jogadorAtual << ", insira a linha e a coluna (0 a " << n-1 << "): ";
+        cin >> linha >> coluna;
+
+        // Verifica se a jogada é válida
+        if(jogadaValida(tabuleiro, n, linha, coluna)) {
+            realizarJogada(tabuleiro, n, linha, coluna, jogadorAtual);
+
+            // Verifica se o jogador atual venceu
+            if(verificarVencedor(tabuleiro, n, jogadorAtual)) {
+                imprimirTabuleiro(tabuleiro, n);
+                cout << "Parabéns! Jogador " << jogadorAtual << " venceu!\n";
+                jogoAtivo = false;
+            }
+            // Verifica se houve empate
+            else if(verificarEmpate(tabuleiro, n)) {
+                imprimirTabuleiro(tabuleiro, n);
+                cout << "Empate! Nenhum jogador venceu.\n";
+                jogoAtivo = false;
+            }
+            else {
+                // Alterna o jogador
+                if(jogadorAtual == 'X')
+                    jogadorAtual = 'O';
+                else
+                    jogadorAtual = 'X';
+            }
+        }
+        else {
+            cout << "Jogada inválida. Tente novamente.\n";
+        }
+    }
+
+    // Desaloca a memória antes de encerrar
+    desalocarTabuleiro(tabuleiro, n);
+
+    return 0;
+}
+
+```
+
+</details>
 
 
 ## 6. Editor de Texto Simples
