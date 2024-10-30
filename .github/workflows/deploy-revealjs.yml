@@ -1,38 +1,35 @@
-name: Deploy Reveal.js Presentation
+name: Deploy Static Site
 
 on:
   push:
     branches:
-      - main  # or master, depending on your main branch
+      - main
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      # Add this step to disable Jekyll processing
-      - name: Disable Jekyll
+      - name: Create Build Directory
         run: |
-          touch .nojekyll
+          mkdir -p dist
+          cp -r * dist/ || true
+          cp -r .* dist/ || true
+          touch dist/.nojekyll
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # Optional: If you need to process or modify files to escape Jekyll syntax
+      - name: Fix Liquid Syntax in Files
+        run: |
+          find dist -type f -name "*.md" -exec sed -i 's/{{/{ {/g' {} +
+          find dist -type f -name "*.md" -exec sed -i 's/}}/} }/g' {} +
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          force_orphan: true
-          # Ensure .nojekyll file is copied to the gh-pages branch
-          enable_jekyll: false
+          branch: gh-pages
+          folder: dist
+          clean: true
+          single-commit: true
