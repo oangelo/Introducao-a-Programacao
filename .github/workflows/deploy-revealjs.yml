@@ -1,4 +1,4 @@
-name: Deploy Static Site
+name: Deploy Reveal.js Presentation to GitHub Pages
 
 on:
   push:
@@ -7,24 +7,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v3
-
-      - name: Create Build Directory
-        run: |
-          mkdir -p dist
-          cp -r * dist/ || true
-          cp -r .* dist/ || true
-          touch dist/.nojekyll  # Adiciona o arquivo .nojekyll para desabilitar o Jekyll
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: dist
-          clean: true
-          single-commit: true
+          submodules: true  # Se você estiver usando submódulos
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Ajuste se sua apresentação estiver em um subdiretório
+          publish_branch: gh-pages
+          force_orphan: true  # Cria um branch gh-pages órfão
 
