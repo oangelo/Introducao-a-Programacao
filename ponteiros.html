@@ -432,6 +432,92 @@ cout &lt;&lt; "Valor de num através de ptr_to_ptr: " &lt;&lt; **ptr_to_ptr &lt;
                 <p>ptr_to_ptr (0x1008) → ptr (0x1004) → num (0x1000) = 42</p>
             </section>
 
+	    <section>
+		    <h2>Arrays 2D vs int** em C++</h2>
+		    <ul>
+			    <li>Erro comum: tentar usar <code>int**</code> para apontar para <code>int matriz[3][3]</code></li>
+			    <li>São tipos fundamentalmente diferentes</li>
+			    <li>Possuem layouts de memória distintos</li>
+			    <li>Não podem ser usados de forma intercambiável com segurança</li>
+		    </ul>
+	    </section>
+
+	    <section>
+		    <h2>Layout de Memória: Array 2D</h2>
+		    <pre><code class="cpp">
+int matriz[3][3];  // Bloco contíguo de memória
+		    </code></pre>
+		    <ul>
+			    <li>Armazenado como um bloco contínuo</li>
+			    <li>Tamanho conhecido em tempo de compilação</li>
+			    <li>Dimensões fixas</li>
+		    </ul>
+	    </section>
+
+	    <section>
+		    <h2>Layout de Memória: int**</h2>
+		    <pre><code class="cpp">
+int** ptr;  // Ponteiro para ponteiro
+		    </code></pre>
+		    <ul>
+			    <li>Memória não contígua</li>
+			    <li>Requer alocação dinâmica</li>
+			    <li>Dimensões flexíveis</li>
+		    </ul>
+	    </section>
+
+	    <section>
+		    <h2>Decaimento de Tipo em Arrays</h2>
+		    <pre><code class="cpp">
+int matriz[3][3];
+		    </code></pre>
+		    <p>Decai para:</p>
+		    <pre><code class="cpp">
+int (*)[3]  // Ponteiro para array de 3 inteiros
+		    </code></pre>
+		    <p>E não para:</p>
+		    <pre><code class="cpp">
+int**       // Isso está incorreto!
+		    </code></pre>
+	    </section>
+
+	    <section>
+		    <h2>Erros Comuns a Evitar</h2>
+		    <pre><code class="cpp">
+int matriz[3][3];
+int** p = (int**)matriz;  // ERRADO!
+		    </code></pre>
+		    <p>Problemas:</p>
+		    <ul>
+			    <li>Comportamento indefinido</li>
+			    <li>Possíveis crashes</li>
+			    <li>Corrupção de memória</li>
+			    <li>Código não portável</li>
+		    </ul>
+	    </section>
+
+	    <section>
+		    <h2>Quando Usar Cada Tipo</h2>
+		    <div style="display: flex; justify-content: space-between;">
+			    <div style="flex: 1;">
+				    <h3>Array 2D (<code>int matriz[3][3]</code>)</h3>
+				    <ul>
+					    <li>Tamanho fixo conhecido em tempo de compilação</li>
+					    <li>Necessidade de memória contígua</li>
+					    <li>Código com foco em performance</li>
+				    </ul>
+			    </div>
+			    <div style="flex: 1;">
+				    <h3><code>int**</code></h3>
+				    <ul>
+					    <li>Necessidade de dimensionamento dinâmico</li>
+					    <li>Arrays irregulares (linhas de tamanhos diferentes)</li>
+					    <li>Alocação de memória em tempo de execução</li>
+				    </ul>
+			    </div>
+		    </div>
+	    </section>
+
             <section>
                 <h2>Considerações Finais</h2>
                 <ul>
