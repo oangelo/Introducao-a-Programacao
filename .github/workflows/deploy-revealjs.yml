@@ -18,13 +18,7 @@ jobs:
           mkdir -p dist
           cp -r * dist/ || true
           cp -r .* dist/ || true
-          touch dist/.nojekyll
-
-      # Optional: If you need to process or modify files to escape Jekyll syntax
-      - name: Fix Liquid Syntax in Files
-        run: |
-          find dist -type f -name "*.md" -exec sed -i 's/{{/{ {/g' {} +
-          find dist -type f -name "*.md" -exec sed -i 's/}}/} }/g' {} +
+          touch dist/.nojekyll  # Adiciona o arquivo .nojekyll para desabilitar o Jekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
@@ -33,3 +27,4 @@ jobs:
           folder: dist
           clean: true
           single-commit: true
+
