@@ -1,9 +1,9 @@
-name: Deploy Reveal.js Presentation to GitHub Pages
+name: Deploy Reveal.js Presentation
 
 on:
   push:
     branches:
-      - main  # ou master, dependendo da sua branch principal
+      - main  # or master, depending on your main branch
   workflow_dispatch:
 
 jobs:
@@ -13,17 +13,26 @@ jobs:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+    
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: .
-        force_orphan: true
+      # Add this step to disable Jekyll processing
+      - name: Disable Jekyll
+        run: |
+          touch .nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          force_orphan: true
+          # Ensure .nojekyll file is copied to the gh-pages branch
+          enable_jekyll: false
