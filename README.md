@@ -113,7 +113,15 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Arrays de estruturas
     - [Exercícios](exercicios/estruturas.md)
 
-12. **[Manipulação de Arquivos](https://oangelo.github.io/Introducao-a-Programacao/arquivos.html)**:
+12. **[Ponteiros para Funções](https://oangelo.github.io/Introducao-a-Programacao/ponteiros_funcoes.html)**:
+    - O que são ponteiros para funções
+    - Sintaxe e declaração
+    - Callbacks
+    - Padrões de design básicos
+    - Exemplos práticos
+    - Casos de uso comuns
+
+13. **[Manipulação de Arquivos](https://oangelo.github.io/Introducao-a-Programacao/arquivos.html)**:
     - Abertura e fechamento de arquivos
     - Leitura e escrita em arquivos de texto
     - Manipulação de arquivos binários
