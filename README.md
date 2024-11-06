@@ -102,7 +102,6 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Desafios e boas práticas na alocação dinâmica
     - [Exercícios](exercicios/memoria.md)
 
-### Prova na sala 216, segunda agora, 04/11/2024!!!
 ### Exercícios de preparação para o segundo chefe de fase ![Ryu](img/ken.gif) 
    - [Exercícios 1](exercicios/exercicios_prep_mat_pont_mem.md)
    - [Desafios](exercicios/desafios_p2.md)
