@@ -128,6 +128,8 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - [Exercícios](exercicios/arquivos.md)
 
 ### Exercícios de preparação para o Gran Finale![Chunli](img/chunli.gif) 
+    - [Exercícios](exercicios/gran_finale_1.md)
+    - [Exercícios](exercicios/gran_finale_2.md)
 
 Ao final deste curso, você terá uma sólida compreensão dos conceitos fundamentais da linguagem C++ e estará pronto para começar a desenvolver seus próprios programas.
 
