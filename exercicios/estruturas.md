@@ -391,20 +391,22 @@ Média ponderada: 8.45
 ```cpp
 #include <iostream>
 #include <string>
-#include <vector>
 #include <iomanip>
+
+const int MAX_NOTAS = 10; // Define um tamanho máximo para o array de notas
 
 struct Aluno {
     std::string nome;
-    std::vector<double> notas;
-    std::vector<int> pesos;
+    double notas[MAX_NOTAS];
+    int pesos[MAX_NOTAS];
+    int numNotas; // Precisamos guardar o número real de notas usadas
 };
 
 double calcularMediaPonderada(const Aluno& aluno) {
     double somaNotas = 0;
     int somaPesos = 0;
     
-    for(size_t i = 0; i < aluno.notas.size(); i++) {
+    for(int i = 0; i < aluno.numNotas; i++) {
         somaNotas += aluno.notas[i] * aluno.pesos[i];
         somaPesos += aluno.pesos[i];
     }
@@ -416,21 +418,33 @@ int main() {
     Aluno aluno;
     aluno.nome = "João";
     
-    int numNotas;
-    std::cout << "Digite o número de notas: ";
-    std::cin >> numNotas;
+    std::cout << "Digite o número de notas (máximo " << MAX_NOTAS << "): ";
+    std::cin >> aluno.numNotas;
     
-    for(int i = 0; i < numNotas; i++) {
-        double nota;
-        int peso;
+    if (aluno.numNotas > MAX_NOTAS) {
+        std::cout << "Número de notas excede o máximo permitido." << std::endl;
+        return 1;
+    }
+    
+    for(int i = 0; i < aluno.numNotas; i++) {
         std::cout << "Digite a nota " << i+1 << ": ";
-        std::cin >> nota;
+        std::cin >> aluno.notas[i];
         std::cout << "Digite o peso da nota " << i+1 << ": ";
-        std::cin >> peso;
-        
-        aluno.notas.push_back(nota);
-        aluno.pesos.push_back(peso);
+        std::cin >> aluno.pesos[i];
     }
     
     std::cout << "\nNotas do aluno " << aluno.nome << ":" << std::endl;
-    for(size_t
+    for(int i = 0; i < aluno.numNotas; i++) {
+        std::cout << "Prova " << i+1 << ": " 
+                 << std::fixed << std::setprecision(1) << aluno.notas[i] 
+                 << " (peso " << aluno.pesos[i] << ")" << std::endl;
+    }
+    
+    double media = calcularMediaPonderada(aluno);
+    std::cout << "Média ponderada: " 
+              << std::fixed << std::setprecision(2) << media << std::endl;
+    
+    return 0;
+}
+```
+</details>
