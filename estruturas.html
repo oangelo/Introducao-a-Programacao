@@ -61,6 +61,23 @@ int main() {
                 </code></pre>
             </section>
 
+
+            <section>
+              <h2>Membros da Estrutura</h2>
+              <ul>
+                <li>Os elementos dentro de uma estrutura são chamados de <strong>membros</strong></li>
+                <li>Cada membro pode ter um tipo de dado diferente</li>
+                <li>Os membros são acessados usando o operador ponto (.)</li>
+                <li>Os membros definem as características da estrutura</li>
+              </ul>
+              <pre><code class="hljs cpp">struct Carro {
+  string marca;    // membro marca
+  string modelo;   // membro modelo
+  int ano;         // membro ano
+  float preco;     // membro preco
+};</code></pre>
+            </section>
+
             <section>
                 <h2>Vantagens das Estruturas</h2>
                 <ul>
@@ -186,6 +203,32 @@ int main() {
             </section>
 
             <section>
+              <h2>Ponteiros para Estruturas</h2>
+              <pre><code class="hljs cpp">struct Pessoa {
+    string nome;
+    int idade;
+};
+
+int main() {
+    Pessoa* ptr = new Pessoa;    // Criação de ponteiro para estrutura
+
+    // Acesso aos membros usando operador seta (->)
+    ptr->nome = "Maria";         // Equivalente a (*ptr).nome
+    ptr->idade = 25;            // Equivalente a (*ptr).idade
+
+    cout << ptr->nome << ": " << ptr->idade << " anos" << endl;
+
+                         delete ptr;    // Liberação da memória
+                         return 0;
+                         }</code></pre>
+              <ul>
+                <li>O operador seta (->) é usado para acessar membros através de ponteiros</li>
+                <li><code>ptr->membro</code> é equivalente a <code>(*ptr).membro</code></li>
+                <li>Simplifica a sintaxe e torna o código mais legível</li>
+              </ul>
+            </section>
+
+            <section>
                 <h2>Boas Práticas no Uso de Estruturas</h2>
                 <ul>
                     <li>Mantenha Estruturas Simples: Agrupe apenas dados relacionados sem lógica complexa.</li>
@@ -194,6 +237,8 @@ int main() {
                     <li>Comentários: Documente a finalidade de cada estrutura e seus membros.</li>
                 </ul>
             </section>
+
+
 
             <section>
                 <h2>Estruturas e Programação Orientada a Objetos</h2>
