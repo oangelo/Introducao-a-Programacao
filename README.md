@@ -126,6 +126,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Abertura e fechamento de arquivos
     - Leitura e escrita em arquivos de texto
     - Manipulação de arquivos binários
+    - [Exercícios](exercicios/arquivos.md)
 
 Ao final deste curso, você terá uma sólida compreensão dos conceitos fundamentais da linguagem C++ e estará pronto para começar a desenvolver seus próprios programas.
 
