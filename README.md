@@ -111,7 +111,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Definição e uso de estruturas
     - Aninhamento de estruturas
     - Arrays de estruturas
-   - [Exercícios](exercicios/estruturas.md)
+    - [Exercícios](exercicios/estruturas.md)
 
 12. **[Manipulação de Arquivos](https://oangelo.github.io/Introducao-a-Programacao/arquivos.html)**:
     - Abertura e fechamento de arquivos
