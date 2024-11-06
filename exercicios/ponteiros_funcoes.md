@@ -154,22 +154,25 @@ typedef int (*Filtro)(int);
 struct CadeiaFiltros {
     Filtro filtros[10];  // Array fixo de 10 filtros
     int quantidade;
-    
-    CadeiaFiltros() : quantidade(0) {}
-    
-    void adicionarFiltro(Filtro f) {
-        if(quantidade < 10) {
-            filtros[quantidade++] = f;
-        }
-    }
-    
-    int processar(int valor) {
-        for(int i = 0; i < quantidade; i++) {
-            valor = filtros[i](valor);
-        }
-        return valor;
-    }
 };
+
+void inicializarCadeia(CadeiaFiltros* cadeia) {
+    cadeia->quantidade = 0;
+}
+
+void adicionarFiltro(CadeiaFiltros* cadeia, Filtro f) {
+    if(cadeia->quantidade < 10) {
+        cadeia->filtros[cadeia->quantidade] = f;
+        cadeia->quantidade++;
+    }
+}
+
+int processar(CadeiaFiltros* cadeia, int valor) {
+    for(int i = 0; i < cadeia->quantidade; i++) {
+        valor = cadeia->filtros[i](valor);
+    }
+    return valor;
+}
 
 int filtroMaximo(int x) { return x > 100 ? 100 : x; }
 int filtroMinimo(int x) { return x < 0 ? 0 : x; }
@@ -177,13 +180,15 @@ int filtroParidade(int x) { return x - (x % 2); }
 
 int main() {
     CadeiaFiltros cadeia;
-    cadeia.adicionarFiltro(filtroMaximo);
-    cadeia.adicionarFiltro(filtroMinimo);
-    cadeia.adicionarFiltro(filtroParidade);
+    inicializarCadeia(&cadeia);
+    
+    adicionarFiltro(&cadeia, filtroMaximo);
+    adicionarFiltro(&cadeia, filtroMinimo);
+    adicionarFiltro(&cadeia, filtroParidade);
     
     int valor = 150;
     std::cout << "Valor original: " << valor << std::endl;
-    valor = cadeia.processar(valor);
+    valor = processar(&cadeia, valor);
     std::cout << "Valor após todos os filtros: " << valor << std::endl;
     
     return 0;
@@ -331,6 +336,28 @@ Após transformações: HELLO_WORLD!
 
 typedef char* (*Transformacao)(char*);
 
+struct ProcessadorTexto {
+    Transformacao transformacoes[10];  // Array fixo de 10 transformações
+    int quantidade;
+};
+
+void inicializarProcessador(ProcessadorTexto* proc) {
+    proc->quantidade = 0;
+}
+
+void adicionarTransformacao(ProcessadorTexto* proc, Transformacao t) {
+    if(proc->quantidade < 10) {
+        proc->transformacoes[proc->quantidade] = t;
+        proc->quantidade++;
+    }
+}
+
+void processarTexto(ProcessadorTexto* proc, char* texto) {
+    for(int i = 0; i < proc->quantidade; i++) {
+        proc->transformacoes[i](texto);
+    }
+}
+
 char* paraMaiusculo(char* str) {
     for(int i = 0; str[i]; i++) {
         str[i] = toupper(str[i]);
@@ -354,35 +381,18 @@ char* adicionarExclamacao(char* str) {
     return str;
 }
 
-struct ProcessadorTexto {
-    Transformacao transformacoes[10];  // Array fixo de 10 transformações
-    int quantidade;
-    
-    ProcessadorTexto() : quantidade(0) {}
-    
-    void adicionarTransformacao(Transformacao t) {
-        if(quantidade < 10) {
-            transformacoes[quantidade++] = t;
-        }
-    }
-    
-    void processar(char* texto) {
-        for(int i = 0; i < quantidade; i++) {
-            transformacoes[i](texto);
-        }
-    }
-};
-
 int main() {
     char texto[100] = "Hello World";  // Buffer com tamanho fixo
     
     ProcessadorTexto processador;
-    processador.adicionarTransformacao(paraMaiusculo);
-    processador.adicionarTransformacao(substituirEspacos);
-    processador.adicionarTransformacao(adicionarExclamacao);
+    inicializarProcessador(&processador);
+    
+    adicionarTransformacao(&processador, paraMaiusculo);
+    adicionarTransformacao(&processador, substituirEspacos);
+    adicionarTransformacao(&processador, adicionarExclamacao);
     
     std::cout << "Original: " << texto << std::endl;
-    processador.processar(texto);
+    processarTexto(&processador, texto);
     std::cout << "Após transformações: " << texto << std::endl;
     
     return 0;
