@@ -120,6 +120,7 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
     - Padrões de design básicos
     - Exemplos práticos
     - Casos de uso comuns
+    - [Exercícios](exercicios/ponteiros_funções.md)
 
 13. **[Manipulação de Arquivos](https://oangelo.github.io/Introducao-a-Programacao/arquivos.html)**:
     - Abertura e fechamento de arquivos
