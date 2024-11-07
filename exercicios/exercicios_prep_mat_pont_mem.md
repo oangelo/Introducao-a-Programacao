@@ -8,9 +8,9 @@
 2. Preencha a matriz com valores fornecidos pelo usuário.
 3. Calcule e imprima a soma de todos os elementos.
 
-**Exemplo:**
-`int matriz[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-// Resultado: 45 `
+```cpp
+int matriz[3][3] = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+```
 
 <details>
 <summary>Solução</summary>
