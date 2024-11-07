@@ -3,24 +3,27 @@ name: Deploy Reveal.js Presentation to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # ou master, dependendo da sua branch principal
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          submodules: true  # Se você estiver usando submódulos
+    - uses: actions/checkout@v3
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Ajuste se sua apresentação estiver em um subdiretório
-          publish_branch: gh-pages
-          force_orphan: true  # Cria um branch gh-pages órfão
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
 
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
+        force_orphan: true
