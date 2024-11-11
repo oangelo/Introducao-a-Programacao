@@ -80,6 +80,8 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
    - [Exercícios 2](exercicios/condicionais_loops_fucoes_arrays2.md)
    - [P1 - 2024](https://oangelo.github.io/Introducao-a-Programacao/provas/2024/P1.html)
 
+***
+
 8. **[Arrays Multidimensionais e Matrizes](https://oangelo.github.io/Introducao-a-Programacao/matriz.html)**:
    - Declaração e inicialização de arrays 2D e 3D
    - Acesso e manipulação de elementos em arrays multidimensionais
@@ -105,6 +107,9 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
 ### Exercícios de preparação para o segundo chefe de fase ![Ryu](img/ken.gif) 
    - [Exercícios 1](exercicios/exercicios_prep_mat_pont_mem.md)
    - [Desafios](exercicios/desafios_p2.md)
+   - [P2 - 2024.2](provas/2024/p2.md)
+
+***
 
 11. **[Estruturas (struct)](https://oangelo.github.io/Introducao-a-Programacao/estruturas.html)**:
     - Definição e uso de estruturas
@@ -131,12 +136,13 @@ Bem-vindo ao curso introdutório de programação em C++! Neste curso, você apr
   - [Exercícios 1](exercicios/gran_finale_1.md)
   - [Exercícios 2](exercicios/gran_finale_2.md)
 
+***
+
 Ao final deste curso, você terá uma sólida compreensão dos conceitos fundamentais da linguagem C++ e estará pronto para começar a desenvolver seus próprios programas.
 
 <details>
   <summary>Calendário de Provas</summary>
   <ul>
-    <li>P2: 04/11/09</li>
     <li>P3: 02/12/24</li>
     <li>PS: 09/12/24 (Prova para quem faltou alguma prova ou gostaria de substituir alguma nota por esta)</li>
     <li>PF: 16/12/24</li>
