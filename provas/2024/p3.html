@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UERJ - Prova de C++</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 0;
+            line-height: 1.3;
+            font-size: 11pt;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 14pt;
+            margin: 0 0 10px 0;
+        }
+        
+        .header p {
+            margin: 5px 0;
+        }
+        
+        .student-info {
+            margin-bottom: 15px;
+        }
+        
+        .instructions {
+            font-size: 10pt;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin: 5px 0 5px 20px;
+            padding: 0;
+        }
+        
+        .columns {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .question {
+            margin-bottom: 15px;
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .question-header h2 {
+            margin: 0;
+            font-size: 11pt;
+        }
+        
+        .note-box {
+            border: 1px solid #000;
+            width: 40px;
+            height: 20px;
+        }
+        
+        .example {
+            background-color: #f8f9fa;
+            padding: 5px;
+            margin: 5px 0;
+            font-size: 10pt;
+        }
+        
+        pre {
+            margin: 5px 0;
+            white-space: pre-wrap;
+        }
+        
+        .implementation-tips {
+            font-size: 10pt;
+            margin-top: 5px;
+        }
+        
+        .implementation-tips ol {
+            margin: 0 0 0 20px;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Universidade do Estado do Rio de Janeiro (UERJ)</h1>
+        <p><strong>Disciplina:</strong> Programação em C++ | 
+        <strong>Professor:</strong> Angelo Mondaini Calvão<br>
+        <strong>Data:</strong> ___ / ___ / 2024 | 
+        <strong>Primeira Prova - 2º Semestre de 2024</strong></p>
+    </div>
+
+    <div class="student-info">
+        <p><strong>Nome do Aluno:</strong> _________________________________ 
+        <strong>Matrícula:</strong> ____________</p>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="instructions">
+                <strong>Instruções Gerais:</strong>
+                <ol>
+                    <li>Não é permitido o uso de celulares ou outros dispositivos eletrônicos.</li>
+                    <li>Todas as respostas devem ser justificadas.</li>
+                    <li>Escreva de forma legível e organize bem suas respostas.</li>
+                    <li>Recomenda-se começar pela questão que você considera mais fácil.</li>
+                    <li>Implemente a função e forneça um exemplo de uso no main().</li>
+                </ol>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <h2>Questão 1</h2>
+                    <div class="note-box"></div>
+                </div>
+                <p>Implemente um programa em C++ que trabalhe com manipulação de arquivos. A função principal deve:</p>
+                <ol>
+                    <li>Ler dados de alunos (nome e nota) do arquivo "alunos.txt"</li>
+                    <li>Calcular a média das notas</li>
+                    <li>Criar um novo arquivo "aprovados.txt" com os alunos acima da média</li>
+                </ol>
+                <div class="example">
+                    <strong>Exemplo:</strong> Entrada: "João 8.5, Maria 7.0, Pedro 9.0"<br>
+                    Saída: "João 8.5, Pedro 9.0" (aprovados.txt)
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <h2>Questão 2</h2>
+                    <div class="note-box"></div>
+                </div>
+                <p>Implemente uma estrutura <code>Data</code> e uma função <code>compararDatas</code> que compare duas datas. Retorne: 1 (primeira mais recente), -1 (segunda mais recente), 0 (iguais). Inclua validação.</p>
+                <div class="example">
+                    <strong>Exemplo:</strong> Data1(15,3,2024), Data2(20,2,2024) → Saída: 1
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <h2>Questão 3</h2>
+                    <div class="note-box"></div>
+                </div>
+                <p>Desenvolva uma calculadora com ponteiros para funções (soma, subtração, multiplicação, divisão). Valide entradas e formate saídas.</p>
+                <div class="example">
+                    <strong>Exemplo:</strong> "5.2 + 3.8 = 9.0"
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="question">
+                <div class="question-header">
+                    <h2>Questão 4</h2>
+                    <div class="note-box"></div>
+                </div>
+                <p>Implemente filtros encadeados usando array de ponteiros para funções:</p>
+                <ol>
+                    <li>Limitar valores (0-100)</li>
+                    <li>Ajustar para número par</li>
+                    <li>Exibir valor após cada filtro</li>
+                </ol>
+                <div class="example">
+                    <strong>Exemplo:</strong> 123 → 100 → 100 (após filtros)
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-header">
+                    <h2>Questão 5</h2>
+                    <div class="note-box"></div>
+                </div>
+                <p>Desenvolva uma agenda de contatos usando um array de estruturas com as seguintes funcionalidades:</p>
+                <ol>
+                    <li>Criar uma estrutura Contato com nome e telefone</li>
+                    <li>Implementar função para adicionar contato</li>
+                    <li>Implementar função para listar todos os contatos</li>
+                    <li>Implementar função para buscar contato por nome</li>
+                </ol>
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    Adicionar("João", "21999887766");<br>
+                    Buscar("João"); // Exibe: Nome: João, Tel: 21999887766
+                </div>
+                <div class="implementation-tips">
+                    <strong>Dicas:</strong>
+                    <ol>
+                        <li>Defina um tamanho máximo para o array (ex: 100)</li>
+                        <li>Use uma variável para controlar quantos contatos já foram adicionados</li>
+                        <li>Verifique se há espaço antes de adicionar</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 15px;"><strong>Boa Prova!</strong></p>
+</body>
+</html>
