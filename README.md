@@ -2,6 +2,8 @@
 
 Bem-vindo ao curso introdutório de programação em C++! Neste curso, você aprenderá os conceitos fundamentais da linguagem C++ e estará pronto para desenvolver seus próprios programas.
 
+[Notas 2024](provas/2024/notas.md)
+
 <details>
   <summary>Como não passar nesta matéria</summary>
 
