@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+		<meta charset="utf-8">
+
+		<title>Arrays em C++: Uma Jornada Emocionante</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+
+
+    </style>
+        <style>
+        .array-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .array-cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 2px;
+            transition: background-color 0.5s;
+        }
+        .code {
+            font-size: 24px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .highlight {
+            background-color: rgba(255, 255, 0, 0.3);
+            transition: background-color 0.5s;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            margin: 0 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+                      <section>
+                <h1>Arrays Multidimensionais e Matrizes em C++</h1>
+                <h3>Curso de C++ para Engenharia</h3>
+            </section>
+
+            <section>
+                <h2>Tópicos</h2>
+                <ul>
+                    <li>Declaração e inicialização de arrays 2D e 3D</li>
+                    <li>Passando arrays 2D e 3D como argumentos para funções</li>
+                    <li>Acesso e manipulação de elementos</li>
+                    <li>Aplicações práticas de matrizes</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Declaração e Inicialização</h2>
+                <h3>Arrays 2D</h3>
+                <pre><code class="cpp">
+int matriz[3][4] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+};
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Declaração e Inicialização</h2>
+                <h3>Arrays 3D</h3>
+                <pre><code class="cpp">
+int cubo[2][3][4] = {
+    {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}},
+    {{13, 14, 15, 16}, {17, 18, 19, 20}, {21, 22, 23, 24}}
+};
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Passando Arrays como Argumentos</h2>
+                <h3>Array 2D</h3>
+                <pre><code class="cpp">
+void funcao(int matriz[][4], int linhas, int colunas) {
+    // Código aqui
+}
+
+int main() {
+    int m[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+    funcao(m, 3, 4);
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Passando Arrays como Argumentos</h2>
+                <h3>Array 3D</h3>
+                <pre><code class="cpp">
+void funcao(int cubo[][3][4], int profundidade, int linhas, int colunas) {
+    // Código aqui
+}
+
+int main() {
+    int c[2][3][4] = {
+        {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}},
+        {{13,14,15,16}, {17,18,19,20}, {21,22,23,24}}
+    };
+    funcao(c, 2, 3, 4);
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Acesso e Manipulação</h2>
+                <pre><code class="cpp">
+int matriz[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};
+
+// Acessar elemento
+int elemento = matriz[1][2]; // elemento = 7
+
+// Modificar elemento
+matriz[0][3] = 100;
+
+// Iteração
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+        cout << matriz[i][j] << " ";
+    }
+    cout << endl;
+}
+                </code></pre>
+            </section>
+
+<section>
+    <h2>Travessia de Matriz em C++</h2>
+    <div id="matrix-animation" style="font-family: Arial, sans-serif; color: white; display: flex; flex-direction: column; align-items: center;">
+        <div id="matrix-container" style="display: grid; grid-template-columns: repeat(4, 50px); gap: 5px; margin-bottom: 20px;"></div>
+        <pre id="code-display" style="background-color: #2b2b2b; color: #ffffff; padding: 10px; border-radius: 5px; margin-bottom: 20px; white-space: pre; line-height: 1.5; font-size: 14px; text-align: left; width: 100%; max-width: 500px;"></pre>
+        <div>
+            <button id="start-btn" style="font-size: 16px; padding: 5px 10px; margin-right: 10px; background-color: #4a4a4a; color: white; border: none; cursor: pointer;">Iniciar</button>
+            <button id="reset-btn" style="font-size: 16px; padding: 5px 10px; margin-right: 10px; background-color: #4a4a4a; color: white; border: none; cursor: pointer;">Reiniciar</button>
+        </div>
+        <div id="info-display" style="margin-top: 10px;"></div>
+    </div>
+
+    <script>
+    (function() {
+        const matrix = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12]
+        ];
+        let currentI = 0;
+        let currentJ = 0;
+        let intervalId;
+
+        function createMatrix() {
+            const container = document.getElementById('matrix-container');
+            container.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 4; j++) {
+                    const cell = document.createElement('div');
+                    cell.style.width = '50px';
+                    cell.style.height = '50px';
+                    cell.style.border = '1px solid #666';
+                    cell.style.display = 'flex';
+                    cell.style.alignItems = 'center';
+                    cell.style.justifyContent = 'center';
+                    cell.style.fontSize = '18px';
+                    cell.textContent = matrix[i][j];
+                    cell.id = `cell-${i}-${j}`;
+                    container.appendChild(cell);
+                }
+            }
+        }
+
+        function updateDisplay(i, j) {
+            document.getElementById('code-display').innerHTML = `int matrix[3][4] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+};
+
+for (int <span style="background-color: #8e0000;">i = ${i}</span>; i < 3; i++) {
+    for (int <span style="background-color: #005500;">j = ${j}</span>; j < 4; j++) {
+        // Acessando matrix[<span style="background-color: #8e0000;">${i}</span>][<span style="background-color: #005500;">${j}</span>]
+    }
+}`;
+            document.getElementById('info-display').innerHTML = `Acessando elemento: matrix[<span style="background-color: #8e0000;">${i}</span>][<span style="background-color: #005500;">${j}</span>] = ${matrix[i][j]}`;
+        }
+
+        function highlightCell(i, j) {
+            const cell = document.getElementById(`cell-${i}-${j}`);
+            if (cell) {
+                cell.style.backgroundColor = '#6a6a00';
+            }
+        }
+
+        function resetMatrix() {
+            currentI = 0;
+            currentJ = 0;
+            clearInterval(intervalId);
+            createMatrix();
+            updateDisplay(0, 0);
+            highlightCell(0, 0);
+            document.getElementById('start-btn').disabled = false;
+        }
+
+        function startTraversal() {
+            document.getElementById('start-btn').disabled = true;
+            
+            function traverse() {
+                const prevCell = document.getElementById(`cell-${currentI}-${currentJ}`);
+                if (prevCell) {
+                    prevCell.style.backgroundColor = '';
+                }
+
+                currentJ++;
+                if (currentJ === 4) {
+                    currentJ = 0;
+                    currentI++;
+                    if (currentI === 3) {
+                        clearInterval(intervalId);
+                        document.getElementById('start-btn').disabled = false;
+                        return;
+                    }
+                }
+
+                highlightCell(currentI, currentJ);
+                updateDisplay(currentI, currentJ);
+            }
+
+            // Highlight the first cell immediately
+            highlightCell(currentI, currentJ);
+            updateDisplay(currentI, currentJ);
+
+            // Start the interval after a delay to show the first cell
+            intervalId = setInterval(traverse, 1000);
+        }
+
+        function init() {
+            createMatrix();
+            updateDisplay(0, 0);
+            highlightCell(0, 0);
+            document.getElementById('start-btn').addEventListener('click', startTraversal);
+            document.getElementById('reset-btn').addEventListener('click', resetMatrix);
+        }
+
+        // Inicializar a animação imediatamente
+        init();
+    })();
+    </script>
+</section>
+
+            <section>
+                <h2>Aplicações Práticas</h2>
+                <ul>
+                    <li>Processamento de imagens</li>
+                    <li>Simulações físicas</li>
+                    <li>Algoritmos de grafos</li>
+                    <li>Resolução de sistemas lineares</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Multiplicação de Matrizes</h2>
+                <h3>Conceito</h3>
+                <ul>
+                    <li>Operação fundamental em álgebra linear</li>
+                    <li>Multiplica-se uma matriz m x n por uma matriz n x p</li>
+                    <li>Resultado é uma matriz m x p</li>
+                    <li>Cada elemento é a soma dos produtos dos elementos correspondentes</li>
+                </ul>
+            </section>
+                                        <section>
+                                                <h2>Multiplicação de Matrizes 3x2 por 2x3</h2>
+                                                <div class="matrix-container-3x2">
+                                                        <div id="matrixA_3x2" class="matrix matrix-3x2"></div>
+                                                        <span>×</span>
+                                                        <div id="matrixB_2x3" class="matrix matrix-2x3"></div>
+                                                        <span>=</span>
+                                                        <div id="matrixC_3x3" class="matrix matrix-3x3"></div>
+                                                </div>
+                                                <div id="calculation_3x2_2x3" class="calculation"></div>
+
+                                                <style>
+.matrix-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+}
+    .matrix {
+            display: inline-grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0 10px;
+    }
+    .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+    }
+    .highlight {
+            background-color: #0505FE;
+    }
+    .calculation {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+    }
+
+.matrix-container-3x2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+}
+    .matrix-3x2 { grid-template-columns: repeat(2, 1fr); }
+    .matrix-2x3 { grid-template-columns: repeat(3, 1fr); }
+    .matrix-3x3 { grid-template-columns: repeat(3, 1fr); }
+    .cell-3x2 {
+            width: 75px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+    }
+    .highlight-3x2 { background-color: #0505FE;}
+                                                </style>
+
+                                                <script>
+                                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                                                const matrixA_3x2 = [[1, 2], [3, 4], [5, 6]];
+                                                                const matrixB_2x3 = [[7, 8, 9], [10, 11, 12]];
+                                                                const matrixC_3x3 = [
+                                                                        [27, 30, 33],
+                                                                        [61, 68, 75],
+                                                                        [95, 106, 117]
+                                                                ];
+
+                                                                function createMatrix_3x2(matrixId, matrix, isResult = false) {
+                                                                        const matrixElement = document.getElementById(matrixId);
+                                                                        matrix.forEach((row, i) => {
+                                                                                row.forEach((value, j) => {
+                                                                                        const cell = document.createElement('div');
+                                                                                        cell.className = 'cell-3x2';
+                                                                                        cell.textContent = value;
+                                                                                        if (isResult) {
+                                                                                                cell.onclick = () => highlightAndCalculate_3x2(i, j);
+                                                                                        }
+                                                                                        matrixElement.appendChild(cell);
+                                                                                });
+                                                                        });
+                                                                }
+
+                                                                function highlightAndCalculate_3x2(row, col) {
+                                                                        clearHighlights_3x2();
+                                                                        highlightCells_3x2(row, col);
+                                                                        showCalculation_3x2(row, col);
+                                                                }
+
+                                                                function clearHighlights_3x2() {
+                                                                        document.querySelectorAll('.cell-3x2').forEach(cell => cell.classList.remove('highlight-3x2'));
+                                                                }
+
+                                                                function highlightCells_3x2(row, col) {
+                                                                        const cellsA = document.querySelectorAll('#matrixA_3x2 .cell-3x2');
+                                                                        const cellsB = document.querySelectorAll('#matrixB_2x3 .cell-3x2');
+                                                                        const cellsC = document.querySelectorAll('#matrixC_3x3 .cell-3x2');
+
+                                                                        // Highlight row in A
+                                                                        cellsA[row * 2].classList.add('highlight-3x2');
+                                                                        cellsA[row * 2 + 1].classList.add('highlight-3x2');
+
+                                                                        // Highlight column in B
+                                                                        cellsB[col].classList.add('highlight-3x2');
+                                                                        cellsB[col + 3].classList.add('highlight-3x2');
+
+                                                                        // Highlight result cell in C
+                                                                        cellsC[row * 3 + col].classList.add('highlight-3x2');
+                                                                }
+
+                                                                function showCalculation_3x2(row, col) {
+                                                                        const calc = document.getElementById('calculation_3x2_2x3');
+                                                                        calc.style.display = 'block';
+                                                                        calc.innerHTML = `
+          <p>Cálculo para o elemento (${row + 1}, ${col + 1}):</p>
+          <p>(${matrixA_3x2[row][0]} × ${matrixB_2x3[0][col]}) + (${matrixA_3x2[row][1]} × ${matrixB_2x3[1][col]}) =</p>
+          <p><strong>${matrixA_3x2[row][0] * matrixB_2x3[0][col]} + ${matrixA_3x2[row][1] * matrixB_2x3[1][col]} = ${matrixC_3x3[row][col]}</strong></p>
+        `;
+                                                                }
+
+                                                                createMatrix_3x2('matrixA_3x2', matrixA_3x2);
+                                                                createMatrix_3x2('matrixB_2x3', matrixB_2x3);
+                                                                createMatrix_3x2('matrixC_3x3', matrixC_3x3, true);
+                                                        });
+                                                </script>
+                                        </section>
+
+
+            <section>
+                <h2>Multiplicação de Matrizes</h2>
+                <h3>Implementação em C++</h3>
+                <pre><code class="cpp">
+void multiplicaMatrizes(int A[][3], int B[][2], int C[][2], 
+                        int m, int n, int p) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Multiplicação de Matrizes</h2>
+                <h3>Explicação do Código</h3>
+                <ul>
+                    <li><code>m</code>: número de linhas de A</li>
+                    <li><code>n</code>: número de colunas de A / linhas de B</li>
+                    <li><code>p</code>: número de colunas de B</li>
+                    <li>Três loops aninhados para percorrer as matrizes</li>
+                    <li>Loop interno calcula o produto escalar de uma linha de A com uma coluna de B</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Multiplicação de Matrizes</h2>
+                <h3>Exemplo de Uso</h3>
+                <pre><code class="cpp">
+int main() {
+    int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int B[3][2] = {{7, 8}, {9, 10}, {11, 12}};
+    int C[2][2];
+
+    multiplicaMatrizes(A, B, C, 2, 3, 2);
+
+    // Imprimir resultado
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            cout << C[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Conclusão</h2>
+                <ul>
+                    <li>Arrays multidimensionais são essenciais em C++</li>
+                    <li>Úteis para representar dados em várias dimensões</li>
+                    <li>Amplamente utilizados em engenharia e ciência da computação</li>
+                    <li>Prática e exercícios são fundamentais para dominar o conceito</li>
+                </ul>
+            </section>
+
+	</div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+	    Reveal.initialize({
+		    width: 1200,
+		    height: 720,
+		    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+	    });
+	     function initializeArrayAnimation(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container com id "${containerId}" não encontrado.`);
+                return;
+            }
+
+            // Criar elementos
+            const arrayContainer = document.createElement('div');
+            arrayContainer.className = 'array-container';
+
+            const codeElement = document.createElement('pre');
+            codeElement.innerHTML = `<code class="code">
+int array[10];
+for (int i = 0; <span class="i-value">i</span> < 10; i++) {
+    array[<span class="i-value">0</span>] = <span class="i-value">0</span> * 2;
+}</code>`;
+
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'buttons';
+            const startButton = document.createElement('button');
+            startButton.textContent = 'Iniciar Animação';
+            const resetButton = document.createElement('button');
+            resetButton.textContent = 'Reiniciar';
+            resetButton.disabled = true;
+
+            buttonsContainer.appendChild(startButton);
+            buttonsContainer.appendChild(resetButton);
+
+            // Adicionar elementos ao container
+            container.appendChild(arrayContainer);
+            container.appendChild(codeElement);
+            container.appendChild(buttonsContainer);
+
+            function createArray() {
+                arrayContainer.innerHTML = '';
+                for (let i = 0; i < 10; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'array-cell';
+                    cell.textContent = '-';
+                    arrayContainer.appendChild(cell);
+                }
+            }
+
+            function resetAnimation() {
+                createArray();
+                const iValues = codeElement.querySelectorAll('.i-value');
+                iValues.forEach(span => span.textContent = span === iValues[0] ? 'i' : '0');
+                startButton.disabled = false;
+                resetButton.disabled = true;
+            }
+
+            async function runAnimation() {
+                startButton.disabled = true;
+                resetButton.disabled = true;
+                const cells = arrayContainer.querySelectorAll('.array-cell');
+                const iValues = codeElement.querySelectorAll('.i-value');
+
+                for (let i = 0; i < 10; i++) {
+                    iValues[0].textContent = i;
+                    iValues.forEach(span => span.classList.add('highlight'));
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    if (cells[i]) {
+                        cells[i].textContent = i * 2;
+                        cells[i].style.backgroundColor = 'rgba(0, 255, 0, 0.5)';
+                    }
+                    
+                    iValues.forEach(span => span.classList.remove('highlight'));
+                    iValues[1].textContent = i;
+                    iValues[2].textContent = i;
+                }
+
+                iValues[0].textContent = '10';
+                resetButton.disabled = false;
+            }
+
+            startButton.addEventListener('click', runAnimation);
+            resetButton.addEventListener('click', resetAnimation);
+
+            // Inicializar
+            createArray();
+        }
+
+        // Inicializar a animação quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeArrayAnimation('array-cpp-slide');
+        });
+    </script>
+</body>
+</html>

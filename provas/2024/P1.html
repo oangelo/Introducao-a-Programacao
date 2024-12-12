@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova de Introdução à Programação - 2024.2 - UERJ</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; font-size: 12px; }
+        h1 { font-size: 18px; text-align: center; }
+        h2 { font-size: 14px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+        p { margin: 5px 0; }
+        .instructions { background-color: #f0f0f0; padding: 10px; margin-bottom: 20px; }
+        .question { margin-bottom: 15px; }
+        .example { background-color: #e6f3ff; padding: 5px; margin-top: 5px; font-size: 11px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 10px; font-size: 11px; }
+        th, td { border: 1px solid #ddd; padding: 4px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .columns { display: flex; justify-content: space-between; }
+        .column { width: 48%; }
+        .note-space { border: 1px solid #000; width: 40px; height: 20px; display: inline-block; text-align: center; }
+        .average { text-align: right; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Universidade do Estado do Rio de Janeiro (UERJ)</h1>
+    <p><strong>Disciplina:</strong> Introdução à Programação<br>
+    <strong>Professor:</strong> Angelo Mondaini Calvão<br>
+    <strong>Data:</strong> ___ / ___ / 2024<br>
+    <strong>Primeira Prova - 2º Semestre de 2024</strong></p>
+    <p><strong>Nome do Aluno:</strong> ______________________________ <strong>Matrícula:</strong> ____________</p>
+
+    <div class="columns">
+        <div class="column">
+            <div class="instructions">
+                <strong>Instruções Gerais:</strong>
+                <ol>
+                    <li>Não é permitido o uso de celulares ou outros dispositivos eletrônicos.</li>
+                    <li>Todas as respostas devem ser justificadas.</li>
+                    <li>Escreva de forma legível e organize bem suas respostas.</li>
+                    <li>Recomenda-se começar pela questão que você considera mais fácil.</li>
+                    <li>Implemente a função e forneça um exemplo de uso no main().</li>
+                </ol>
+            </div>
+
+            <div class="question">
+                <h2>Questão 1 <div class="note-space"></div></h2>
+                <p>Escreva uma função chamada 'buscarElemento' que recebe como parâmetros: um array de inteiros, o tamanho do array, o elemento a ser buscado, e uma referência para uma variável que armazenará a posição do elemento encontrado. A função deve retornar um valor booleano (bool): true se o elemento for encontrado, false caso contrário. Se encontrado, atualize a variável de referência com a primeira posição do elemento.</p>
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    Entrada: array = {10, 20, 30, 40, 50}, tamanho = 5, elemento = 30<br>
+                    Saída: true (elemento encontrado)<br>
+                    Posição: 2
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>Questão 2 <div class="note-space"></div></h2>
+                <p>Implemente uma função chamada 'ordenarArray' que ordena um array de números inteiros. Parâmetros: array de inteiros, tamanho do array, flag para indicar ordem (crescente/decrescente). Ordene in-place, sem usar funções prontas da biblioteca padrão. Comente explicando o algoritmo escolhido e o uso da flag.</p>
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    Entrada: array = {5, 2, 8, 1, 9}, tamanho = 5, flag = crescente<br>
+                    Saída: {1, 2, 5, 8, 9}
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>Questão 3 <div class="note-space"></div></h2>
+                <p>Crie a função 'gerarSequencia' que preenche um array com uma sequência específica. Parâmetros: array de inteiros e seu tamanho. Preencha: primeiras duas posições com 1, elementos seguintes somam os dois anteriores. Para arrays menores que 2, preencha as posições disponíveis com 1. Use um loop e garanta funcionamento para diferentes tamanhos.</p>
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    Entrada: tamanho = 6<br>
+                    Saída: {1, 1, 2, 3, 5, 8}
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="question">
+                <h2>Questão 4 <div class="note-space"></div></h2>
+                <p>Implemente 'trocarArraysInverso' que troca elementos de dois arrays na ordem inversa. Parâmetros: dois arrays de inteiros e seu tamanho (igual para ambos). Troque: primeiro elemento do primeiro array com o último do segundo, e assim por diante. Use um loop, sem array adicional. Explique a lógica usada.</p>
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    Entrada: array1 = {1, 2, 3, 4, 5}, array2 = {10, 20, 30, 40, 50}, tamanho = 5<br>
+                    Saída: array1 = {50, 40, 30, 20, 10}, array2 = {5, 4, 3, 2, 1}
+                </div>
+            </div>
+
+            <div class="question">
+                <h2>Questão 5 <div class="note-space"></div></h2>
+                <p>Implemente a função 'avaliarMudancaMarcha' que simula recomendações de mudança de marcha para um carro. Parâmetros: RPM, velocidade (km/h), marcha atual (1-5). Retorne: "Subir Marcha", "Descer Marcha" ou "Manter Marcha".</p>
+                <table>
+                    <tr><th>Marcha</th><th>Faixa de RPM ideal</th><th>Faixa de Velocidade ideal (km/h)</th></tr>
+                    <tr><td>1</td><td>1000 - 2500</td><td>0 - 20</td></tr>
+                    <tr><td>2</td><td>1500 - 3000</td><td>15 - 40</td></tr>
+                    <tr><td>3</td><td>2000 - 3500</td><td>30 - 60</td></tr>
+                    <tr><td>4</td><td>2500 - 4000</td><td>50 - 80</td></tr>
+                    <tr><td>5</td><td>3000 - 4500</td><td>70+</td></tr>
+                </table>
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    Entrada: RPM = 3200, velocidade = 45, marcha atual = 2<br>
+                    Saída: "Subir Marcha"
+                </div>
+                <p><strong>Dicas de implementação:</strong></p>
+                <ol>
+                    <li>Considere criar quatro arrays para armazenar os limites mínimos e máximos de RPM e velocidade para cada marcha.</li>
+                    <li>Use o número da marcha atual para determinar qual índice dos arrays de limites você deve verificar.</li>
+                    <li>Compare o RPM e a velocidade fornecidos com os limites correspondentes à marcha atual.</li>
+                    <li>Trate casos especiais: primeira e quinta marchas, valores fora das faixas definidas.</li>
+                    <li>Teste sua função com diversos cenários.</li>
+                </ol>
+                <p>Crie uma lógica clara e eficiente que possa lidar com todos os casos possíveis de entrada.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="average">
+        <strong>Média Final:</strong> <div class="note-space"></div>
+    </div>
+
+    <p><strong>Boa Prova!</strong></p>
+</body>
+</html>

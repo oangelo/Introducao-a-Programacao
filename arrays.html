@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+
+    <title>Arrays em C++: Desvendando os Mistérios dos Arrays</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+
+        .alert {
+            background-color: #ffefc2;
+            border-left: 5px solid #ffc107;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .reveal img {
+            margin-top: 20px;
+        }
+        /* Estilos para a Tabela da Variável de Busca */
+        #searchVariableTable {
+          margin: 0 auto 20px auto;
+          border-collapse: collapse;
+        }
+        #searchVariableTable td {
+          border: 1px solid #444;
+          padding: 8px 12px;
+          background-color: #2c3e50;
+          color: #ffffff;
+          text-align: center;
+        }
+        #searchVariableTable td:first-child {
+          background-color: #34495e;
+        }
+        /* Estilos Gerais */
+        .container {
+            background-color: rgba(30, 30, 30, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #ffffff;
+            margin-bottom: 40px;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 2px;
+            margin: 20px auto;
+        }
+        td {
+            border: 1px solid #444;
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+        /* Estilos para Busca em Array de Inteiros */
+        #searchIndexRow td { background-color: #2c3e50; }
+        #searchValueRow td { background-color: #34495e; }
+        /* Estilos para Troca de Valores em Array C++ */
+        #swapIndexRow td { background-color: #2c3e50; }
+        #swapValueRow td { background-color: #34495e; }
+        #swapTempTable td { background-color: #8e44ad; }
+        /* Classes de Destaque */
+        .highlight { background-color: #f39c12 !important; }
+        .match { background-color: #2ecc71 !important; }
+        .compared { background-color: #7f8c8d !important; }
+        /* Estilos de Botões */
+        button {
+            font-size: 16px;
+            padding: 8px 15px;
+            margin: 0 5px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled { background-color: #95a5a6; }
+        /* Mensagens */
+        .message { margin-top: 20px; font-weight: bold; }
+        /* Animação de Número Móvel */
+        .moving-number {
+            position: absolute;
+            transition: all 0.5s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+    <style>
+        .array-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .array-cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 2px;
+            transition: background-color 0.5s;
+        }
+        .code {
+            font-size: 24px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .highlight {
+            background-color: rgba(255, 255, 0, 0.3);
+            transition: background-color 0.5s;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            margin: 0 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Arrays em C++</h1>
+                <h3>Desvendando os Mistérios dos Arrays</h3>
+                <p>Prepare-se para uma aventura repleta de colchetes!</p>
+            </section>
+
+            <section>
+                <h2>Declaração e Manipulação de Arrays</h2>
+                <pre><code class="cpp">
+int numeros[5]; // Declarando um array de 5 inteiros
+int pontuacoes[] = {100, 200, 300, 400, 500}; // Pontuações em um jogo
+
+// Array multidimensional para um tabuleiro de jogo
+int tabuleiro[3][3] = {{0, 1, 0}, {1, 0, 1}, {0, 1, 0}};
+                </code></pre>
+                <p>Arrays: porque lidar com uma variável por vez é coisa do passado!</p>
+            </section>
+
+            <section>
+                <h2>Acesso a Elementos de um Array</h2>
+                <pre><code class="cpp">
+int notas[] = {85, 90, 78, 92, 88};
+
+// Notas dos testes: tentando manter a média alta para impressionar!
+cout << "Primeira nota: " << notas[0] << endl; // 85
+cout << "Última nota: " << notas[4] << endl;   // 88
+
+// Cuidado: acessar notas[5] é como tentar encontrar 
+// uma agulha num palheiro digital! (E pode causar um crash!)
+                </code></pre>
+                <p>Lembre-se: em C++, contamos a partir do zero. Por que será que começamos do zero? Porque zero é o novo um!</p>
+            </section>
+
+            <section id="array-cpp-slide">
+                <h2>Visualização de um Array em C++</h2>
+                <!-- O conteúdo será inserido aqui dinamicamente -->
+            </section>
+
+            <section>
+                <h2>O Mágico Operador <code>sizeof</code></h2>
+                <pre><code class="cpp">
+int numeros[] = {10, 20, 30, 40, 50};
+
+// Tamanho total do array em bytes
+size_t tamanhoTotal = sizeof(numeros);
+
+// Tamanho de um elemento do array em bytes
+size_t tamanhoElemento = sizeof(numeros[0]);
+
+// Número de elementos no array
+size_t numeroElementos = tamanhoTotal / tamanhoElemento;
+
+cout << "O array tem " << numeroElementos << " elementos." << endl;
+                </code></pre>
+                <p><strong>Dica:</strong> Pense no <code>sizeof</code> como uma régua que mede o espaço que seu array ocupa na memória!</p>
+            </section>
+
+            <section>
+                <h2><code>sizeof</code>: Dicas e Armadilhas</h2>
+                <ul>
+                    <li><code>sizeof(array)</code> retorna o tamanho total em bytes</li>
+                    <li><code>sizeof(array) / sizeof(array[0])</code> dá o número de elementos</li>
+                    <li><strong>Cuidado:</strong> <code>sizeof</code> não funciona como esperado com arrays passados como parâmetros de função!</li>
+                </ul>
+                <pre><code class="cpp">
+void funcaoTraicoeira(int arr[]) {
+    // Isso NÃO dá o tamanho do array!
+    size_t tamanho = sizeof(arr) / sizeof(arr[0]);
+    // arr decai para um ponteiro aqui
+}
+                </code></pre>
+                <p><code>sizeof</code> em funções: onde os corajosos programadores C++ vão para se aventurar!</p>
+            </section>
+
+            <section>
+                <h2>Processamento e Iteração sobre Arrays</h2>
+                <pre><code class="cpp">
+int temperaturas[] = {22, 24, 19, 25, 23, 20, 18};
+int tamanho = sizeof(temperaturas) / sizeof(temperaturas[0]);
+
+for (int i = 0; i < tamanho; i++) {
+    cout << "Dia " << i+1 << ": " << temperaturas[i] << "°C" << endl;
+}
+
+// Para os aventureiros: range-based for loop
+for (int temp : temperaturas) {
+    cout << temp << "°C ";
+}
+                </code></pre>
+                <p>Iteração: porque às vezes é preciso passar por todos os elementos para achar a resposta... ou a saída!</p>
+            </section>
+
+            <section>
+                <h2>Passando Arrays como Parâmetros em C++</h2>
+                <p>Uma introdução às técnicas e conceitos fundamentais.</p>
+                <p><strong>Por que passar arrays para funções?</strong></p>
+                <ul>
+                    <li>Reutilização de código</li>
+                    <li>Organização e modularidade</li>
+                    <li>Facilita a manipulação de grandes conjuntos de dados</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Sintaxe Básica</h2>
+                <pre><code class="cpp">
+void minhaFuncao(int arr[], int tamanho) {
+    // Código para manipular o array
+}
+
+int main() {
+    int meuArray[5] = {1, 2, 3, 4, 5};
+    minhaFuncao(meuArray, 5);
+    return 0;
+}
+                </code></pre>
+                <p>O array é passado por referência automaticamente!</p>
+            </section>
+
+            <section>
+                <h2>Breve Introdução aos Ponteiros</h2>
+                <ul>
+                    <li>Um ponteiro é uma variável que armazena o endereço de memória de outra variável</li>
+                    <li>Arrays têm uma relação especial com ponteiros em C++</li>
+                    <li>Quando passamos um array para uma função, na verdade estamos passando um ponteiro para seu primeiro elemento</li>
+                    <li>Este tema será abordado com mais profundidade em aulas futuras</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Decaimento para Ponteiro</h2>
+                <ul>
+                    <li>Quando passado para uma função, um array "decai" para um ponteiro</li>
+                    <li>A função recebe apenas o endereço do primeiro elemento</li>
+                    <li>Por isso, precisamos passar o tamanho separadamente</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Alternativas de Sintaxe</h2>
+                <pre><code class="cpp">
+// Estas declarações são equivalentes:
+void func1(int arr[], int tamanho);
+void func2(int* arr, int tamanho);
+                </code></pre>
+                <p>Ambas as formas são comumente usadas e aceitáveis</p>
+            </section>
+
+            <section>
+                <h2>Modificando o Array</h2>
+                <pre><code class="cpp">
+void dobrarElementos(int arr[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        arr[i] *= 2;
+    }
+}
+                </code></pre>
+                <p>As modificações afetam o array original!</p>
+            </section>
+
+            <section>
+              <section>
+                <h2>Exemplos e Algoritmos</h2>
+              </section>
+
+            <section>
+                <h2>Exemplo: Somando Elementos de um Array</h2>
+                <pre><code class="cpp">
+#include <iostream>
+
+int somaArray(const int arr[], int tamanho) {
+    int soma = 0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += arr[i];
+    }
+    return soma;
+}
+
+int main() {
+    int numeros[] = {1, 2, 3, 4, 5};
+    int resultado = somaArray(numeros, 5);
+    std::cout << "A soma é: " << resultado << std::endl;
+    return 0;
+}
+                </code></pre>
+                <p>Tente você mesmo: escreva uma função que calcula a média dos valores em um array!</p>
+            </section>
+
+
+    <!-- Seção de Busca em Array de Inteiros -->
+    <section id="searchSection">
+        <h2>Busca em Array de Inteiros</h2>
+            <!-- Tabela da Variável de Busca -->
+            <table id="searchVariableTable">
+              <tr>
+                <td><strong>Valor a buscar:</strong></td>
+                <td id="searchTargetValue">5</td>
+              </tr>
+            </table>
+        <div class="container">
+            <table>
+                <tr id="searchIndexRow"></tr>
+                <tr id="searchValueRow"></tr>
+            </table>
+            <div id="searchMessage" class="message"></div>
+            <div>
+                <button id="searchPrevBtn">Anterior</button>
+                <button id="searchNextBtn">Próximo</button>
+                <button id="searchResetBtn">Reiniciar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Troca de Valores em Array C++ -->
+    <section id="swapSection">
+        <h2>Troca de Valores em Array C++</h2>
+        <div class="container">
+            <table>
+                <tr id="swapIndexRow"></tr>
+                <tr id="swapValueRow"></tr>
+            </table>
+            <table id="swapTempTable">
+                <tr>
+                    <td>Temp</td>
+                    <td id="swapTempValue"></td>
+                </tr>
+            </table>
+            <div id="swapMessage" class="message"></div>
+            <div>
+                <button id="swapPrevBtn">Anterior</button>
+                <button id="swapNextBtn">Próximo</button>
+                <button id="swapResetBtn">Reiniciar</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* Animação: Busca em Array de Inteiros */
+        (function() {
+            const array = [4, 2, 7, 1, 9, 5, 3, 8, 6];
+            const targetValue = 5;
+            let currentIndex = 0;
+            let found = false;
+
+            const indexRow = document.getElementById('searchIndexRow');
+            const valueRow = document.getElementById('searchValueRow');
+            const messageElement = document.getElementById('searchMessage');
+            const prevBtn = document.getElementById('searchPrevBtn');
+            const nextBtn = document.getElementById('searchNextBtn');
+            const resetBtn = document.getElementById('searchResetBtn');
+
+            function createTable() {
+                indexRow.innerHTML = '<td>Índice</td>' + array.map((_, i) => `<td>${i}</td>`).join('');
+                valueRow.innerHTML = '<td>Valor</td>' + array.map(v => `<td>${v}</td>`).join('');
+            }
+
+            function updateTable() {
+                for (let i = 0; i < array.length; i++) {
+                    const cell = valueRow.cells[i + 1];
+                    cell.classList.remove('highlight', 'match', 'compared');
+                    if (i === currentIndex) {
+                        cell.classList.add(array[i] === targetValue ? 'match' : 'highlight');
+                    } else if (i < currentIndex) {
+                        cell.classList.add('compared');
+                    }
+                }
+            }
+
+            function updateMessage() {
+                if (found) {
+                    messageElement.textContent = `Valor ${targetValue} encontrado no índice ${currentIndex}.`;
+                } else if (currentIndex >= array.length) {
+                    messageElement.textContent = `Valor ${targetValue} não encontrado no array.`;
+                } else {
+                    messageElement.textContent = `Comparando ${targetValue} com ${array[currentIndex]} no índice ${currentIndex}.`;
+                }
+            }
+
+            function nextStep() {
+                if (currentIndex < array.length && !found) {
+                    if (array[currentIndex] === targetValue) {
+                        found = true;
+                    } else {
+                        currentIndex++;
+                    }
+                    updateTable();
+                    updateMessage();
+                    updateButtons();
+                }
+            }
+
+            function prevStep() {
+                if (currentIndex > 0 || found) {
+                    if (found) {
+                        found = false;
+                    } else {
+                        currentIndex--;
+                    }
+                    updateTable();
+                    updateMessage();
+                    updateButtons();
+                }
+            }
+
+            function resetSearch() {
+                currentIndex = 0;
+                found = false;
+                updateTable();
+                updateMessage();
+                updateButtons();
+            }
+
+            function updateButtons() {
+                prevBtn.disabled = currentIndex === 0 && !found;
+                nextBtn.disabled = currentIndex >= array.length || found;
+            }
+
+            function initializeAnimation() {
+                createTable();
+                updateTable();
+                updateMessage();
+                updateButtons();
+
+                nextBtn.addEventListener('click', nextStep);
+                prevBtn.addEventListener('click', prevStep);
+                resetBtn.addEventListener('click', resetSearch);
+            }
+
+            document.addEventListener('DOMContentLoaded', initializeAnimation);
+        })();
+
+        /* Animação: Troca de Valores em Array C++ */
+        (function() {
+            const array = [10, 20, 30, 40, 50];
+            let currentStep = 0;
+            const steps = [
+                { message: "Início: Array original" },
+                { message: "Passo 1: temp = array[1]", from: 1, to: 'temp' },
+                { message: "Passo 2: array[1] = array[3]", from: 3, to: 1 },
+                { message: "Passo 3: array[3] = temp", from: 'temp', to: 3 },
+                { message: "Fim: Valores trocados" }
+            ];
+
+            const indexRow = document.getElementById('swapIndexRow');
+            const valueRow = document.getElementById('swapValueRow');
+            const messageElement = document.getElementById('swapMessage');
+            const prevBtn = document.getElementById('swapPrevBtn');
+            const nextBtn = document.getElementById('swapNextBtn');
+            const resetBtn = document.getElementById('swapResetBtn');
+            const tempValueElement = document.getElementById('swapTempValue');
+
+            function createTable() {
+                indexRow.innerHTML = '<td>Índice</td>' + array.map((_, i) => `<td>${i}</td>`).join('');
+                valueRow.innerHTML = '<td>Valor</td>' + array.map(v => `<td>${v}</td>`).join('');
+            }
+
+            function getElementPosition(element) {
+                const rect = element.getBoundingClientRect();
+                return {
+                    x: rect.left + window.scrollX,
+                    y: rect.top + window.scrollY
+                };
+            }
+
+            function animateNumber(from, to) {
+                const fromElement = from === 'temp' ? tempValueElement : valueRow.cells[from + 1];
+                const toElement = to === 'temp' ? tempValueElement : valueRow.cells[to + 1];
+                
+                const fromPos = getElementPosition(fromElement);
+                const toPos = getElementPosition(toElement);
+                
+                const movingNumber = document.createElement('div');
+                movingNumber.textContent = fromElement.textContent;
+                movingNumber.className = 'moving-number';
+                movingNumber.style.left = `${fromPos.x}px`;
+                movingNumber.style.top = `${fromPos.y}px`;
+                movingNumber.style.width = `${fromElement.offsetWidth}px`;
+                movingNumber.style.height = `${fromElement.offsetHeight}px`;
+                movingNumber.style.backgroundColor = '#8e44ad';
+                movingNumber.style.color = '#fff';
+                movingNumber.style.display = 'flex';
+                movingNumber.style.alignItems = 'center';
+                movingNumber.style.justifyContent = 'center';
+                movingNumber.style.borderRadius = '5px';
+                
+                document.body.appendChild(movingNumber);
+                
+                setTimeout(() => {
+                    movingNumber.style.left = `${toPos.x}px`;
+                    movingNumber.style.top = `${toPos.y}px`;
+                }, 50);
+
+                setTimeout(() => {
+                    if (from === 'temp') {
+                        // Caso esteja movendo para temp
+                        toElement.textContent = movingNumber.textContent;
+                    } else if (to === 'temp') {
+                        // Caso esteja movendo para temp
+                        tempValueElement.textContent = movingNumber.textContent;
+                    } else {
+                        // Troca entre duas células
+                        toElement.textContent = movingNumber.textContent;
+                    }
+                    document.body.removeChild(movingNumber);
+                }, 550);
+            }
+
+            function updateDisplay() {
+                const step = steps[currentStep];
+                messageElement.textContent = step.message;
+
+                if (step.from !== undefined && step.to !== undefined) {
+                    animateNumber(step.from, step.to);
+                }
+            }
+
+            function nextStep() {
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    updateDisplay();
+                    updateButtons();
+                }
+            }
+
+            function prevStep() {
+                if (currentStep > 0) {
+                    currentStep--;
+                    const step = steps[currentStep];
+                    if (step.from !== undefined && step.to !== undefined) {
+                        animateNumber(step.to, step.from);
+                    }
+                    messageElement.textContent = step.message;
+                    updateButtons();
+                }
+            }
+
+            function resetAnimation() {
+                currentStep = 0;
+                array.forEach((value, index) => {
+                    valueRow.cells[index + 1].textContent = value;
+                });
+                tempValueElement.textContent = '';
+                updateDisplay();
+                updateButtons();
+            }
+
+            function updateButtons() {
+                prevBtn.disabled = currentStep === 0;
+                nextBtn.disabled = currentStep === steps.length - 1;
+            }
+
+            function initializeAnimation() {
+                createTable();
+                updateDisplay();
+                updateButtons();
+
+                nextBtn.addEventListener('click', nextStep);
+                prevBtn.addEventListener('click', prevStep);
+                resetBtn.addEventListener('click', resetAnimation);
+            }
+
+            document.addEventListener('DOMContentLoaded', initializeAnimation);
+        })();
+    </script>
+            </section>
+            <section>
+                <h2>Boas Práticas</h2>
+                <ul>
+                    <li>Sempre passe o tamanho do array junto com o array</li>
+                    <li>Se não quiser modificar o array, use <code>const</code></li>
+                    <li>Lembre-se: a função não sabe o tamanho do array por si só</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Resumo de Funções e Arrays</h2>
+                <ul>
+                    <li>Passar arrays como parâmetros é simples e poderoso</li>
+                    <li>Lembre-se de passar o tamanho junto com o array</li>
+                    <li>As modificações na função afetam o array original</li>
+                    <li>Ponteiros e arrays têm uma relação próxima em C++</li>
+                    <li>Praticar é a chave para dominar este conceito!</li>
+                </ul>
+            </section>
+            <section>
+              <h2>Conclusão</h2>
+              <ul>
+                <li>Arrays são como caixas de chocolates: você nunca sabe o que vai encontrar (a menos que tenha inicializado corretamente).</li>
+                <li>Indexação começa do zero: uma lição de humildade em cada acesso.</li>
+                <li>sizeof é seu amigo, mas cuidado com suas travessuras em funções.</li>
+                <li>Iteração é a chave: às vezes, para entender o todo, você precisa olhar cada parte individualmente.</li>
+              </ul>
+              <p>Lembre-se: com grandes arrays vêm grandes responsabilidades!</p>
+            </section>
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1200,
+            height: 720,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+        function initializeArrayAnimation(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container com id "${containerId}" não encontrado.`);
+                return;
+            }
+
+            // Criar elementos
+            const arrayContainer = document.createElement('div');
+            arrayContainer.className = 'array-container';
+
+            const codeElement = document.createElement('pre');
+            codeElement.innerHTML = `<code class="code">
+int array[10];
+for (int i = 0; <span class="i-value">i</span> < 10; i++) {
+    array[<span class="i-value">0</span>] = <span class="i-value">0</span> * 2;
+}</code>`;
+
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'buttons';
+            const startButton = document.createElement('button');
+            startButton.textContent = 'Iniciar Animação';
+            const resetButton = document.createElement('button');
+            resetButton.textContent = 'Reiniciar';
+            resetButton.disabled = true;
+
+            buttonsContainer.appendChild(startButton);
+            buttonsContainer.appendChild(resetButton);
+
+            // Adicionar elementos ao container
+            container.appendChild(arrayContainer);
+            container.appendChild(codeElement);
+            container.appendChild(buttonsContainer);
+
+            function createArray() {
+                arrayContainer.innerHTML = '';
+                for (let i = 0; i < 10; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'array-cell';
+                    cell.textContent = '-';
+                    arrayContainer.appendChild(cell);
+                }
+            }
+
+            function resetAnimation() {
+                createArray();
+                const iValues = codeElement.querySelectorAll('.i-value');
+                iValues.forEach(span => span.textContent = span === iValues[0] ? 'i' : '0');
+                startButton.disabled = false;
+                resetButton.disabled = true;
+            }
+
+            async function runAnimation() {
+                startButton.disabled = true;
+                resetButton.disabled = true;
+                const cells = arrayContainer.querySelectorAll('.array-cell');
+                const iValues = codeElement.querySelectorAll('.i-value');
+
+                for (let i = 0; i < 10; i++) {
+                    iValues[0].textContent = i;
+                    iValues.forEach(span => span.classList.add('highlight'));
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    if (cells[i]) {
+                        cells[i].textContent = i * 2;
+                        cells[i].style.backgroundColor = 'rgba(0, 255, 0, 0.5)';
+                    }
+                    
+                    iValues.forEach(span => span.classList.remove('highlight'));
+                    iValues[1].textContent = i;
+                    iValues[2].textContent = i;
+                }
+
+                iValues[0].textContent = '10';
+                resetButton.disabled = false;
+            }
+
+            startButton.addEventListener('click', runAnimation);
+            resetButton.addEventListener('click', resetAnimation);
+
+            // Inicializar
+            createArray();
+        }
+
+        // Inicializar a animação quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeArrayAnimation('array-cpp-slide');
+        });
+    </script>
+</body>
+</html>
+

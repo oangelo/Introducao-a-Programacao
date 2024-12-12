@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alocação Dinâmica de Memória em C++</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style>
+        .reveal h1, .reveal h2 { color: #58a6ff; }
+        .reveal h3 { color: #79c0ff; }
+        .reveal pre { background-color: #0d1117; }
+        .reveal code { color: #ff7b72; }
+        .reveal ul { list-style-type: none; }
+        .reveal ul li::before { content: "» "; color: #58a6ff; }
+        .reveal .highlight { color: #ffa657; font-weight: bold; }
+        .two-columns { display: flex; justify-content: space-between; }
+        .two-columns > * { flex: 1; }
+        .reveal table {
+            margin: auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .reveal td, .reveal th {
+            border: 1px solid white;
+            padding: 5px;
+            text-align: center;
+        }
+        .reveal .matrix-table td:first-child {
+            border: none;
+        }
+        .reveal .matrix-table tr:last-child td:not(:first-child) {
+            border-bottom: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Alocação Dinâmica de Memória em C++</h1>
+                <h3>Para Alunos de Engenharia</h3>
+            </section>
+
+            <section>
+                <h2>Tipos de Memória no Computador</h2>
+                <ul>
+                    <li><i class="fas fa-layer-group"></i> Stack (Pilha)</li>
+                    <li><i class="fas fa-mountain"></i> Heap (Monte)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Papel do Compilador</h2>
+                <ul>
+                    <li>Traduz o código-fonte para linguagem de máquina</li>
+                    <li>Aloca espaço na stack para variáveis locais</li>
+                    <li>Gera instruções para alocação/desalocação na heap</li>
+                    <li>Otimiza o uso de memória e execução do programa</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Papel do Sistema Operacional</h2>
+                <ul>
+                    <li>Gerencia a memória física do computador</li>
+                    <li>Aloca memória para os processos em execução</li>
+                    <li>Implementa memória virtual</li>
+                    <li>Protege a memória entre diferentes processos</li>
+                </ul>
+            </section>
+
+            <section>
+              <h2>Stack vs Heap</h2>
+              <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                <div>
+                  <h3>Stack</h3>
+                  <ul>
+                    <li>Alocação automática</li>
+                    <li>Rápida</li>
+                    <li>Tamanho limitado</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3>Heap</h3>
+                  <ul>
+                    <li>Alocação manual</li>
+                    <li>Mais flexível</li>
+                    <li>Maior overhead</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section>
+                <h2>Memória total - Stack vs Heap</h2>
+                <table>
+                    <tr>
+                        <th>Memória Total</th>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #ffcccc;">Stack (cresce para baixo)</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #ccccff;">↕ (espaço livre) ↕</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #ccffcc;">Heap (cresce para cima)</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>Alocação na Stack vs Heap</h2>
+                <pre><code class="cpp">
+// Alocação na stack (automática)
+int x = 5;
+
+// Alocação na heap (manual)
+int* y = new int(5);
+
+// Não esqueça de liberar a memória alocada na heap
+delete y;
+y = nullptr;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Funções new e delete</h2>
+                <pre><code class="cpp">
+// Aloca memória para um inteiro na heap
+int* ptr = new int;  
+
+// Atribui o valor 10 ao endereço alocado
+*ptr = 10;           
+
+// Libera a memória alocada
+delete ptr;          
+
+// Define o ponteiro como nulo após deletar (boa prática)
+ptr = nullptr;       
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Alocação de Arrays</h2>
+                <pre><code class="cpp">
+// Define o tamanho do array
+int size = 5;
+
+// Aloca um array de 5 inteiros na heap
+int* arr = new int[size];  
+
+// Preenche o array
+for(int i = 0; i < size; i++) {
+    arr[i] = i * 2;  // [0, 2, 4, 6, 8]
+}
+
+// Libera a memória do array
+delete[] arr;  
+
+// Define o ponteiro como nulo após deletar
+arr = nullptr;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Entendendo Ponteiros e Arrays</h2>
+                <ul>
+                    <li>Um ponteiro não aponta para um array inteiro, mas para o primeiro elemento</li>
+                    <li>A alocação é feita de forma contígua na memória</li>
+                    <li>O programa usa aritmética de ponteiros para acessar elementos subsequentes</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Ponteiros e Arrays - Exemplo</h2>
+                <pre><code class="cpp">
+int* arr = new int[5];  // Aloca 5 inteiros contíguos
+// arr aponta para o primeiro elemento
+
+// Acesso aos elementos:
+arr[0] = 10;  // Primeiro elemento
+arr[1] = 20;  // Segundo elemento (*(arr + 1))
+arr[2] = 30;  // Terceiro elemento (*(arr + 2))
+
+// arr[i] é equivalente a *(arr + i)
+                </code></pre>
+                <p>A contiguidade na memória permite acesso eficiente a todos os elementos</p>
+            </section>
+
+            <section>
+                <h2>Alocação de Matrizes</h2>
+                <pre><code class="cpp">
+int rows = 3, cols = 4;
+
+// Aloca um array de ponteiros (cada ponteiro representará uma linha)
+int** matrix = new int*[rows];
+
+// Para cada linha, aloca um array de inteiros (colunas)
+for(int i = 0; i < rows; i++) {
+    matrix[i] = new int[cols];
+}
+
+// Exemplo de uso: atribui 42 à posição [1][2]
+matrix[1][2] = 42;
+
+// Liberação da memória (processo inverso da alocação)
+for(int i = 0; i < rows; i++) {
+    delete[] matrix[i];  // Libera cada linha
+}
+delete[] matrix;  // Libera o array de ponteiros
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Representação Visual da Matriz</h2>
+                <table class="matrix-table">
+                    <tr>
+                        <th>int**</th>
+                        <th>→</th>
+                        <td>int*</td>
+                        <td>int*</td>
+                        <td>int*</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>↓</td>
+                        <td>↓</td>
+                        <td>↓</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>3</td>
+                        <td>7</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>4</td>
+                        <td>8</td>
+                        <td>12</td>
+                    </tr>
+                </table>
+                <p>matrix é um ponteiro para um array de ponteiros.</p>
+                <p>Cada ponteiro no array aponta para um array de inteiros (uma linha da matriz).</p>
+            </section>
+
+            <section>
+                <h2>Passagem de Matrizes para Funções</h2>
+                <pre><code class="cpp">
+// Função que recebe uma matriz como parâmetro
+void processMatrix(int** matrix, int rows, int cols) {
+    // Multiplica cada elemento da matriz por 2
+    for(int i = 0; i < rows; i++) {
+        for(int j = 0; j < cols; j++) {
+            matrix[i][j] *= 2;
+        }
+    }
+}
+
+// Chamada da função
+processMatrix(matrix, 3, 4);
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Conclusão</h2>
+                <ul>
+                    <li>A alocação dinâmica permite criar estruturas de dados flexíveis</li>
+                    <li>Entender ponteiros e alocação de memória é crucial em C++</li>
+                    <li>Sempre libere a memória alocada manualmente para evitar vazamentos</li>
+                    <li>A compreensão da stack vs heap ajuda na otimização de programas</li>
+                    <li>O gerenciamento eficiente de memória é essencial para programas robustos</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1200,
+            height: 720,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
