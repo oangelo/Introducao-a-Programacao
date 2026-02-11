@@ -153,3 +153,7 @@ Ao final deste curso, você terá uma sólida compreensão dos conceitos fundame
 </details>
 
 Bons estudos!
+
+## Informações Institucionais
+
+Este material didático foi desenvolvido pelo **Prof. Angelo Mondaini Calvão** e é utilizado nas disciplinas dos cursos de **Engenharia Mecânica** e **Engenharia de Computação** do Instituto Politécnico do Rio de Janeiro (IPRJ), campus regional da **Universidade do Estado do Rio de Janeiro (UERJ)** em Nova Friburgo.
