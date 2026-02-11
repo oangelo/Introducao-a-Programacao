@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C++: Estruturas (struct)</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+.reveal h1, .reveal h2 { color: #58a6ff; }
+.reveal h3 { color: #79c0ff; }
+.reveal pre { background-color: #0d1117; }
+.reveal code { color: #ff7b72; }
+.reveal ul { list-style-type: none; }
+.reveal ul li::before { content: "» "; color: #58a6ff; }
+.reveal .highlight { color: #ffa657; font-weight: bold; }
+.two-columns { display: flex; justify-content: space-between; }
+.two-columns > * { flex: 1; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+            <section>
+                <h1>Ponteiros para Funções em C++</h1>
+                <h3>Para Estudantes de Engenharia</h3>
+            </section>
+
+            <section>
+                <h2>Tópicos</h2>
+                <ul>
+                    <li>O que são ponteiros para funções</li>
+                    <li>Sintaxe e declaração</li>
+                    <li>Callbacks</li>
+                    <li>Padrões de design básicos</li>
+                    <li>Exemplos práticos</li>
+                    <li>Casos de uso comuns</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>O que são Ponteiros para Funções?</h2>
+                <ul>
+                    <li>Variáveis que armazenam o endereço de funções na memória</li>
+                    <li>Permitem chamar funções indiretamente</li>
+                    <li>Possibilitam passar comportamento como parâmetro</li>
+                    <li>Base para vários padrões de programação</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Sintaxe Básica</h2>
+                <pre><code class="cpp">// Declaração de um ponteiro para função
+// que recebe dois ints e retorna um int
+int (*funcPtr)(int, int);
+
+// Função exemplo
+int soma(int a, int b) {
+    return a + b;
+}
+
+// Atribuição
+funcPtr = &soma;  // ou simplesmente funcPtr = soma;
+
+// Chamada através do ponteiro
+int resultado = (*funcPtr)(5, 3);  // ou simplesmente funcPtr(5, 3);</code></pre>
+            </section>
+
+            <section>
+                <h2>Simplificando a Sintaxe</h2>
+                <pre><code class="cpp">// Usando typedef para criar um alias
+typedef int (*OperacaoMatematica)(int, int);
+
+// Agora podemos declarar ponteiros para função assim:
+OperacaoMatematica operacao;
+operacao = soma;
+
+// Mais legível e fácil de entender
+int resultado = operacao(5, 3);</code></pre>
+            </section>
+
+            <section>
+                <h2>Exemplo: Biblioteca de Operações Matemáticas</h2>
+                <pre><code class="cpp">// Funções básicas
+int soma(int a, int b) { return a + b; }
+int subtracao(int a, int b) { return a - b; }
+int multiplicacao(int a, int b) { return a * b; }
+int divisao(int a, int b) { return b != 0 ? a / b : 0; }
+
+// Array de ponteiros para funções
+typedef int (*Operacao)(int, int);
+Operacao operacoes[] = {soma, subtracao, multiplicacao, divisao};
+
+// Função que executa a operação escolhida
+int calculadora(int a, int b, int op) {
+    if (op >= 0 && op < 4) {
+        return operacoes[op](a, b);
+    }
+    return 0;
+}</code></pre>
+            </section>
+
+            <section>
+                <h2>Callbacks: Conceito Fundamental</h2>
+                <ul>
+                    <li>Callback: função passada como argumento para outra função</li>
+                    <li>Permite personalizar comportamento</li>
+                    <li>Muito usado em processamento de dados</li>
+                    <li>Base para programação orientada a eventos</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Exemplo: Processamento de Arrays</h2>
+                <pre><code class="cpp">// Função que processa cada elemento de um array
+void processarArray(int arr[], int tamanho, int (*processador)(int)) {
+    for(int i = 0; i < tamanho; i++) {
+        arr[i] = processador(arr[i]);
+    }
+}
+
+// Funções de processamento
+int dobrar(int x) { return x * 2; }
+int quadrado(int x) { return x * x; }
+int absoluto(int x) { return x < 0 ? -x : x; }
+
+// Uso
+int numeros[] = {1, -2, 3, -4, 5};
+processarArray(numeros, 5, dobrar);    // Dobra todos os números
+processarArray(numeros, 5, quadrado);  // Eleva ao quadrado
+processarArray(numeros, 5, absoluto);  // Valor absoluto</code></pre>
+            </section>
+
+            <section>
+                <h2>Padrão de Design: Table-Driven Methods</h2>
+                <pre><code class="cpp">// Estrutura para manter dados e comportamento juntos
+struct Comando {
+    const char* nome;
+    void (*executar)(void);
+};
+
+// Funções de comando
+void salvar(void) {
+    printf("Salvando dados...\n");
+}
+
+void carregar(void) {
+    printf("Carregando dados...\n");
+}
+
+// Tabela de comandos
+Comando comandos[] = {
+    {"salvar", salvar},
+    {"carregar", carregar}
+};</code></pre>
+            </section>
+
+            <section>
+                <h2>Padrão de Design: Chain of Responsibility</h2>
+                <pre><code class="cpp">// Função que processa um valor
+typedef int (*Processador)(int);
+
+// Estrutura para criar uma cadeia de processadores
+struct CadeiaProcessamento {
+    Processador processadores[10];
+    int quantidade;
+};
+
+// Inicializa a cadeia
+void iniciarCadeia(CadeiaProcessamento* cadeia) {
+    cadeia->quantidade = 0;
+}
+
+// Adiciona um processador à cadeia
+void adicionarProcessador(CadeiaProcessamento* cadeia, Processador p) {
+    if(cadeia->quantidade < 10) {
+        cadeia->processadores[cadeia->quantidade++] = p;
+    }
+}</code></pre>
+            </section>
+
+            <section>
+                <h2>Exemplo: Sistema de Filtragem</h2>
+                <pre><code class="cpp">// Funções de filtro
+int filtroNegativo(int x) {
+    return x < 0 ? 0 : x;
+}
+
+int filtroMaximo(int x) {
+    return x > 100 ? 100 : x;
+}
+
+// Uso do sistema
+CadeiaProcessamento filtros;
+iniciarCadeia(&filtros);
+adicionarProcessador(&filtros, filtroNegativo);
+adicionarProcessador(&filtros, filtroMaximo);
+
+// Processa um valor através de todos os filtros
+int resultado = processarValor(&filtros, -50);  // Resultado: 0
+resultado = processarValor(&filtros, 150);      // Resultado: 100</code></pre>
+            </section>
+
+            <section>
+                <h2>Casos de Uso Comuns</h2>
+                <ol>
+                    <li><strong>Processamento de Dados</strong>
+                        <ul>
+                            <li>Filtros</li>
+                            <li>Transformações</li>
+                            <li>Validações</li>
+                        </ul>
+                    </li>
+                    <li><strong>Menus e Comandos</strong>
+                        <ul>
+                            <li>Sistemas de menu</li>
+                            <li>Interpretadores de comando</li>
+                            <li>Mapeamento ação-função</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Boas Práticas</h2>
+                <ol>
+                    <li>Use typedef para simplificar a sintaxe</li>
+                    <li>Verifique ponteiros para função antes de chamá-los</li>
+                    <li>Mantenha a documentação clara sobre o comportamento esperado</li>
+                    <li>Use constantes para identificar operações</li>
+                    <li>Agrupe funções relacionadas em estruturas</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Considerações Finais</h2>
+                <ul>
+                    <li>Ponteiros para funções são fundamentais em C++</li>
+                    <li>Permitem criar código mais flexível e reutilizável</li>
+                    <li>São a base para vários padrões de design</li>
+                    <li>Importantes para sistemas modulares</li>
+                    <li>Essenciais para callbacks e processamento de eventos</li>
+                </ul>
+            </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 1200,
+        height: 720,
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
